@@ -2,16 +2,34 @@ using UnityEngine;
 
 public class s_GamaManager : MonoBehaviour
 {
-    public static s_GamaManager s_instance; // ¸Ş¸ğ¸®¿¡ ÇÒ´ç
-    public s_PlayerInfo s_Player;
+    public static s_GamaManager s_instance; //  Gama < ì˜¤íƒ€ì¸ê±° ì•Œê³ ìˆì–´ìš© ã… 
 
-    // TODO : °ñµå¸ŞÅ» ¹«ÇÑ¸Ê ÀÌµ¿¹æ½ÄÀ¸·Î ±¸ÇöÇÏ´Ù°¡ ½ÇÆĞ
-    // ½ÇÆĞ»çÀ¯ > ÀÔ¸À¿¡ µû¶ó Å¸ÀÏ¸ÊÀ» ÀÌµ¿(¸¶ÀÎÅ©·¡ÇÁÆ® Ã»Å©´À³¦?) ÇÏ·ÁÇß´Âµ¥ ¾î..À½...Èì..
+    [Header("Player References")]
+    public s_PlayerInfo s_PlayerInfoRef; // í”Œë ˆì´ì–´ ì •ë³´ ìŠ¤í¬ë¦½íŠ¸ ì°¸ì¡°
+    public s_PlayerMove s_PlayerMoveRef; // í”Œë ˆì´ì–´ ì´ë™ ìŠ¤í¬ë¦½íŠ¸ ì°¸ì¡°
+    public s_PlayerInput s_PlayerInputRef; // í”Œë ˆì´ì–´ ì…ë ¥ ìŠ¤í¬ë¦½íŠ¸ ì°¸ì¡°
 
     private void Awake()
     {
-        s_instance = this;
+        // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ ì„¤ì •
+        if (s_instance == null)
+        {
+            s_instance = this;
+        }
+        else if (s_instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // s_PlayerMove ìŠ¤í¬ë¦½íŠ¸ ì´ˆê¸°í™”
+        if (s_PlayerMoveRef != null && s_PlayerInfoRef != null && s_PlayerInputRef != null)
+        {
+            s_PlayerMoveRef.Setup(s_PlayerInfoRef, s_PlayerInputRef);
+        }
+        else
+        {
+            Debug.LogError("s_GamaManager: í”Œë ˆì´ì–´ ê´€ë ¨ ì°¸ì¡°ê°€ í• ë‹¹ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. Inspectorë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”.");
+        }
     }
-
-
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class s_PlayerInput : MonoBehaviour
 {
-    public Vector2 s_MoveDirection { get; private set; } // 방향
+    public Vector2 s_MoveDirection;
 
     void Update()
     {
