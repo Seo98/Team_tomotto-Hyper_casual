@@ -7,18 +7,17 @@ public class c_Obstacle : MonoBehaviour
     public enum ObstacleType { SEAWEED, ROCK, WHIRLPOOL, BROKENSHIP }
     public ObstacleType c_obType;
 
-
-    //PlayerMovement s_playMove;
+    h_BoatController h_playMove;
     bool c_isDamage;
     float c_damage;
 
     private void Start()
     {
-        // s_playMove = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        h_playMove = GameObject.FindWithTag("Player").GetComponent<h_BoatController>();
 
         // S. 오브젝트 태그에 따라 자동지정 
         // 사전에 해당 오브젝트 프리팹화 및 태그지정필요
-        /*
+        
         switch (gameObject.tag)
         {
             case "Seaweed":
@@ -33,7 +32,7 @@ public class c_Obstacle : MonoBehaviour
             case "Brokenship":
               c_obType = ObstacleType.WHIRLPOOL;
                 break;
-        }*/
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -61,7 +60,7 @@ public class c_Obstacle : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        // s_playMove.h_boatSpeed = 3f;
+        //h_playMove.h_boatSpeed = 3f;
     }
 
     void slowObstacle(bool c_isDamage, float damage)
