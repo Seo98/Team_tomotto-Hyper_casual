@@ -18,6 +18,22 @@ public class c_Obstacle : MonoBehaviour
 
         // S. 오브젝트 태그에 따라 자동지정 
         // 사전에 해당 오브젝트 프리팹화 및 태그지정필요
+        /*
+        switch (gameObject.tag)
+        {
+            case "Seaweed":
+                c_obType = ObstacleType.SEAWEED;
+                break;
+            case "Rock":
+                c_obType = ObstacleType.ROCK;
+                break;
+            case "Whirlpool":
+                c_obType = ObstacleType.BROKENSHIP;
+                break;
+            case "Brokenship":
+              c_obType = ObstacleType.WHIRLPOOL;
+                break;
+        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
