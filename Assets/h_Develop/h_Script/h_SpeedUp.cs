@@ -3,7 +3,7 @@ using UnityEngine;
 public class h_SpeedUp : MonoBehaviour
 {
     private Rigidbody2D h_targetRb;                 // h_밀어낼 대상의 Rigidbody2D
-    [SerializeField] private float pushPower = -5f; // h_밀어내는 힘, 에디터에서 조정 가능
+    [SerializeField] private float pushPower = -10f; // h_밀어내는 힘, 에디터에서 조정 가능
 
     void Start()
     {

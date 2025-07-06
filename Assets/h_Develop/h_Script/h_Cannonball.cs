@@ -4,12 +4,7 @@ public class h_Cannonball : MonoBehaviour, h_IItem
 {
     public h_BoatController boatController;
 
-    private void Update()
-    {
-        
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
 
         if (other.gameObject.CompareTag("Boat"))

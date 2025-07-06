@@ -37,12 +37,12 @@ public class h_BoatController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.GetComponent<IItem>() != null)
-        {
-            IItem item = other.gameObject.GetComponent<IItem>();
-            item.Get();
-        }
-    }
+    // void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if (other.gameObject.GetComponent<IItem>() != null)
+    //     {
+    //         IItem item = other.gameObject.GetComponent<IItem>();
+    //         item.Get();
+    //     }
+    // }
 }
