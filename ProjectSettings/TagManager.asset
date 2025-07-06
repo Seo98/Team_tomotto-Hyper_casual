@@ -8,6 +8,9 @@ TagManager:
   - Rock
   - Whirlpool
   - BrokenShip
+  - Boat
+  - Sea
+  - Area
   layers:
   - Default
   - TransparentFX
