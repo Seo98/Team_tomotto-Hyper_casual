@@ -10,7 +10,7 @@ public class h_Cannonball : MonoBehaviour, h_IItem
         if (other.gameObject.CompareTag("Boat"))
         {
             Debug.Log("Æ÷Åº È¹µæ");
-            Get();
+            // Get();
         }
     }
 
