@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class s_GameManager : MonoBehaviour
 {
-    public static s_GameManager s_instance; // 다른 스크립트에서 접근할 수 있는 싱글톤 인스턴스
-
-    [HideInInspector]
-    public s_PlayerInfo s_playerInfoRef; // 플레이어 정보(PlayerInfo)에 대한 참조
+    public static s_GameManager s_instance; // 싱글톤 인스턴스
+    public s_PlayerInfo s_playerInfoRef;
 
     void Awake()
     {
@@ -13,17 +11,25 @@ public class s_GameManager : MonoBehaviour
         {
             s_instance = this;
         }
-        else if (s_instance != this)
+        else
         {
             Destroy(gameObject);
             return;
         }
+        GameStart();
+    }
 
-        s_playerInfoRef = FindFirstObjectByType<s_PlayerInfo>();
 
-        if (s_playerInfoRef == null)
+    public void GameStart()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
         {
-            Debug.LogError("정보못찾음 GameManager.cs 26 < ");
+            s_playerInfoRef = player.GetComponent<s_PlayerInfo>(); 
+        }
+        else
+        {
+            Debug.Log("#엄준식");
         }
     }
 }

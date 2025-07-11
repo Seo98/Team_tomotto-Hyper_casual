@@ -29,11 +29,9 @@ public class s_PlayerController : MonoBehaviour
 
     private void HandleInput()
     {
-        // 키보드 좌/우 
         float moveHorizontal = Input.GetAxis("Horizontal");
 
-        // 기본적으로 아래로 내려감
-        Vector2 direction = new Vector2(moveHorizontal, -1); // <<
+        Vector2 direction = new Vector2(moveHorizontal, -1); // 아래로 이동 포함
         s_moveDirection = direction.normalized;
     }
 

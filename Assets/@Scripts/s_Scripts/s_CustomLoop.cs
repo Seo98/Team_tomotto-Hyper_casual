@@ -23,7 +23,7 @@ public class s_CustomLoop : MonoBehaviour
         // 
         if (s_targetTilemap == null)
         {
-            Debug.LogWarning("�Ҵ��ض�");
+            Debug.LogWarning("s");
             enabled = false; 
             return;
         }
