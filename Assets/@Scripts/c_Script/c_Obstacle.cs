@@ -34,6 +34,20 @@ public class c_Obstacle : MonoBehaviour
                 break;
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("fireball"))
+        {
+            if(this.gameObject.tag == "Rock")
+            {
+               this.gameObject.SetActive(false);
+            }
+            if(this.gameObject.tag == "BrokenShip")
+            {
+                this.gameObject.SetActive(false);
+            }
+        }        
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -11,6 +11,7 @@ TagManager:
   - Boat
   - Sea
   - Area
+  - fireball
   layers:
   - Default
   - TransparentFX
