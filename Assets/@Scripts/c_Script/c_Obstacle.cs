@@ -2,18 +2,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class c_Obstacle : MonoBehaviour
-{
-
+{ 
     public enum ObstacleType { SEAWEED, ROCK, WHIRLPOOL, BROKENSHIP }
     public ObstacleType c_obType;
 
-    h_BoatController h_playMove;
+    c_ObstaclePool obcPool;
+    s_PlayerInfo playerInfo;
     bool c_isDamage;
     float c_damage;
 
     private void Start()
     {
-        h_playMove = GameObject.FindWithTag("Player").GetComponent<h_BoatController>();
+        playerInfo = GameObject.FindWithTag("Player").GetComponent<s_PlayerInfo>();
 
         // S. 오브젝트 태그에 따라 자동지정 
         // 사전에 해당 오브젝트 프리팹화 및 태그지정필요
@@ -46,13 +46,13 @@ public class c_Obstacle : MonoBehaviour
                     slowObstacle(false, 0);
                     break;
                 case ObstacleType.ROCK:
-                    slowObstacle(true, 30f);
+                    slowObstacle(true, 1f);
                     break;
                 case ObstacleType.WHIRLPOOL:
                     slowObstacle(false, 0);
                     break;
                 case ObstacleType.BROKENSHIP:
-                    slowObstacle(true, 50f);
+                    slowObstacle(true, 2f);
                     break;
             }
         }
@@ -60,22 +60,21 @@ public class c_Obstacle : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //h_playMove.h_boatSpeed = 3f;
+        playerInfo.s_moveSpeed = 5f;
     }
 
     void slowObstacle(bool c_isDamage, float damage)
     {
         if (c_isDamage) //데미지 입고 느려짐
         {
-            // s_playMove.h_boatSpeed *= 0.2f;
-            // s_playMove.nowhp -= damage;  //(nowhp = nowhp- damage)
-            // s_playMove.hp = s_playMove.nowhp;
-            Debug.Log($"데미지를 입었습니다. 현재 hp : ");
+            playerInfo.s_moveSpeed *= 0.2f;
+            playerInfo.s_hp -= damage;  //(hp = hp- damage)   
+            Debug.Log($"데미지를 입었습니다. 현재 hp : {playerInfo.s_hp}");
 
         }
         else //데미지 안 입고 느려짐
         {
-            // s_playMove.h_boatSpeed *= 0.2f;
+            playerInfo.s_moveSpeed *= 0.2f;
             Debug.Log("스턴 걸렸습니다.");
         }
     }
