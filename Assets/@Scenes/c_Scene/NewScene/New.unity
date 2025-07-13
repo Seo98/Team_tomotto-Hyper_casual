@@ -1031,7 +1031,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.5833333, y: 1.25}
+    oldSize: {x: 0.875, y: 1.875}
     newSize: {x: 0.5833333, y: 1.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1328,9 +1328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03481554dfd8ab489a8b065d3c1ee43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_playerColl: {fileID: 1669894853}
   c_feverImage: {fileID: 1638440874}
   c_isFever: 0
+  nowGauge: 0
 --- !u!1 &2055871190
 GameObject:
   m_ObjectHideFlags: 0
