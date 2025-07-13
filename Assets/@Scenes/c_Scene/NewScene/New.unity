@@ -437,6 +437,7 @@ MonoBehaviour:
   c_firePos: {fileID: 1850834837}
   c_ballPrefab: {fileID: 8493165749912826780, guid: 70142ed6a3aea2248a37cf461d0b6e47, type: 3}
   c_fireButton: {fileID: 1572119445}
+  buttonImage: {fileID: 1572119446}
   c_shootPower: 20
 --- !u!1 &1099700054
 GameObject:
@@ -806,7 +807,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 1c84373cf4be81c44b97ce70ed9d78e6, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1103,7 +1104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936682287}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: gameobject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1142,7 +1143,7 @@ GameObject:
   - component: {fileID: 2055871193}
   - component: {fileID: 2055871192}
   m_Layer: 5
-  m_Name: Image
+  m_Name: '[image] background'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1181,14 +1182,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 37b388a5217aba141900a0ac698315c5, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

@@ -7,6 +7,8 @@ public class c_CannonfireManager : MonoBehaviour
     public GameObject c_ballPrefab;
     public Button c_fireButton;
 
+    public Image buttonImage;
+
     public float c_shootPower = 20f;
 
     private void Awake()
@@ -16,19 +18,37 @@ public class c_CannonfireManager : MonoBehaviour
 
     void CannonFire()
     {
-        StartCoroutine(AttackRoutine());
+        if (buttonImage.fillAmount >= 1f)
+        {
+            C_AttackRoutine();
+            StartCoroutine(C_buttonActive());
+        }
     }
 
-    IEnumerator AttackRoutine()
+    public void C_AttackRoutine()
     {     
         GameObject c_fireball = Instantiate(c_ballPrefab, c_firePos);
         Rigidbody2D rb = c_fireball.GetComponent<Rigidbody2D>();
-
+        
         if (rb != null)
-        {
+        {   
             rb.AddForce(Vector2.down * c_shootPower, ForceMode2D.Impulse);            
+        }    
+    }
+
+    IEnumerator C_buttonActive()
+    {
+        buttonImage.fillAmount = 0f;
+        buttonImage.raycastTarget = false;
+
+        while(buttonImage.fillAmount < 1)
+        {
+            buttonImage.fillAmount += Time.deltaTime * 0.2f;     
+
+            yield return null;
         }
 
-        yield return new WaitForSeconds(5f);
+        buttonImage.fillAmount = 1f;
+        buttonImage.raycastTarget = true;            
     }
 }
