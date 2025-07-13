@@ -6,10 +6,9 @@ public class c_Obstacle : MonoBehaviour
     public enum ObstacleType { SEAWEED, ROCK, WHIRLPOOL, BROKENSHIP }
     public ObstacleType c_obType;
 
-    c_ObstaclePool obcPool;
     s_PlayerInfo playerInfo;
-    bool c_isDamage;
-    float c_damage;
+    c_FeverTimeManage feverTIme;
+    
 
     private void Start()
     {
@@ -36,7 +35,15 @@ public class c_Obstacle : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("fireball"))
+        //while (feverTIme.c_isFever)
+        //{
+            
+        //    this.gameObject.SetActive(false);
+
+        //    break;
+        //}
+
+        if (other.CompareTag("fireball"))
         {
             if(this.gameObject.tag == "Rock")
             {
@@ -51,8 +58,18 @@ public class c_Obstacle : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //while (feverTIme.c_isFever)
+        //{
+        //    collision.collider.isTrigger = true;
+        //    this.gameObject.SetActive(false);
+
+        //    break;
+        //}
+
         if (collision.collider.CompareTag("Player"))
         {
+            if (feverTIme.c_isFever)
+                return;
 
             switch (c_obType)
             {
