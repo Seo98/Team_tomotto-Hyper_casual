@@ -7,15 +7,12 @@ public class c_Obstacle : MonoBehaviour
     public ObstacleType c_obType;
 
     s_PlayerInfo playerInfo;
-    c_FeverTimeManage feverTIme;
-    
+    c_FeverTimeManage feverTime;
 
     private void Start()
     {
         playerInfo = GameObject.FindWithTag("Player").GetComponent<s_PlayerInfo>();
-
-        // S. 오브젝트 태그에 따라 자동지정 
-        // 사전에 해당 오브젝트 프리팹화 및 태그지정필요
+        feverTime = FindFirstObjectByType<c_FeverTimeManage>();
         
         switch (gameObject.tag)
         {
@@ -35,41 +32,26 @@ public class c_Obstacle : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //while (feverTIme.c_isFever)
-        //{
-            
-        //    this.gameObject.SetActive(false);
 
-        //    break;
-        //}
-
+        if (feverTime.c_isFever)
+        {
+            this.gameObject.SetActive(false);
+            return;
+        }
+        
         if (other.CompareTag("fireball"))
         {
-            if(this.gameObject.tag == "Rock")
-            {
-               this.gameObject.SetActive(false);
-            }
-            if(this.gameObject.tag == "BrokenShip")
-            {
-                this.gameObject.SetActive(false);
-            }
-        }        
+            if (this.gameObject.tag == "Rock" || this.gameObject.tag == "BrokenShip")          
+               this.gameObject.SetActive(false);            
+        }          
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //while (feverTIme.c_isFever)
-        //{
-        //    collision.collider.isTrigger = true;
-        //    this.gameObject.SetActive(false);
-
-        //    break;
-        //}
-
+    public void OnCollisionEnter2D(Collision2D collision)
+    {        
         if (collision.collider.CompareTag("Player"))
         {
-            if (feverTIme.c_isFever)
-                return;
+            feverTime.nowGauge = feverTime.c_feverImage.fillAmount - 0.1f; //충돌 시 게이지 깎임
+            feverTime.c_feverImage.fillAmount = feverTime.nowGauge; 
 
             switch (c_obType)
             {
@@ -93,15 +75,13 @@ public class c_Obstacle : MonoBehaviour
     {
         playerInfo.s_moveSpeed = 5f;
     }
-
     void slowObstacle(bool c_isDamage, float damage)
     {
         if (c_isDamage) //데미지 입고 느려짐
         {
             playerInfo.s_moveSpeed *= 0.2f;
             playerInfo.s_hp -= damage;  //(hp = hp- damage)   
-            Debug.Log($"데미지를 입었습니다. 현재 hp : {playerInfo.s_hp}");
-
+            Debug.Log($"데미지를 입었습니다. 현재 hp : {playerInfo.s_hp}");          
         }
         else //데미지 안 입고 느려짐
         {

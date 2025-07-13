@@ -12,6 +12,8 @@ public class c_FeverTimeManage : MonoBehaviour
     public Image c_feverImage;
     public bool c_isFever;
 
+    public float nowGauge;
+
     private void Awake()
     {
         c_feverImage.fillAmount = 0;
@@ -19,16 +21,17 @@ public class c_FeverTimeManage : MonoBehaviour
 
         c_playColl = player.GetComponent<Collider2D>();
         playerInfo = GameObject.FindWithTag("Player").GetComponent<s_PlayerInfo>();
+
     }
     private void Update()
-    { 
+    {
         while (c_feverImage.fillAmount < 1)
         {
             c_feverImage.fillAmount += Time.deltaTime * 0.06f;
+            nowGauge = c_feverImage.fillAmount;
 
             break;
         }
-
         if (!c_isFever && c_feverImage.fillAmount >= 1)
             StartCoroutine(c_FeverTime());                    
     }
@@ -38,11 +41,12 @@ public class c_FeverTimeManage : MonoBehaviour
          c_isFever = true;       
          c_playColl.isTrigger = true;
          playerInfo.s_moveSpeed = 15f;
-
+        
         yield return new WaitForSeconds(5f);
 
         c_isFever = false;
         playerInfo.s_moveSpeed = 5f;
+        c_playColl.isTrigger = false;
         c_feverImage.fillAmount = 0f;
     }
 }
