@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: f4469cf8fd9d6f84383b243528f7a169
+guid: f6a99dd56621dd540863626b7731ea60
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6053722968521005444
-    second: Banner_Vertical_0
+      213: -5432891005191456340
+    second: "\uB2E4\uC6B4\uB85C\uB4DC-_5__0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -40,13 +40,13 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -55,9 +55,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Banner_Vertical_0
+      name: "\uB2E4\uC6B4\uB85C\uB4DC-_5__0"
       rect:
         serializedVersion: 2
-        x: 35
-        y: 29
-        width: 122
-        height: 133
+        x: 0
+        y: 0
+        width: 256
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c76aeacb80bdcfba0800000000000000
-      internalID: -6053722968521005444
+      spriteID: ca9f52c5a6e7a94b0800000000000000
+      internalID: -5432891005191456340
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Banner_Vertical_0: -6053722968521005444
+      "\uB2E4\uC6B4\uB85C\uB4DC-_5__0": -5432891005191456340
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

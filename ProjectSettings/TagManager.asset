@@ -12,6 +12,7 @@ TagManager:
   - Sea
   - Area
   - fireball
+  - Background
   layers:
   - Default
   - TransparentFX
