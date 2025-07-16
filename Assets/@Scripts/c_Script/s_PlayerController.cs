@@ -1,8 +1,7 @@
 using UnityEngine;
 
 public class s_PlayerController : MonoBehaviour
-{
-    [SerializeField]
+{    
 
     c_FeverTimeManage c_fever;
     private s_PlayerInfo s_playerInfo; // 플레이어의 정보
