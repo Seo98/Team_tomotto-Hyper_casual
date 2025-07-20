@@ -8,7 +8,7 @@ public class s_PlayerController : MonoBehaviour
     public GameObject c_cannonPrefab;
     public GameObject c_firePosition;
 
-    float c_spawnTime = 2f;
+    public float c_spawnTime = 2f;
     float c_timer;
 
     private Rigidbody2D s_rb;

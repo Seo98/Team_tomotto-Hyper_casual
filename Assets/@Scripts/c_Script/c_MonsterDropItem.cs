@@ -4,6 +4,13 @@ public class c_MonsterDropItem : MonoBehaviour
 {
     [SerializeField] GameObject[] c_items;
 
+    //몬스터 체력 받아옴
+
+    private void Start()
+    {
+        //만약 몬스터 체력이 0일 때 현재 위치에서 드랍 아이템
+    }
+
     void DropItem(Vector3 dropPos)
     {
         var randomIndex = Random.Range(0, c_items.Length);
