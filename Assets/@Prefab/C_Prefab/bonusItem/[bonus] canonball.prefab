@@ -165,6 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3617bcc96000c924aac8329c3396b291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_firePos: {fileID: 0}
-  c_ballPrefab: {fileID: 8493165749912826780}
-  c_shootPower: 20
+  power: 1

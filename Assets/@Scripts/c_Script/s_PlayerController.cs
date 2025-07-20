@@ -1,9 +1,20 @@
 using UnityEngine;
 
 public class s_PlayerController : MonoBehaviour
-{    
+{
 
+    [Header("플레이어 능력치")]
+    public float c_moveSpeed = 5f;
+    public float c_hp = 3f;
+
+    [Header("상태")]
+    public bool c_isAttack = false;
+    public int c_score = 0;
+    public bool c_isShield = false;
+
+    c_BonusItem currState;
     c_FeverTimeManage c_fever;
+
     private s_PlayerInfo s_playerInfo; // 플레이어의 정보
     public GameObject c_cannonPrefab;
     public GameObject c_firePosition;
@@ -16,8 +27,8 @@ public class s_PlayerController : MonoBehaviour
 
     void Awake()
     {
-        // 겟 컴포넌트
         s_playerInfo = GetComponent<s_PlayerInfo>();
+        currState = FindFirstObjectByType<c_BonusItem>();
         s_rb = GetComponent<Rigidbody2D>();
         c_fever = FindFirstObjectByType<c_FeverTimeManage>();
     }
@@ -27,6 +38,7 @@ public class s_PlayerController : MonoBehaviour
         c_timer += Time.deltaTime;
         // 입력 처리
         HandleInput();
+
         if(c_timer > c_spawnTime && !c_fever.c_isFever) //2초마다 대포알 생성
         {
             c_timer = 0; 
@@ -44,12 +56,12 @@ public class s_PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
 
-        Vector2 direction = new Vector2(moveHorizontal, -1); // 아래로 이동 포함
+        Vector2 direction = new Vector2(moveHorizontal, 1); // 위로 이동으로 수정(c)
         s_moveDirection = direction.normalized;
     }
 
     private void HandleMovement()
     {
-        s_rb.linearVelocity = s_moveDirection * s_playerInfo.s_moveSpeed;
+        s_rb.linearVelocity = s_moveDirection * c_moveSpeed;
     }
 }

@@ -11,7 +11,7 @@ public class s_PlayerController_Up : MonoBehaviour
     void Awake()
     {
         // 겟 컴포넌트
-        s_playerInfo = GetComponent<s_PlayerInfo>();
+        //s_playerInfo = GetComponent<s_PlayerInfo>();
         s_rb = GetComponent<Rigidbody2D>();
     }
 
@@ -37,6 +37,6 @@ public class s_PlayerController_Up : MonoBehaviour
 
     private void HandleMovement()
     {
-        s_rb.linearVelocity = s_moveDirection * s_playerInfo.s_moveSpeed;
+        //s_rb.linearVelocity = s_moveDirection * s_playerInfo.s_moveSpeed;
     }
 }

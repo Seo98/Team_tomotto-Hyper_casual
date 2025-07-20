@@ -6,12 +6,12 @@ public class c_Obstacle : MonoBehaviour
     public enum ObstacleType { SEAWEED, ROCK, WHIRLPOOL, BROKENSHIP }
     public ObstacleType c_obType;
 
-    s_PlayerInfo playerInfo;
+    s_PlayerController player;
     c_FeverTimeManage feverTime;
 
     private void Start()
     {
-        playerInfo = GameObject.FindWithTag("Player").GetComponent<s_PlayerInfo>();
+        player = GameObject.FindWithTag("Player").GetComponent<s_PlayerController>();
         feverTime = FindFirstObjectByType<c_FeverTimeManage>();
         
         switch (gameObject.tag)
@@ -73,19 +73,19 @@ public class c_Obstacle : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        playerInfo.s_moveSpeed = 5f;
+        player.c_moveSpeed = 5f;
     }
     void slowObstacle(bool c_isDamage, float damage)
     {
         if (c_isDamage) //데미지 입고 느려짐
         {
-            playerInfo.s_moveSpeed *= 0.2f;
-            playerInfo.s_hp -= damage;  //(hp = hp- damage)   
-            Debug.Log($"데미지를 입었습니다. 현재 hp : {playerInfo.s_hp}");          
+            player.c_moveSpeed *= 0.2f;
+            player.c_hp -= damage;  //(hp = hp- damage)   
+            Debug.Log($"데미지를 입었습니다. 현재 hp : {player.c_hp}");          
         }
         else //데미지 안 입고 느려짐
         {
-            playerInfo.s_moveSpeed *= 0.2f;
+            player.c_moveSpeed *= 0.2f;
             Debug.Log("스턴 걸렸습니다.");
         }
     }

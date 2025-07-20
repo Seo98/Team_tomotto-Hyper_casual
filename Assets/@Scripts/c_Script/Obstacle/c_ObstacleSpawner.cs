@@ -19,8 +19,8 @@ public class c_ObstacleSpawner : MonoBehaviour
             GameObject obc = obstaclePool.DequeueObc();
 
             // 위치 랜덤 설정
-            float x = Random.Range(-2.8f, 2.8f);
-            float y = Random.Range(-9.5f, -5.5f);
+            float x = Random.Range(2.8f, 2.8f);
+            float y = Random.Range(5.5f, 9.5f);
             Vector2 spawnPos = (Vector2)player.transform.position + new Vector2(x, y);
             obc.transform.position = spawnPos;
 

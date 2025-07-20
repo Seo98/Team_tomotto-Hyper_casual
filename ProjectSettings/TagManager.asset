@@ -14,6 +14,7 @@ TagManager:
   - fireball
   - Background
   - Enemy
+  - Monster
   layers:
   - Default
   - TransparentFX
