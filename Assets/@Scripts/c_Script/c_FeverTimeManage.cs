@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class c_FeverTimeManage : MonoBehaviour
 {
     s_PlayerController player;
-    s_PlayerInfo playerInfo;
 
     Collider2D c_playColl;
     public Image c_feverImage;
@@ -20,7 +19,6 @@ public class c_FeverTimeManage : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<s_PlayerController>();
 
         c_playColl = player.GetComponent<Collider2D>();
-        playerInfo = GameObject.FindWithTag("Player").GetComponent<s_PlayerInfo>();
 
     }
     private void Update()
@@ -40,12 +38,12 @@ public class c_FeverTimeManage : MonoBehaviour
     {
          c_isFever = true;       
          c_playColl.isTrigger = true;
-         playerInfo.s_moveSpeed = 15f;
+         player.c_moveSpeed = 15f;
         
         yield return new WaitForSeconds(5f);
 
         c_isFever = false;
-        playerInfo.s_moveSpeed = 5f;
+        player.c_moveSpeed = 5f;
         c_playColl.isTrigger = false;
         c_feverImage.fillAmount = 0f;
     }
