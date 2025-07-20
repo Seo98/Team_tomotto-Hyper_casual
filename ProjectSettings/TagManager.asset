@@ -26,9 +26,9 @@ TagManager:
   - Player
   - Bullet
   - Enemy
+  - Enemy Bullet
   - 
-  - 
-  - 
+  - Obstacle
   - 
   - 
   - 
