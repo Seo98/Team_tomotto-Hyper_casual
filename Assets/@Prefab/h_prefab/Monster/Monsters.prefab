@@ -183,7 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3821595612537477544}
-  - component: {fileID: 3478645796169590381}
+  - component: {fileID: 628277776598605728}
   m_Layer: 9
   m_Name: '[ ] FirePos'
   m_TagString: Untagged
@@ -206,7 +206,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5836313230977941648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3478645796169590381
+--- !u!114 &628277776598605728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,12 +215,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4330644757391279013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f20e6b66b2c00409ea39d9bfb18e54, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f03c6e24863c0e42989342f6e7f7b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletFactory: {fileID: 3775194400798946777, guid: 07e864f7fc2ae66449177a1068471fc8, type: 3}
   firePosition: {fileID: 4330644757391279013}
-  bulletTime: 2
+  firetCoolime: 2
 --- !u!1 &7708787594950808090
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 3113665008276142956}
   m_Layer: 9
   m_Name: Monsters
-  m_TagString: Enemy
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,13 +358,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5018d12657e64da44a2a104349c9948e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  h_enSpeed: 4
+  h_enSpeed: 2
   h_enHp: 3
   jelly_normal: {fileID: 4155635673379694500}
   shark_follower: {fileID: 1757759410614394428}
   octo_ink: {fileID: 7708787594950808090}
   enemyFire: {fileID: 4330644757391279013}
-  playerName: "\u2605Player"
+  playerName: Player
 --- !u!61 &4597399417721601118
 BoxCollider2D:
   m_ObjectHideFlags: 0

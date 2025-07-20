@@ -13,7 +13,6 @@ TagManager:
   - Area
   - fireball
   - Background
-  - Enemy
   - Monster
   layers:
   - Default

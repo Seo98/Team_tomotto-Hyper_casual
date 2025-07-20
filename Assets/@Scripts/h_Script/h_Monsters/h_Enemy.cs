@@ -21,7 +21,7 @@ public class h_Enemy : MonoBehaviour
     public GameObject enemyFire;
 
     [Header("추적 대상 이름")]
-    public String playerName = "★Player";
+    public String playerName = "Player";
 
     // 사망 효과 인스펙터
     // public GameObject deathIpactFactory;
@@ -88,7 +88,7 @@ public class h_Enemy : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("fireball"))
         {
             h_enHp--;
         }
