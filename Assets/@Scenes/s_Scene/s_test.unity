@@ -161,7 +161,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd0d2cd4e04af054eadef5b5b2153364, type: 2}
+  - {fileID: 2100000, guid: 46f448cd34a30e04ca39c7288262c6a6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ee9805eec5d4c48ab5ce4de0da240a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s_bgMaterial: {fileID: 2100000, guid: dd0d2cd4e04af054eadef5b5b2153364, type: 2}
+  s_bgMaterial: {fileID: 2100000, guid: 46f448cd34a30e04ca39c7288262c6a6, type: 2}
   s_scrollSpeed: 0.2
 --- !u!1 &709564323
 GameObject:
