@@ -6,15 +6,15 @@ public class c_MonsterTest : MonoBehaviour
     public int c_monhp = 3;
     public int c_nowhp;
     public Vector3 nowPos;
-    c_MonsterDropItem dropIt;
     public bool isDead = false;
 
     SpriteRenderer sr;
+    c_MonsterDropItem dropIt;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dropIt = GameObject.Find("ItemManager").GetComponent<c_MonsterDropItem>();
+        dropIt = GameObject.Find("DropManager").GetComponent<c_MonsterDropItem>();
         c_nowhp = c_monhp; // 현재 hp는 몬스터의 hp
         sr = this.GetComponent<SpriteRenderer>();
     }
@@ -25,9 +25,9 @@ public class c_MonsterTest : MonoBehaviour
         if(c_monhp == 0 && !isDead )
         {
             nowPos = this.transform.position;
-            sr.enabled = false;
             dropIt.DropItem(nowPos);                        
             isDead = true;
+            gameObject.SetActive(false);
         }
         
     }

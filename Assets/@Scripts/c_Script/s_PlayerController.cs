@@ -14,6 +14,7 @@ public class s_PlayerController : MonoBehaviour
 
     c_BonusItem currState;
     c_FeverTimeManage c_fever;
+    ItemManager c_itManage;
 
     private s_PlayerInfo s_playerInfo; // 플레이어의 정보
     public GameObject c_cannonPrefab;
@@ -31,6 +32,7 @@ public class s_PlayerController : MonoBehaviour
         currState = FindFirstObjectByType<c_BonusItem>();
         s_rb = GetComponent<Rigidbody2D>();
         c_fever = FindFirstObjectByType<c_FeverTimeManage>();
+        c_itManage = FindFirstObjectByType<ItemManager>();
     }
 
     void Update()
@@ -43,7 +45,19 @@ public class s_PlayerController : MonoBehaviour
         {
             c_timer = 0; 
             GameObject c_cannonball = Instantiate(c_cannonPrefab, c_firePosition.transform.position, Quaternion.identity);
-        }        
+        }  
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D monster)
+    {        
+        if(c_isShield)
+        {
+            c_isShield = false;
+            monster.gameObject.SetActive(false);
+            c_itManage.c_ShiledHeart.SetActive(false);
+            c_itManage.c_Shiledimage.SetActive(false);
+        }       
     }
 
     void FixedUpdate()
@@ -63,5 +77,10 @@ public class s_PlayerController : MonoBehaviour
     private void HandleMovement()
     {
         s_rb.linearVelocity = s_moveDirection * c_moveSpeed;
+    }
+
+    void BreakShield()
+    {
+
     }
 }

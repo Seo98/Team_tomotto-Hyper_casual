@@ -5,28 +5,29 @@ public class c_BonusItem : MonoBehaviour
     public enum BonusType { SHEILD, ATTACKUP };
     public BonusType c_bonusItem;
 
-    public GameObject c_ShiledHeart;
-    public GameObject c_Shiledimage;
+    ItemManager c_itManager;
+    s_PlayerController player;
 
     SpriteRenderer c_sr;
-    s_PlayerController player;
-    c_Cannonball c_fireball;
+    public c_Cannonball c_fireball;
 
     bool isShield;
 
     private void Awake()
-    {
+    {              
         player = GameObject.Find("Player").GetComponent<s_PlayerController>();
         c_sr = this.GetComponent<SpriteRenderer>();
+        c_itManager = FindFirstObjectByType<ItemManager>(); 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) //플레이어가 이 아이템을 먹는다면
     {
         if(other.CompareTag("Player"))
         {
             c_sr.enabled = false;
             if (this.c_bonusItem == BonusType.SHEILD)
             {
+                
                 c_Shield();               
             }
             if(this.c_bonusItem == BonusType.ATTACKUP)
@@ -38,13 +39,9 @@ public class c_BonusItem : MonoBehaviour
 
     void c_Shield() //파란 하트 추가로 생기고 플레이어 주변에 파란색 막 생기기... 장애물 부딪히면 파란색 하트와 막 같이 제거
     {
-        
-        while(isShield)
-        {
-            c_ShiledHeart.SetActive(true);
-            c_Shiledimage.SetActive(true);
-            break;
-        }        
+        player.c_isShield = true;
+        c_itManager.c_ShiledHeart.SetActive(true);
+        c_itManager.c_Shiledimage.SetActive(true);                         
         //공격 받으면 꺼짐
     }
 
