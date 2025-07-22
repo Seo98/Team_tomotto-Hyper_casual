@@ -5,13 +5,13 @@ public class c_MonsterTest : MonoBehaviour
 
     public int c_monhp = 3;
     public int c_nowhp;
+    // Dev_S : 아래 애들은 왜 c_로 시작하지않나요...????????????????????????????????????????????? 테스트용 몬스터라서 그런가요?
     public Vector3 nowPos;
     public bool isDead = false;
 
     SpriteRenderer sr;
     c_MonsterDropItem dropIt;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         dropIt = GameObject.Find("DropManager").GetComponent<c_MonsterDropItem>();
@@ -22,7 +22,7 @@ public class c_MonsterTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        if(c_monhp == 0 && !isDead )
+        if(c_monhp == 0 && !isDead ) // DEV_S : 이거 업데이트에서 굳이 필요할까요?
         {
             nowPos = this.transform.position;
             dropIt.DropItem(nowPos);                        
@@ -47,7 +47,5 @@ public class c_MonsterTest : MonoBehaviour
             c_nowhp -= 1; //현재 체력 = 현재 체력- 1;
             c_monhp = c_nowhp;
         }
-
-  
     }
 }

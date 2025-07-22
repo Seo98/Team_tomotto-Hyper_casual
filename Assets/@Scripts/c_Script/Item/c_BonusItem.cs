@@ -14,8 +14,13 @@ public class c_BonusItem : MonoBehaviour
     bool isShield;
 
     private void Awake()
-    {              
-        player = GameObject.Find("Player").GetComponent<s_PlayerController>();
+    {
+        //B_Fix : Dev_Seo
+        //player = GameObject.Find("Player").GetComponent<s_PlayerController>();
+        // >>>>
+        // A_Temp_Fix : Dev_Seo
+        player = GameObject.FindWithTag("Player").GetComponent<s_PlayerController>();
+
         c_sr = this.GetComponent<SpriteRenderer>();
         c_itManager = FindFirstObjectByType<ItemManager>(); 
     }
@@ -49,6 +54,11 @@ public class c_BonusItem : MonoBehaviour
     {
         c_fireball.c_speed = 13f; //공격 스피드 업
         player.c_spawnTime = 1f; //대포 스폰 시간 줄임
-        c_fireball.c_Damage = 2; //데미지 업
+
+        // B_Fix : Dev Seo
+        //c_fireball.c_Damage = 2; //데미지 업
+        player.c_Damage += 1f;
+        // >>>>
+        // A_Temp_Fix : Dev_Seo
     }
 }

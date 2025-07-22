@@ -7,6 +7,7 @@ public class h_Enemy : MonoBehaviour
 
     private Vector3 dir;
 
+    // 왜 h_ 안붙이나요..................................................................................ㅜㅜㅜ
     [Header("몬스터 능력치")]
     public float h_enSpeed = 2f;
     public float h_enHp = 3f;
@@ -17,17 +18,30 @@ public class h_Enemy : MonoBehaviour
     public GameObject shark_follower;
     public GameObject octo_ink;
 
+
     [Header("공격 위치")]
     public GameObject enemyFire;
 
     [Header("추적 대상 이름")]
-    public String playerName = "Player";
+    public String playerName = "Player"; // 태그사용으로 주석 해제시 사용필요없음 >> 75.B_FIX
+
+    // A_Temp_Fix : Dev_Seo : 병합을 위한 변수 생성 
+    public Vector3 h_nowPos;
+    public bool h_isDead = false;
+    private c_MonsterDropItem dropIt;
+    private s_PlayerController s_player; // 플레이어 공격력 참조
+    //>>>
 
     // 사망 효과 인스펙터
     // public GameObject deathIpactFactory;
 
     void Start()
     {
+        // A_Temp_Fix : Dev_Seo // 병합을 위한 할당
+        dropIt = GameObject.Find("DropManager").GetComponent<c_MonsterDropItem>();
+        s_player = GameObject.FindWithTag("Player").GetComponent<s_PlayerController>(); // 플레이어 공격력 참조
+        //>>>>
+
         shark_follower.SetActive(false);
         octo_ink.SetActive(false);
         jelly_normal.SetActive(false);
@@ -72,7 +86,12 @@ public class h_Enemy : MonoBehaviour
 
     void Follow()   // 상어 플레이어 추적 기능
     {
-        GameObject target = GameObject.Find(playerName);    // 인스펙터상 플레이어 이름 검색
+        // B_FIX : Dev_Seo
+        //GameObject target = GameObject.Find(playerName);    // 인스펙터상 플레이어 이름 검색
+        // >>>>
+        // A_Temp_Fix : Dev_Seo
+        GameObject target = GameObject.FindWithTag("Player"); 
+
         dir = target.transform.position - transform.position;
         dir.Normalize();        
     }
@@ -83,6 +102,11 @@ public class h_Enemy : MonoBehaviour
         // GameObject ipact = Instantiate(deathIpactFactory);
         // ipact.transform.position = transform.position;
 
+        h_nowPos = this.transform.position;
+        dropIt.DropItem(h_nowPos);
+        h_isDead = true;
+        
+
         Destroy(gameObject);
     }
 
@@ -90,7 +114,17 @@ public class h_Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("fireball"))
         {
-            h_enHp--;
+            // A_Temp_Fix : Dev_Seo
+            if (h_enHp <= 0)
+            {
+                Dead();
+                return;
+            }
+            // B_FIX : Dev_Seo
+            // h_enHp--;
+            // >>>>
+            // A_Temp_Fix : Dev_Seo
+            h_enHp -= s_player.c_Damage;
         }
 
         if (other.gameObject.CompareTag("Player"))
@@ -98,4 +132,6 @@ public class h_Enemy : MonoBehaviour
             Dead();
         }
     }
+
+
 }

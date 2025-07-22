@@ -23,6 +23,6 @@ public class h_Inkball : MonoBehaviour
         Destroy(gameObject);
 
         if (other.gameObject.CompareTag("Player"))
-            FindObjectOfType<h_InkEffect>().PlayEffect();
+            FindFirstObjectByType<h_InkEffect>().PlayEffect();
     }
 }

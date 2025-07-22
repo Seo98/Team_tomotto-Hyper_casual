@@ -7,7 +7,7 @@ public class s_ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI s_scoreText;
 
     [Header("점수 설정")]
-    [SerializeField] private float s_scoremanage = 0f;  // 점수 배율
+    [SerializeField] private float s_scoremanage = 0f;  // 점수
 
     [Header("참조")]
     [SerializeField] private s_BackGround s_background;
