@@ -30,6 +30,9 @@ public class h_Enemy : MonoBehaviour
     public bool h_isDead = false;
     private c_MonsterDropItem dropIt;
     private s_PlayerController s_player; // 플레이어 공격력 참조
+    private GameObject spawnerType;
+    private float currentTime = 0f;
+    private float spawnTime = 2f;
     //>>>
 
     // 사망 효과 인스펙터
@@ -40,15 +43,18 @@ public class h_Enemy : MonoBehaviour
         // A_Temp_Fix : Dev_Seo // 병합을 위한 할당
         dropIt = GameObject.Find("DropManager").GetComponent<c_MonsterDropItem>();
         s_player = GameObject.FindWithTag("Player").GetComponent<s_PlayerController>(); // 플레이어 공격력 참조
+        spawnerType = this.gameObject;
         //>>>>
 
         shark_follower.SetActive(false);
         octo_ink.SetActive(false);
         jelly_normal.SetActive(false);
+      
+    }
 
-        int ranValue = UnityEngine.Random.Range(0, 10);
-
-        if (ranValue < 2)
+    void Spawn()
+    {
+        if (spawnerType.CompareTag("Shark"))
         {
             // 상어
             shark_follower.SetActive(true); // 각 스킨은 꺼져 있다가 선택된 타입의 스킨 켜지는 방식
@@ -56,7 +62,7 @@ public class h_Enemy : MonoBehaviour
             h_enHp -= 2f;
             h_enSpeed += 1f;    // 상어는 체력은 낮게, 속도는 빠르게
         }
-        else if (ranValue < 5)
+        else if (spawnerType.CompareTag("Oct"))
         {
             // 문어
             octo_ink.SetActive(true);
@@ -65,23 +71,32 @@ public class h_Enemy : MonoBehaviour
             dir.Normalize();
             enemyFire.SetActive(true);  // 공격 기능 수행하는 오브젝트 켜기
         }
-        else
+        else if (spawnerType.CompareTag("BaseMob"))
         {
             // 해파리
             jelly_normal.SetActive(true);
             dir = Vector3.down;
-        }        
+        }
+
+        currentTime = 0f;
+
     }
+    // 이거 Enemy 스크립트 구조 싹다 바꿔야될거같아요 생각해봤는데
+    // 몬스터 스폰이 업데이트....
 
     void Update()
     {
         transform.position += dir * h_enSpeed * Time.deltaTime;
+        currentTime += Time.deltaTime;
 
         if (follow)
             Follow();
 
         if (h_enHp <= 0)
             Dead();
+
+        if (spawnTime < currentTime)
+            Spawn();
     }
 
     void Follow()   // 상어 플레이어 추적 기능

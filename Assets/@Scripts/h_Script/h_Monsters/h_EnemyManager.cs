@@ -4,16 +4,16 @@ public class h_EnemyManager : MonoBehaviour
 {
     private float currentTime;  // 타이머
 
-    private float minTime = 1;
-    private float maxTime = 5;
+    //private float minTime = 1;
+    //private float maxTime = 5;
 
-    public float createTime = 1;    // 생성주기
+    public float createTime = 8;    // 생성주기
 
     public GameObject enemyFactory;
 
-    void Start()
+    void OnEnable()
     {
-        createTime = Random.Range(minTime, maxTime);
+        //createTime = Random.Range(minTime, maxTime);
     }
 
     void Update()
@@ -25,6 +25,7 @@ public class h_EnemyManager : MonoBehaviour
             // 생성 대상 지정, 위치 지정
             GameObject enemy = Instantiate(enemyFactory);
             enemy.transform.position = transform.position;
+            enemy.transform.parent = this.transform;
 
             // 타이머 초기화
             currentTime = 0f;

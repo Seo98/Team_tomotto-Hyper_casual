@@ -13,6 +13,11 @@ public class c_BonusItem : MonoBehaviour
 
     bool isShield;
 
+
+    public Vector3 dir;
+    public float speed = 3;
+    GameObject target;
+
     private void Awake()
     {
         //B_Fix : Dev_Seo
@@ -25,28 +30,45 @@ public class c_BonusItem : MonoBehaviour
         c_itManager = FindFirstObjectByType<ItemManager>(); 
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
+
+    public void Update()
+    {
+        GameObject target = GameObject.FindWithTag("Player"); //
+        transform.position += dir * speed * Time.deltaTime; // 자석
+        if (target != null)
+        {
+            dir = (target.transform.position - transform.position).normalized;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) //플레이어가 이 아이템을 먹는다면
     {
         if(other.CompareTag("Player"))
         {
-            c_sr.enabled = false;
             if (this.c_bonusItem == BonusType.SHEILD)
             {
-                
-                c_Shield();               
+                c_Shield();
+                Destroy(gameObject);
             }
             if(this.c_bonusItem == BonusType.ATTACKUP)
             {
                 c_AttackUP();
+                Destroy(gameObject);
             }
         }
     }
 
     void c_Shield() //파란 하트 추가로 생기고 플레이어 주변에 파란색 막 생기기... 장애물 부딪히면 파란색 하트와 막 같이 제거
     {
+        Debug.Log("isShield");
         player.c_isShield = true;
         c_itManager.c_ShiledHeart.SetActive(true);
-        c_itManager.c_Shiledimage.SetActive(true);                         
+        c_itManager.c_Shiledimage.SetActive(true);                     
         //공격 받으면 꺼짐
     }
 

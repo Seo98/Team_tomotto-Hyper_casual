@@ -32,7 +32,6 @@ public class c_MonsterDropItem : MonoBehaviour
     public void DropItem(Vector3 dropPos)
     {
         int Index = Random.Range(0,2);
-        
         GameObject c_item = Instantiate(c_items[Index], dropPos, Quaternion.identity);
 
 

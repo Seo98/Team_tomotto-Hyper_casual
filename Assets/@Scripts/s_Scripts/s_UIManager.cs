@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class s_UIManager : MonoBehaviour
 {
-    [Header("게임매니저 접근")]
-    public s_GameManager s_GameManager;
+    [Header("매니저 접근")]
+    public GameObject FeverManager;
 
 
     [Header("UI 오브젝트(버튼)")]
@@ -17,6 +17,13 @@ public class s_UIManager : MonoBehaviour
     public GameObject s_StartGame;
     public GameObject s_GameOverUI;
     public GameObject s_ScoreManag;
+    public GameObject s_Heart1;
+    public GameObject s_Heart2;
+    public GameObject s_Heart3;
+
+
+    public s_PlayerController s_PlayerController;
+
 
     private void Awake()
     {
@@ -44,6 +51,11 @@ public class s_UIManager : MonoBehaviour
         s_StartGameUI.SetActive(true); // 게임시작 UI
         s_StartGame.SetActive(true); // 게임시작
         s_ScoreManag.SetActive(true); // 점수 관리
+        FeverManager.SetActive(true); // 피버매니저
+        s_Heart1.SetActive(true);
+        s_Heart2.SetActive(true);
+        s_Heart3.SetActive(true);
+
 
         s_GameOverUI.SetActive(false); // 게임오버 UI
     }
@@ -58,16 +70,78 @@ public class s_UIManager : MonoBehaviour
 
         }
         */
+        HpUISetting();
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (s_PlayerController.c_hp <= 0)
         {
-            s_IntroObj.SetActive(false); // 인트로UI
-
-            s_StartGameUI.SetActive(false); // 게임시작 UI
-            s_StartGame.SetActive(false); // 게임시작
-            s_ScoreManag.SetActive(false); // 점수 관리
-
-            s_GameOverUI.SetActive(true); // 게임오버 UI
+            GameOver();
         }
     }
+
+    private void GameOver()
+    {
+        s_IntroObj.SetActive(false); // 인트로UI
+
+        s_StartGameUI.SetActive(false); // 게임시작 UI
+        s_StartGame.SetActive(false); // 게임시작
+        s_ScoreManag.SetActive(false); // 점수 관리
+        FeverManager.SetActive(false); // 피버매니저
+
+        s_GameOverUI.SetActive(true); // 게임오버 UI
+
+        ClearAllMonsters();
+        ClearAllItems();
+        ClearAllEnemyBullets();
+    }
+
+private void ClearAllMonsters()
+    {
+        Monster[] monsters = FindObjectsByType<Monster>(FindObjectsInactive.Include,FindObjectsSortMode.None);
+        foreach (Monster monster in monsters)
+        {
+            Destroy(monster.gameObject);
+        }
+    }
+
+    private void ClearAllItems()
+    {
+        c_BonusItem[] item = FindObjectsByType<c_BonusItem>(FindObjectsInactive.Include,FindObjectsSortMode.None);
+        foreach (c_BonusItem items in item)
+        {
+            Destroy(items.gameObject);
+        }
+    }
+
+    private void ClearAllEnemyBullets()
+    {
+        h_Inkball[] inkBalls = FindObjectsByType<h_Inkball>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (h_Inkball inkBall in inkBalls)
+        {
+            Destroy(inkBall.gameObject);
+        }
+    }
+
+    private void HpUISetting()
+    {
+        if (s_PlayerController.c_hp == 3)
+        {
+            s_Heart1.SetActive(true);
+            s_Heart2.SetActive(true);
+            s_Heart3.SetActive(true);
+        }
+        if (s_PlayerController.c_hp == 2)
+        {
+            s_Heart1.SetActive(true);
+            s_Heart2.SetActive(true);
+            s_Heart3.SetActive(false);
+        }
+        if (s_PlayerController.c_hp == 1)
+        {
+            s_Heart1.SetActive(true);
+            s_Heart2.SetActive(false);
+            s_Heart3.SetActive(false);
+        }
+    }
+
+
 }

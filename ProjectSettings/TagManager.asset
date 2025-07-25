@@ -14,6 +14,9 @@ TagManager:
   - fireball
   - Background
   - Monster
+  - BaseMob
+  - Oct
+  - Shark
   layers:
   - Default
   - TransparentFX
@@ -28,7 +31,7 @@ TagManager:
   - Enemy Bullet
   - 
   - Obstacle
-  - 
+  - Bonus
   - 
   - 
   - 

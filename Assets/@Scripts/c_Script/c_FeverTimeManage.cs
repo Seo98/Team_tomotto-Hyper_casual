@@ -13,11 +13,10 @@ public class c_FeverTimeManage : MonoBehaviour
 
     public float nowGauge;
 
-    private void Awake()
+    private void OnEnable() // ¼öÁ¤
     {
         c_feverImage.fillAmount = 0;
         player = GameObject.FindWithTag("Player").GetComponent<s_PlayerController>();
-
         c_playColl = player.GetComponent<Collider2D>();
 
     }
@@ -36,14 +35,15 @@ public class c_FeverTimeManage : MonoBehaviour
 
     IEnumerator c_FeverTime()
     {
-         c_isFever = true;       
-         c_playColl.isTrigger = true;
-         player.c_moveSpeed = 15f;
+
+        Debug.Log("IsFever");
+         c_isFever = true;
+         player.c_moveSpeed = 2f;
         
         yield return new WaitForSeconds(5f);
 
         c_isFever = false;
-        player.c_moveSpeed = 5f;
+        player.c_moveSpeed = 0.2f;
         c_playColl.isTrigger = false;
         c_feverImage.fillAmount = 0f;
     }

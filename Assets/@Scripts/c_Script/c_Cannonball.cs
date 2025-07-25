@@ -20,4 +20,9 @@ public class c_Cannonball : MonoBehaviour
     {
         c_Damage = 1;
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.CompareTag("Monster")) Destroy(gameObject);
+    }
 }

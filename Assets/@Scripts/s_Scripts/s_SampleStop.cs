@@ -1,23 +1,25 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class s_SampleStop : MonoBehaviour
 {
     public static bool s_isPaused = false;
     public GameObject s_pauseMenuUI;
+    public Button pauseButton;
+    public Button resumeButton;
+
+
+
+    private void Start()
+    {
+        pauseButton.onClick.AddListener(Pause);
+        resumeButton.onClick.AddListener(Resume);
+
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (s_isPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
+
     }
 
     void Resume()
