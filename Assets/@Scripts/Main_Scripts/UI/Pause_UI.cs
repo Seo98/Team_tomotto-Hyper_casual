@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class s_SampleStop : MonoBehaviour
+public class Pause_UI : MonoBehaviour
 {
     public static bool s_isPaused = false;
     public GameObject s_pauseMenuUI;
