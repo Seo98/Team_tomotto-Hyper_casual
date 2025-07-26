@@ -946,8 +946,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03481554dfd8ab489a8b065d3c1ee43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_feverImage: {fileID: 2048995096}
-  c_isFever: 0
+  feverImage: {fileID: 2048995096}
+  isFever: 0
   nowGauge: 0
 --- !u!1 &299574993
 GameObject:
@@ -1039,8 +1039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1b647a08ac9dc4b8b985345218883d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_ShiledHeart: {fileID: 499638218}
-  c_Shiledimage: {fileID: 55304065}
+  ShiledHeart: {fileID: 499638218}
+  Shiledimage: {fileID: 55304065}
 --- !u!1 &410958975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,9 +1460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ee9805eec5d4c48ab5ce4de0da240a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s_bgMaterial: {fileID: 2100000, guid: 46f448cd34a30e04ca39c7288262c6a6, type: 2}
-  s_scrollSpeed: 0.2
-  s_PlayerController: {fileID: 1645635818}
+  bgMaterial: {fileID: 2100000, guid: 46f448cd34a30e04ca39c7288262c6a6, type: 2}
+  scrollSpeed: 0.2
+  playerController: {fileID: 1645635818}
 --- !u!33 &605422267
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1732,7 +1732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e81069fb5962dd49a29abc2440d48a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_items:
+  items:
   - {fileID: 6354339376831725560, guid: 4698a1ca5b905454db4ef1b2ad3d62eb, type: 3}
   - {fileID: 2878555881806075618, guid: 2bb646acc4459c34ba960fa45e90536c, type: 3}
 --- !u!1 &763791228
@@ -2247,18 +2247,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1e248247f136c4eb44e43429909971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FeverManager: {fileID: 251652911}
-  s_Button: {fileID: 169664862}
-  s_RestratButton: {fileID: 1078620663}
-  s_IntroObj: {fileID: 886519795}
-  s_StartGameUI: {fileID: 2080635756}
-  s_StartGame: {fileID: 723788102}
-  s_GameOverUI: {fileID: 424341081}
-  s_ScoreManag: {fileID: 2020033390}
-  s_Heart1: {fileID: 133521467}
-  s_Heart2: {fileID: 1174166993}
-  s_Heart3: {fileID: 1178578861}
-  s_PlayerController: {fileID: 1645635818}
+  feverManager: {fileID: 251652911}
+  scoreManager: {fileID: 2020033390}
+  button: {fileID: 169664862}
+  restratButton: {fileID: 1078620663}
+  introObj: {fileID: 886519795}
+  startGameUI: {fileID: 2080635756}
+  startGame: {fileID: 723788102}
+  gameOverUI: {fileID: 424341081}
+  heart1: {fileID: 133521467}
+  heart2: {fileID: 1174166993}
+  heart3: {fileID: 1178578861}
+  playerController: {fileID: 1645635818}
 --- !u!1 &1268734657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,16 +2967,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da1e2770bff6c4499e9786bc4b2f7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_moveSpeed: 0.2
-  c_hp: 3
-  c_Damage: 1
-  c_isAttack: 0
-  c_score: 0
-  c_isShield: 0
-  c_fever: {fileID: 251652913}
-  c_cannonPrefab: {fileID: 8493165749912826780, guid: 70142ed6a3aea2248a37cf461d0b6e47, type: 3}
-  c_firePosition: {fileID: 1268734657}
-  c_spawnTime: 2
+  moveSpeed: 0.2
+  hp: 3
+  damage: 1
+  isAttack: 0
+  score: 0
+  isShield: 0
+  fever: {fileID: 251652913}
+  cannonPrefab: {fileID: 8493165749912826780, guid: 70142ed6a3aea2248a37cf461d0b6e47, type: 3}
+  firePosition: {fileID: 1268734657}
+  spawnTime: 2
 --- !u!1 &1716829191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3590,9 +3590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7ed293ad83f494588a31eda341f402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  s_scoreText: {fileID: 703026639}
-  s_scoremanage: 100
-  s_background: {fileID: 0}
+  scoreText: {fileID: 703026639}
+  score: 0
+  background: {fileID: 605422266}
 --- !u!1 &2048995094
 GameObject:
   m_ObjectHideFlags: 0

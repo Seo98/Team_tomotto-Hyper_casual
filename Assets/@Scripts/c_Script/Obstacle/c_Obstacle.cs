@@ -6,13 +6,13 @@ public class c_Obstacle : MonoBehaviour
     public enum ObstacleType { SEAWEED, ROCK, WHIRLPOOL, BROKENSHIP }
     public ObstacleType c_obType;
 
-    s_PlayerController player;
-    c_FeverTimeManage feverTime;
+    PlayerController player;
+    FeverTimeManager feverTime;
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<s_PlayerController>();
-        feverTime = FindFirstObjectByType<c_FeverTimeManage>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        feverTime = FindFirstObjectByType<FeverTimeManager>();
         
         switch (gameObject.tag)
         {
@@ -33,7 +33,7 @@ public class c_Obstacle : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (feverTime.c_isFever)
+        if (feverTime.isFever)
         {
             this.gameObject.SetActive(false);
             return;
@@ -50,8 +50,8 @@ public class c_Obstacle : MonoBehaviour
     {        
         if (collision.collider.CompareTag("Player"))
         {
-            feverTime.nowGauge = feverTime.c_feverImage.fillAmount - 0.1f; //충돌 시 게이지 깎임
-            feverTime.c_feverImage.fillAmount = feverTime.nowGauge; 
+            feverTime.nowGauge = feverTime.feverImage.fillAmount - 0.1f; //충돌 시 게이지 깎임
+            feverTime.feverImage.fillAmount = feverTime.nowGauge; 
 
             switch (c_obType)
             {
@@ -73,19 +73,19 @@ public class c_Obstacle : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        player.c_moveSpeed = 5f;
+        player.moveSpeed = 5f;
     }
     void slowObstacle(bool c_isDamage, float damage)
     {
         if (c_isDamage) //데미지 입고 느려짐
         {
-            player.c_moveSpeed *= 0.2f;
-            player.c_hp -= damage;  //(hp = hp- damage)   
-            Debug.Log($"데미지를 입었습니다. 현재 hp : {player.c_hp}");          
+            player.moveSpeed *= 0.2f;
+            player.hp -= damage;  //(hp = hp- damage)   
+            Debug.Log($"데미지를 입었습니다. 현재 hp : {player.hp}");          
         }
         else //데미지 안 입고 느려짐
         {
-            player.c_moveSpeed *= 0.2f;
+            player.moveSpeed *= 0.2f;
             Debug.Log("스턴 걸렸습니다.");
         }
     }
