@@ -26,7 +26,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    void Update()
+    void Update()   
     {
         score += Time.deltaTime * 10f; // Dev_s : 여기가 점수 계산 로직인데 여기서 몬스터쪽 참조해서 여기다 로직짜면 될듯?합니다.
                                        // 간단하게는 몬스터 사망시 여기다 점수 ++ 해도될듯

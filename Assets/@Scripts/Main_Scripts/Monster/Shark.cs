@@ -10,7 +10,13 @@ public class Shark : Monster
     {
         isFollowing = true;
         hp = 2f;
-        speed = 1f;
+        speed = 2f; // Dev_H : 다소 몬스터의 기능이 부각되는 느낌이 적어, 기존 1이었던 속도를 테스트 삼아 2로 상향 해 보았습니다!
+    }
+
+    // Dev_H: 경험치 부여량
+    void Start()
+    {
+        expAmount = 15;
     }
 
     void Update()

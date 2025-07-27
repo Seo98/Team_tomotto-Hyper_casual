@@ -21,7 +21,12 @@ public class Octopus : Monster
         dir = Vector3.right;
     }
 
-    
+    // Dev_H: 경험치 부여량
+    void Start()
+    {
+        expAmount = 10;
+    }
+
     void Update()
     {
         MonsterLevelUp();

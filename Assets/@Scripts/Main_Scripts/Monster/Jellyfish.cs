@@ -8,6 +8,13 @@ public class Jellyfish : Monster
 
         dir = Vector3.down;
     }
+
+    // Dev_H: 경험치 부여량
+    void Start()
+    {
+        expAmount = 5;
+    }
+
     void Update()
     {
         MonsterLevelUp();

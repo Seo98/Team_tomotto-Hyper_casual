@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7960720104842095727}
   m_Layer: 0
   m_Name: SheildItem
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,8 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e941aa3a70c964aa1cd494064fecc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c_bonusItem: 0
-  c_fireball: {fileID: 8414641013827326278, guid: 70142ed6a3aea2248a37cf461d0b6e47, type: 3}
+  bonusItem: 0
+  fireball: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
+  speed: 3
 --- !u!61 &7960720104842095727
 BoxCollider2D:
   m_ObjectHideFlags: 0
