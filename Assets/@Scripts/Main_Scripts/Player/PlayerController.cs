@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 public class PlayerController : MonoBehaviour
 {
     // Dev_s : 은주님라인
-    // 경험치는 여기서 구현해야하지 않을까 싶어요
+
     [Header("플레이어 능력치")]
     public float moveSpeed = 0.2f;
     public float hp = 3f;
@@ -29,14 +29,6 @@ public class PlayerController : MonoBehaviour
     float timer;
 
     private Rigidbody2D rb;
-
-    // 경험치 관련
-    // curexp / maxexp //isleveUp // playerlv... 
-    // 간단하게 할거면 여기서 변수만 만들고 몬스터쪽에서 죽으면 여기 참조해서 ++ 시키는게 가장 간단하고
-    // 아니면 여기 자체적으로 몬스터 죽은 판정로직이 젤 낫긴한데.. 
-    // attack -> die 여기 중간에 대포알 자동 나갔을때 물리부분이 있는데 여기서 처리를 해야하는 이슈가......
-    // 그리고 몬스터마다 각기 다른경험치를 주려면 사실 몬스터쪽에서 경험치 / 스코어 싹다 박는게 나을거같긴합니다. 현재 하드코딩상
-
 
     //
     #region :: 마우스 드래그 관련 변수

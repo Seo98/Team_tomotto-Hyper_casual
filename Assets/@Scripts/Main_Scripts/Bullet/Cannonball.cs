@@ -3,7 +3,6 @@ using UnityEngine;
 public class Cannonball : MonoBehaviour
 {
     // dev_s: 은주님 라인, 제가 손본거 따로 없을겁니다 아마도ㅓ
-    public int damage = 1;
     public float speed = 10f;
     
     Vector3 dir = Vector3.up;
@@ -12,11 +11,6 @@ public class Cannonball : MonoBehaviour
     {
         transform.position += dir * speed * Time.deltaTime;
     }       
-
-    void TakeDamage(int damage)
-    {
-        this.damage = 1;
-    }
 
     private void OnCollisionEnter2D(Collision2D other) // 아마 여기서 참조해서 score ++ exp ++... 
     {
