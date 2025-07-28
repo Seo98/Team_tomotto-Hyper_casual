@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,8 +9,8 @@ public class FeverTimeManager : MonoBehaviour
 
     Collider2D playColl;
     public Image feverImage;
+    public GameObject feverStartImage;
     public bool isFever;
-
     public float nowGauge;
 
     private void OnEnable()
@@ -27,7 +26,6 @@ public class FeverTimeManager : MonoBehaviour
         {
             feverImage.fillAmount += Time.deltaTime * 0.06f;
             nowGauge = feverImage.fillAmount;
-
             break;
         }
         if (!isFever && feverImage.fillAmount >= 1)
@@ -36,7 +34,7 @@ public class FeverTimeManager : MonoBehaviour
 
     IEnumerator FeverTime()
     {
-
+        feverStartImage.SetActive(true);
         Debug.Log("IsFever");
          isFever = true;
          player.moveSpeed = 2f;
@@ -47,5 +45,6 @@ public class FeverTimeManager : MonoBehaviour
         player.moveSpeed = 0.2f;
         playColl.isTrigger = false;
         feverImage.fillAmount = 0f;
+        feverStartImage.SetActive(false);
     }
 }
