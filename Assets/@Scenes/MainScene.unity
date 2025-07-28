@@ -1310,6 +1310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 299574994}
   - component: {fileID: 299574995}
+  - component: {fileID: 299574996}
   m_Layer: 0
   m_Name: Enemy Spawner
   m_TagString: BaseMob
@@ -1339,9 +1340,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299574993}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25d834bbdb5521f498c5afef26307948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createTime: 10
+  enemyFactory: {fileID: 8023629432973988720, guid: 9f7595850ad3ef24fbe622571c7fde7d, type: 3}
+--- !u!114 &299574996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299574993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c44917ebc21018439de4a5365c5a3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   createTime: 10

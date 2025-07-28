@@ -18,12 +18,13 @@ public class EnemyManager : MonoBehaviour
         currentTime += Time.deltaTime;
 
         if (currentTime > createTime)
-        {
+        {    
             GameObject enemy = Instantiate(enemyFactory);
             enemy.transform.position = transform.position;
             enemy.transform.parent = this.transform;
 
             currentTime = 0f;
+            
         }
-    }
+    } 
 }
