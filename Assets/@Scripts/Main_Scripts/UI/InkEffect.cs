@@ -8,8 +8,17 @@ public class InkEffect : MonoBehaviour
     public Image overlayImage;
     public float fadeOutTime = 3f;
 
+    FeverTimeManager fManager;
+    private void Start()
+    {
+        fManager = FindFirstObjectByType<FeverTimeManager>();
+    }
+
     public void PlayEffect()
     {
+        if(fManager.isFever)
+            return;
+
         StopAllCoroutines();
         SetAlpha(1f);
         StartCoroutine(FadeOut());
