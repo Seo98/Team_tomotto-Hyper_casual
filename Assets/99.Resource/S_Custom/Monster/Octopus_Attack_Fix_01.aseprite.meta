@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed828ded56fc1694c9d586f59a5dfcfd
+guid: de44ad1331955974f8f48c2ab960178d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 24
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638894121069893199
+  platformSettingsDirtyTick: 638894092626989338
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -125,17 +125,17 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.0877193}
+    pivot: {x: 0.5, y: -2.25}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
-      width: 36
-      height: 57
-    spriteID: 4b9ae714327c03443a6a84269f9694c1
+      y: 48
+      width: 12
+      height: 12
+    spriteID: d66b45ec72b177f4a95a3abf30cbcaca
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -143,20 +143,20 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: -22, y: 21}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.5, y: -0.0877193}
+    pivot: {x: 0.5, y: -1.9285715}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 4
-      y: 69
-      width: 36
-      height: 57
-    spriteID: 853b8519032a58843b4c7ffd8b937af6
+      y: 4
+      width: 14
+      height: 14
+    spriteID: 949dd4bfeb4ecfd40a65ceb63fa97164
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -164,20 +164,20 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 69}
+    uvTransform: {x: -21, y: -23}
   - name: Frame_2
     originalName: 
-    pivot: {x: 0.5, y: -0.0877193}
+    pivot: {x: 0.5, y: -1.8571429}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 4
-      y: 134
-      width: 36
-      height: 57
-    spriteID: 85270bc6b51e07b41937e49e9b3706c3
+      y: 26
+      width: 14
+      height: 14
+    spriteID: 97e7e21459de09641963a5a0f1d5d42b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -185,9 +185,9 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 134}
+    uvTransform: {x: -21, y: 0}
   spriteSheetImportData:
-  - name: Shark_Shadow_Idle_0
+  - name: Octopus_Attack_Fix_01_0
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -196,10 +196,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 134
-      width: 36
-      height: 57
-    spriteID: f559b4c5265cee64fa7f1d567e8a6dfa
+      y: 48
+      width: 12
+      height: 12
+    spriteID: 33fabcb5a8e191b46b2e891ac80e5e2c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -208,7 +208,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Shark_Shadow_Idle_1
+  - name: Octopus_Attack_Fix_01_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -217,10 +217,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 69
-      width: 36
-      height: 57
-    spriteID: 5af21e4f544c25e46b3658a7d2db7794
+      y: 26
+      width: 14
+      height: 14
+    spriteID: f7d91161e561bfa4e90b7064e288a80f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -229,7 +229,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: Shark_Shadow_Idle_2
+  - name: Octopus_Attack_Fix_01_2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -239,9 +239,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 36
-      height: 57
-    spriteID: 052e4776619536147a1dceb4d52cfc98
+      width: 14
+      height: 14
+    spriteID: fa72f4074d6ee344ca967209180fd238
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -253,12 +253,12 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1162856117
+      value0: 3264915218
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Shark_Shadow_Idle
+    name: Octopus_Attack_Fix_01
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -267,29 +267,29 @@ ScriptedImporter:
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 14
-        y: 5
-        width: 36
-        height: 57
-      spriteId: 4b9ae714327c03443a6a84269f9694c1
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      spriteId: d66b45ec72b177f4a95a3abf30cbcaca
     - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
-        x: 14
-        y: 5
-        width: 36
-        height: 57
-      spriteId: 853b8519032a58843b4c7ffd8b937af6
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      spriteId: 949dd4bfeb4ecfd40a65ceb63fa97164
     - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
-        x: 14
-        y: 5
-        width: 36
-        height: 57
-      spriteId: 85270bc6b51e07b41937e49e9b3706c3
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      spriteId: 97e7e21459de09641963a5a0f1d5d42b
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -357,4 +357,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 128, y: 256}
+  previousTextureSize: {x: 32, y: 64}
