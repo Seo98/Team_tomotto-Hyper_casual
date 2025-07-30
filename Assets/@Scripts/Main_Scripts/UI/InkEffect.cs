@@ -45,7 +45,7 @@ public class InkEffect : MonoBehaviour
         SetAlpha(0f);
     }
 
-    private void SetAlpha(float alpha)
+    public void SetAlpha(float alpha) // Dev_s : 참조를 위한 public 변경
     {
         Color color = overlayImage.color;
         color.a = alpha;

@@ -22,7 +22,8 @@ public class UIManager : MonoBehaviour
     public GameObject heart2;
     public GameObject heart3;
 
-
+    [Header("UI 잉크효과 오브젝트")]
+    public InkEffect ink;
     public PlayerController playerController;
 
 
@@ -51,6 +52,7 @@ public class UIManager : MonoBehaviour
 
 
         gameOverUI.SetActive(false);
+        ink.SetAlpha(0f); // 잉그 남아있는 이슈 사전처리
     }
 
     private void Update()

@@ -2990,6 +2990,7 @@ MonoBehaviour:
   heart1: {fileID: 133521467}
   heart2: {fileID: 1174166993}
   heart3: {fileID: 1178578861}
+  ink: {fileID: 37471763}
   playerController: {fileID: 1645635818}
 --- !u!1 &1234625935
 GameObject:
