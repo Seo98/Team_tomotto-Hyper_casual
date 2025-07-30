@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("매니저 접근")]
+    SoundManager sManager;
     public GameObject feverManager;
     public GameObject scoreManager;
 
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        sManager = FindFirstObjectByType<SoundManager>();
     }
 
     private void Start()
@@ -63,6 +65,7 @@ public class UIManager : MonoBehaviour
 
     private void GameOver()
     {
+        sManager.EventSoundPlay("GameOver");
         introObj.SetActive(false);
 
         startGameUI.SetActive(false);

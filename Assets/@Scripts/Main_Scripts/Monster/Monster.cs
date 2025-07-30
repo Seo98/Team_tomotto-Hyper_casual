@@ -11,6 +11,7 @@ public abstract class Monster : MonoBehaviour
     [Header("기본 능력치")]
     public float speed;
     public float hp;
+    SoundManager sManager;
 
     // 컴포넌트 및 참조
     private MonsterDropItem dropIt; // 은주님쪽 라인 참조
@@ -30,6 +31,7 @@ public abstract class Monster : MonoBehaviour
         // 공통 초기화
         dropIt = GameObject.Find("DropManager").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        sManager = FindFirstObjectByType<SoundManager>();
 
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
         Initialize();
@@ -68,6 +70,7 @@ public abstract class Monster : MonoBehaviour
         if (other.gameObject.CompareTag("fireball"))
         {
             hp -= player.damage;
+            sManager.EventSoundPlay("fire_arrow_hit");
             if (hp <= 0)
             {
                 Dead();
@@ -78,6 +81,7 @@ public abstract class Monster : MonoBehaviour
         // 플레이어와 직접 충돌했을 때
         if (other.gameObject.CompareTag("Player"))
         {
+            sManager.EventSoundPlay("hitting");
             Dead();
 
             if (player.fever.isFever) return;
