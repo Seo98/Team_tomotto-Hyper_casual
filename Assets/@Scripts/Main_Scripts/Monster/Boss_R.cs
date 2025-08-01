@@ -4,120 +4,114 @@ using System.Collections;
 public class Boss_R : Monster
 {
     public bool isBoss = false;
-    // private float spawnTime = 90f; 
-    // 1분 30초
-    // 게임시작 후 1분 30초가 지나면 보스 생성(테스트중으로 현재는 미사용입니당)
 
-    // --- FSM 관련 변수 ---
+    // --- FSM ---
+    private enum BossState { Idle, Attacking }
+    private BossState currentState;
+    private Coroutine currentAttackCoroutine;
+
+    // --- Camera & Screen Bounds ---
+    private Camera mainCamera;
+    private Vector2 screenBounds;
+
+    // --- General Attack Settings ---
     [Header("총알 / 발사 포지션")]
     public GameObject bulletPrefab;
     public Transform firePoint;
 
     [Header("Player 타겟")]
-    public Transform playerTransform; // 인스펙터에서 플레이어 트랜스폼 할당 필요함.
-
-    [Header("패턴 1 : 원형공격")]
-    public int circularAttackBulletCount = 16; // 원형 공격 시 총알 개수
-    public float circularAttackBulletSpeed = 5f; // 스피드
-
-    [Header("패턴 2 : 샷건공격")]
-    public int targetedAttackBulletCount = 5; // 타겟 공격 시 총알 개수
-    public float targetedAttackSpreadAngle = 20f; // 총알 확산 각도
-    public float targetedAttackBulletSpeed = 7f;
-    public float timeBetweenShots = 0.1f; // 연사 시 총알 간 지연 시간
-
-    [Header("패턴 3 : 소용돌이공격")]
-    public int spiralBulletCount = 30; // 나선형 공격 시 총알 개수
-    public float spiralBulletSpeed = 6f;
-    public float spiralBulletDelay = 0.05f; // 나선형 총알 발사 간격
-
-    [Header("패턴 4 : 파동 공격")]
-    public int waveBulletCount = 7; // 파동 공격 시 한 줄 총알 개수
-    public float waveBulletSpeed = 8f;
-    public float waveBulletDelay = 0.1f; // 파동 총알 발사 간격
-    public float waveSpreadAngle = 45f; // 파동 총알 확산 각도
+    public Transform playerTransform;
 
     [Header("공격 쿨타임")]
-    public float idleTime = 2.0f; // 공격 사이 대기 시간
-    public float attackCooldown = 3.0f; // 다른 공격 패턴 사이의 쿨다운 시간
+    public float idleTime = 1.0f; // 공격 사이 대기 시간
+    public float attackCooldown = 1.5f; // 다른 공격 패턴 사이의 쿨다운
+
+    [Header("패턴 5 : 총알비 연출 프리팹")]
+    public GameObject rainEffectPrefab; // 총알비 패턴 시 생성될 이펙트 프리팹
+    public float rainEffectOffscreenOffset = 2f; // 총알비 연출 프리팹이 카메라 밖으로 나갈 오프셋
+
+    // --- Attack Patterns ---
+    [Header("패턴 1 : 원형공격 (강화)")]
+    public int circularAttackBulletCount = 32;
+    public float circularAttackBulletSpeed = 4f;
+    public int circularAttackRepeatCount = 3; // 원형 공격 반복 횟수
+    public float slowCircularAttackBulletSpeed = 2f; // 느린 원형 공격 총알 속도
+    public float circularAttackBulletDelay = 0.05f; // 각 총알 발사 사이의 딜레이
+    public float circularAttackRotationPerWave = 15f; // 한 웨이브(전체 원형 공격) 후 회전할 각도
+
+    [Header("패턴 2 : 유도탄 연사")]
+    public int homingBurstCount = 4; // 한 번에 발사할 유도탄 수
+    public float homingBurstSpeed = 8f;
+    public float timeBetweenHomingShots = 0.2f; // 연사 간격
+
+    [Header("패턴 3 : 이중 나선 공격 (동방 스타일)")]
+    public int spiralBulletCount = 45;
+    public float spiralBulletSpeed = 5f;
+    public float spiralBulletDelay = 0.04f;
+    public float spiralWobbleFrequency = 4f; // 나선이 흔들리는 빈도
+    public float spiralWobbleMagnitude = 12f; // 나선이 흔들리는 강도
+    public float spiralAsymmetry = 1.05f; // 두 번째 나선의 비대칭성
+    public int spiralAttackRepeatCount = 2; // 이중 나선 공격 반복 횟수
+    public float spiralAttackMoveSpeed = 1f; // 이중 나선 공격 시 좌우 이동 속도
+    public float spiralAttackMoveRange = 1f; // 이중 나선 공격 시 좌우 이동 범위 (중앙에서 각 방향으로)
+    
+    
+
+    [Header("패턴 4 : 총알비 + 샷건 조합")]
+    public GameObject rainingBulletPrefab;
+    public int rainingBulletCount = 20;
+    public float rainingBulletSpeed = 6f;
+    public float rainSpawnWidth = 10f;
+    public int targetedAttackBulletCount = 5;
+    public float targetedAttackSpreadAngle = 20f;
+    public float targetedAttackBulletSpeed = 7f;
+    public float minRainingBulletDelay = 0.08f; // 총알비 최소 딜레이
+    public float maxRainingBulletDelay = 0.2f; // 총알비 최대 딜레이
+    public float rainingBulletSpawnDelay = 0.1f; // 각 총알 생성 전 고정 딜레이
 
     [Header("전멸기 시간")]
-    public float doomsdayTime = 60f; // 보스 생성 후 전멸기 발동 시간 (1분)
+    public float doomsdayTime = 60f;
     private bool doomsdayActivated = false;
-
-    private enum BossState { Idle, Attacking }
-    private BossState currentState;
-    private Coroutine currentAttackCoroutine;
-
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        //Invoke("SpawnBoss", spawnTime);
         SpawnBoss();
     }
-
-
 
     void SpawnBoss()
     {
         isBoss = true;
         Debug.Log("보스가 생성되었습니다!");
 
-        // firePoint가 설정되지 않았다면 보스 자신의 트랜스폼 사용
-        if (firePoint == null)
-        {
-            firePoint = transform;
-        }
+        // 카메라 경계 계산
+        mainCamera = Camera.main;
+        float cameraHeight = mainCamera.orthographicSize * 2;
+        float cameraWidth = cameraHeight * mainCamera.aspect;
+        screenBounds = new Vector2(cameraWidth / 2, cameraHeight / 2);
 
-        // 플레이어 트랜스폼이 할당되지 않았다면 자동으로 찾기
+        if (firePoint == null) firePoint = transform;
+
         if (playerTransform == null)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                playerTransform = player.transform;
-            }
+            if (player != null) playerTransform = player.transform;
             else
             {
-                Debug.LogError("Boss FSM 오류: 플레이어 트랜스폼을 찾거나 할당할 수 없음");
-                enabled = false; // 오류 방지를 위해 스크립트 비활성화
+                Debug.LogError("Boss FSM 오류: 플레이어를 찾을 수 없습니다.");
+                enabled = false;
                 return;
             }
         }
 
         currentState = BossState.Idle;
         StartCoroutine(BossAI_Routine());
-
-        // 전멸기 타이머 시작
         StartCoroutine(DoomsdayTimer());
     }
-
-    // Dev_S:
-    // TODO: 중간보스 로직 
 
     protected override void Initialize()
     {
         hp = 999999f;
-        speed = 1f;
-    }
-
-    // --- FSM 로직 ---
-    private IEnumerator BossAI_Routine()
-    {
-        while (true) // 메인 AI 루프
-        {
-            switch (currentState)
-            {
-                case BossState.Idle:
-                    yield return StartCoroutine(IdleState());
-                    break;
-
-                case BossState.Attacking:
-                    yield return StartCoroutine(AttackState());
-                    break;
-            }
-        }
     }
 
     private IEnumerator IdleState()
@@ -126,151 +120,218 @@ public class Boss_R : Monster
         currentState = BossState.Attacking;
     }
 
+    // --- FSM 로직 ---
+    private IEnumerator BossAI_Routine()
+    {
+        while (true)
+        {
+            switch (currentState)
+            {
+                case BossState.Idle:
+                    yield return StartCoroutine(IdleState());
+                    break;
+                case BossState.Attacking:
+                    yield return StartCoroutine(AttackState());
+                    break;
+            }
+        }
+    }
+
+    
+
     private IEnumerator AttackState()
     {
-        // 4가지 공격 패턴 중 하나를 무작위로 선택
-        int randomAttack = Random.Range(0, 4); 
-
+        int randomAttack = Random.Range(0, 4);
         switch (randomAttack)
         {
             case 0:
                 currentAttackCoroutine = StartCoroutine(CircularAttackPattern());
                 break;
             case 1:
-                currentAttackCoroutine = StartCoroutine(TargetedAttackPattern());
+                currentAttackCoroutine = StartCoroutine(HomingBurstPattern());
                 break;
             case 2:
-                currentAttackCoroutine = StartCoroutine(SpiralAttackPattern());
+                currentAttackCoroutine = StartCoroutine(DoubleSpiralAttackPattern());
                 break;
             case 3:
-                currentAttackCoroutine = StartCoroutine(WaveAttackPattern());
+                currentAttackCoroutine = StartCoroutine(CombinationAttackPattern());
                 break;
         }
 
-        yield return currentAttackCoroutine; // 현재 공격 코루틴이 끝날 때까지 기다림
-
+        yield return currentAttackCoroutine;
         yield return new WaitForSeconds(attackCooldown);
         currentState = BossState.Idle;
     }
 
+    
 
-    // --- 공격 패턴 ---
-    // 패턴 1 : 원형으로 총알을 발사
+    // --- 공격 패턴 구현 ---
+
     private IEnumerator CircularAttackPattern()
     {
         Debug.Log("보스: 원형 공격 실행!");
-        float angleStep = 360f / circularAttackBulletCount;
-        float currentAngle = 0f;
-
-        for (int i = 0; i < circularAttackBulletCount; i++)
+        float totalRotation = 0f; // 전체 원형 공격의 시작 각도
+        for (int repeat = 0; repeat < circularAttackRepeatCount; repeat++)
         {
-            float radian = currentAngle * Mathf.Deg2Rad;
-            Vector2 direction = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
-
-            FireBullet(direction, circularAttackBulletSpeed);
-
-            currentAngle += angleStep;
-        }
-
-        yield return null; // 한 프레임 내에 패턴 완료
-    }
-
-    // 패턴 2 : 원뿔 모양으로 발사
-    private IEnumerator TargetedAttackPattern()
-    {
-        Debug.Log("보스: 샷건 공격 실행!");
-        if (playerTransform == null) yield break; // 안전 장치
-
-        Vector2 directionToPlayer = (playerTransform.position - firePoint.position).normalized;
-
-        float startAngle = -targetedAttackSpreadAngle / 2;
-        float angleStep = targetedAttackSpreadAngle / (targetedAttackBulletCount - 1);
-
-        for (int i = 0; i < targetedAttackBulletCount; i++)
-        {
-            float currentAngle = startAngle + (angleStep * i);
-            Vector2 fireDirection = Quaternion.Euler(0, 0, currentAngle) * directionToPlayer;
-
-            FireBullet(fireDirection, targetedAttackBulletSpeed);
-
-            if (timeBetweenShots > 0)
+            float angleStep = 360f / circularAttackBulletCount;
+            for (int i = 0; i < circularAttackBulletCount; i++)
             {
-                yield return new WaitForSeconds(timeBetweenShots);
+                float angle = i * angleStep + totalRotation;
+                FireBullet(AngleToDirection(angle), slowCircularAttackBulletSpeed);
+                yield return new WaitForSeconds(circularAttackBulletDelay);
             }
+            totalRotation += circularAttackRotationPerWave; // 다음 웨이브를 위해 전체 각도 증가
+            yield return new WaitForSeconds(0.2f); // 각 반복 사이의 딜레이
         }
     }
 
-    // 패턴 3 : 나선형으로 총알을 발사
-
-    private IEnumerator SpiralAttackPattern()
+    private IEnumerator HomingBurstPattern()
     {
-        Debug.Log("보스: 소용돌이 공격 실행!");
-        float angleStep = 1080f / spiralBulletCount;
-        float currentAngle = 270f;
-
-        for (int i = 0; i < spiralBulletCount; i++)
+        Debug.Log("보스: 유도탄 연사 실행!");
+        for (int i = 0; i < homingBurstCount; i++)
         {
-            float radian = currentAngle * Mathf.Deg2Rad;
-            Vector2 direction = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
-
-            FireBullet(direction, spiralBulletSpeed);
-
-            currentAngle += angleStep;
-            yield return new WaitForSeconds(spiralBulletDelay);
+            if (playerTransform == null) yield break;
+            Vector2 directionToPlayer = (playerTransform.position - firePoint.position).normalized;
+            FireBullet(directionToPlayer, homingBurstSpeed);
+            yield return new WaitForSeconds(timeBetweenHomingShots);
         }
     }
 
-    // 패턴 4 : 파동 형태 발사
-    private IEnumerator WaveAttackPattern()
+    private IEnumerator DoubleSpiralAttackPattern()
     {
-        Debug.Log("보스: 파동 공격 실행!");
-        if (playerTransform == null) yield break; // 안전 장치
+        Debug.Log("보스: 이중 나선 공격 (Touhou Style) 실행!");
+        Vector3 initialPosition = transform.position;
+        Coroutine moveCoroutine = StartCoroutine(MoveBossDuringSpiralAttack(initialPosition.x));
 
-        Vector2 directionToPlayer = (playerTransform.position - firePoint.position).normalized;
-        float baseAngle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
-
-        float startAngle = baseAngle - (waveSpreadAngle / 2);
-        float angleStep = waveSpreadAngle / (waveBulletCount - 1);
-
-        for (int i = 0; i < waveBulletCount; i++)
+        for (int repeat = 0; repeat < spiralAttackRepeatCount; repeat++)
         {
-            float currentAngle = startAngle + (angleStep * i);
-            Vector2 fireDirection = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
+            float angleStep = 1440f / spiralBulletCount; // 4바퀴 회전
+            float currentAngle1 = 0f;
+            float currentAngle2 = 180f; // 180도 반대에서 시작
 
-            FireBullet(fireDirection, waveBulletSpeed);
+            for (int i = 0; i < spiralBulletCount; i++)
+            {
+                float wobble = Mathf.Sin((float)i / spiralBulletCount * Mathf.PI * 2 * spiralWobbleFrequency) * spiralWobbleMagnitude;
+                FireBullet(AngleToDirection(currentAngle1 + wobble), spiralBulletSpeed);
+                FireBullet(AngleToDirection(currentAngle2 - wobble), spiralBulletSpeed);
+                currentAngle1 += angleStep;
+                currentAngle2 -= angleStep * spiralAsymmetry; // 비대칭적으로 회전
+                yield return new WaitForSeconds(spiralBulletDelay);
+            }
+            yield return new WaitForSeconds(0.5f); // 각 반복 사이의 딜레이 (조절 가능)
         }
-        yield return new WaitForSeconds(waveBulletDelay);
+        StopCoroutine(moveCoroutine);
+        transform.position = initialPosition; // 패턴 종료 후 원래 위치로 복귀
     }
 
-
-    // 총알을 생성하고 발사하는 함수
-    private void FireBullet(Vector2 direction, float speed)
+    private IEnumerator MoveBossDuringSpiralAttack(float startX)
     {
-        if (bulletPrefab == null)
+        float targetX = startX + spiralAttackMoveRange;
+        bool movingRight = true;
+
+        while (true)
         {
-            Debug.LogError("인스펙터에 총알 프리팹이 할당되지 않았습니다!");
-            return;
+            if (movingRight)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(targetX, transform.position.y, transform.position.z), spiralAttackMoveSpeed * Time.deltaTime);
+                if (transform.position.x >= targetX) movingRight = false;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(startX - spiralAttackMoveRange, transform.position.y, transform.position.z), spiralAttackMoveSpeed * Time.deltaTime);
+                if (transform.position.x <= startX - spiralAttackMoveRange) movingRight = true;
+            }
+            yield return null;
         }
+    }
 
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+    
 
-        if (rb != null)
+    private IEnumerator CombinationAttackPattern()
+    {
+        Debug.Log("보스: 조합 공격(총알비+샷건) 실행!");
+        GameObject portal = null;
+        Transform rainSource;
+
+        if (rainEffectPrefab != null)
         {
-            rb.linearVelocity = direction.normalized * speed;
+            portal = Instantiate(rainEffectPrefab, firePoint.position, Quaternion.identity);
+            rainSource = portal.transform;
+            Vector3 portalTargetPosition = new Vector3(transform.position.x, mainCamera.transform.position.y + screenBounds.y + rainEffectOffscreenOffset, 0);
+            float portalMoveSpeed = 8f;
+
+            while (Vector3.Distance(portal.transform.position, portalTargetPosition) > 0.1f)
+            {
+                portal.transform.position = Vector3.MoveTowards(portal.transform.position, portalTargetPosition, portalMoveSpeed * Time.deltaTime);
+                yield return null;
+            }
         }
         else
         {
-            Debug.LogWarning($"총알 프리팹 '{bulletPrefab.name}'에 Rigidbody2D 컴포넌트가 없습니다.");
+            Debug.LogWarning("Rain Effect Prefab이 할당되지 않아 연출이 생략됩니다.");
+            rainSource = transform;
+        }
+
+        StartCoroutine(RainingBulletsFrom(rainSource));
+
+        yield return new WaitForSeconds(1.5f);
+        if (playerTransform != null)
+        {
+            Vector2 directionToPlayer = (playerTransform.position - firePoint.position).normalized;
+            float startAngle = -targetedAttackSpreadAngle / 2;
+            float angleStep = targetedAttackSpreadAngle / (targetedAttackBulletCount - 1);
+
+            for (int i = 0; i < targetedAttackBulletCount; i++)
+            {
+                float currentAngle = startAngle + (angleStep * i);
+                Vector2 fireDirection = Quaternion.Euler(0, 0, currentAngle) * directionToPlayer;
+                FireBullet(fireDirection, targetedAttackBulletSpeed);
+            }
+        }
+
+        yield return new WaitForSeconds(2.5f);
+        if (portal != null) Destroy(portal);
+    }
+
+    private IEnumerator RainingBulletsFrom(Transform spawnTransform)
+    {
+        float spawnY = spawnTransform.position.y;
+        float minX = mainCamera.transform.position.x - screenBounds.x;
+        float maxX = mainCamera.transform.position.x + screenBounds.x;
+
+        for (int i = 0; i < rainingBulletCount; i++)
+        {
+            float spawnX = Random.Range(minX, maxX);
+            Vector2 spawnPosition = new Vector2(spawnX, spawnY);
+            FireBulletAt(spawnPosition, Vector2.down, rainingBulletSpeed, rainingBulletPrefab);
+            yield return new WaitForSeconds(rainingBulletSpawnDelay);
         }
     }
 
+    // --- 총알 발사 유틸리티 ---
+    private void FireBullet(Vector2 direction, float speed)
+    {
+        FireBulletAt(firePoint.position, direction, speed, bulletPrefab);
+    }
+
+    private void FireBulletAt(Vector2 position, Vector2 direction, float speed, GameObject prefab)
+    {
+        if (prefab == null) return;
+        GameObject bullet = Instantiate(prefab, position, Quaternion.identity);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = direction.normalized * speed;
+    }
+
+    private Vector2 AngleToDirection(float angle)
+    {
+        float radian = angle * Mathf.Deg2Rad;
+        return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
+    }
+
     // --- 전멸기 로직 ---
-    // 임시
     private IEnumerator DoomsdayTimer()
     {
-        yield return new WaitForSeconds(doomsdayTime); // 60초
-
+        yield return new WaitForSeconds(doomsdayTime);
         if (!doomsdayActivated)
         {
             ActivateDoomsday();
@@ -284,4 +345,6 @@ public class Boss_R : Monster
         // TODO : 로직 구현해야함 
     }
 }
+
+
 
