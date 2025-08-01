@@ -3,19 +3,21 @@ using System.Collections;
 
 public class Boss_R : Monster
 {
-    public bool isBoss = false;
 
-    // --- FSM ---
+    //FSM (두개밖에없긴함)
     private enum BossState { Idle, Attacking }
     private BossState currentState;
     private Coroutine currentAttackCoroutine;
 
-    // --- Camera & Screen Bounds ---
+    //카메라 / 스크린
     private Camera mainCamera;
     private Vector2 screenBounds;
 
-    // --- General Attack Settings ---
-    [Header("총알 / 발사 포지션")]
+    // UI 매니저
+    public UIManager uiManager;
+
+    // 공격 세팅
+    [Header("총알 프리팹 / 발사 포지션")]
     public GameObject bulletPrefab;
     public Transform firePoint;
 
@@ -26,12 +28,12 @@ public class Boss_R : Monster
     public float idleTime = 1.0f; // 공격 사이 대기 시간
     public float attackCooldown = 1.5f; // 다른 공격 패턴 사이의 쿨다운
 
-    [Header("패턴 5 : 총알비 연출 프리팹")]
+    [Header("총알비 연출 프리팹")]
     public GameObject rainEffectPrefab; // 총알비 패턴 시 생성될 이펙트 프리팹
     public float rainEffectOffscreenOffset = 2f; // 총알비 연출 프리팹이 카메라 밖으로 나갈 오프셋
 
-    // --- Attack Patterns ---
-    [Header("패턴 1 : 원형공격 (강화)")]
+    //공격 패턴
+    [Header("패턴 1 : 소용돌이")]
     public int circularAttackBulletCount = 32;
     public float circularAttackBulletSpeed = 4f;
     public int circularAttackRepeatCount = 3; // 원형 공격 반복 횟수
@@ -39,12 +41,12 @@ public class Boss_R : Monster
     public float circularAttackBulletDelay = 0.05f; // 각 총알 발사 사이의 딜레이
     public float circularAttackRotationPerWave = 15f; // 한 웨이브(전체 원형 공격) 후 회전할 각도
 
-    [Header("패턴 2 : 유도탄 연사")]
+    [Header("패턴 2 : 유도탄 날리기")]
     public int homingBurstCount = 4; // 한 번에 발사할 유도탄 수
     public float homingBurstSpeed = 8f;
     public float timeBetweenHomingShots = 0.2f; // 연사 간격
 
-    [Header("패턴 3 : 이중 나선 공격 (동방 스타일)")]
+    [Header("패턴 3 : 개지랄")]
     public int spiralBulletCount = 45;
     public float spiralBulletSpeed = 5f;
     public float spiralBulletDelay = 0.04f;
@@ -55,18 +57,17 @@ public class Boss_R : Monster
     public float spiralAttackMoveSpeed = 1f; // 이중 나선 공격 시 좌우 이동 속도
     public float spiralAttackMoveRange = 1f; // 이중 나선 공격 시 좌우 이동 범위 (중앙에서 각 방향으로)
     
-    
-
-    [Header("패턴 4 : 총알비 + 샷건 조합")]
+    [Header("패턴 4 : 메테오 발사후 브레스")]
     public GameObject rainingBulletPrefab;
     public int rainingBulletCount = 20;
     public float rainingBulletSpeed = 6f;
-    public float rainSpawnWidth = 10f;
-    public int targetedAttackBulletCount = 5;
-    public float targetedAttackSpreadAngle = 20f;
-    public float targetedAttackBulletSpeed = 7f;
+    public float rainSpawnWidth = 10f; //간격
     public float minRainingBulletDelay = 0.08f; // 총알비 최소 딜레이
     public float maxRainingBulletDelay = 0.2f; // 총알비 최대 딜레이
+    // 아래부터는 총알
+    public int targetedAttackBulletCount = 5; // 타겟에게 쏘는 총알갯수
+    public float targetedAttackSpreadAngle = 20f;
+    public float targetedAttackBulletSpeed = 7f; // 총알속도
     public float rainingBulletSpawnDelay = 0.1f; // 각 총알 생성 전 고정 딜레이
 
     [Header("전멸기 시간")]
@@ -76,15 +77,14 @@ public class Boss_R : Monster
     protected override void OnEnable()
     {
         base.OnEnable();
-        SpawnBoss();
+        BossSetting();
     }
 
-    void SpawnBoss()
+    void BossSetting()
     {
-        isBoss = true;
-        Debug.Log("보스가 생성되었습니다!");
+        Debug.Log("보스 세팅완료");
 
-        // 카메라 경계 계산
+        // 카메라 계산
         mainCamera = Camera.main;
         float cameraHeight = mainCamera.orthographicSize * 2;
         float cameraWidth = cameraHeight * mainCamera.aspect;
@@ -165,11 +165,10 @@ public class Boss_R : Monster
 
     
 
-    // --- 공격 패턴 구현 ---
-
+    //공격 패턴 구현
     private IEnumerator CircularAttackPattern()
     {
-        Debug.Log("보스: 원형 공격 실행!");
+        Debug.Log("보스: 소용돌이");
         float totalRotation = 0f; // 전체 원형 공격의 시작 각도
         for (int repeat = 0; repeat < circularAttackRepeatCount; repeat++)
         {
@@ -187,19 +186,19 @@ public class Boss_R : Monster
 
     private IEnumerator HomingBurstPattern()
     {
-        Debug.Log("보스: 유도탄 연사 실행!");
+        Debug.Log("보스: 유도탄");
         for (int i = 0; i < homingBurstCount; i++)
         {
             if (playerTransform == null) yield break;
             Vector2 directionToPlayer = (playerTransform.position - firePoint.position).normalized;
             FireBullet(directionToPlayer, homingBurstSpeed);
-            yield return new WaitForSeconds(timeBetweenHomingShots);
+            yield return new WaitForSeconds(timeBetweenHomingShots); // 어떤건 숫자고 어떤건 영어면 public으로 수치 테스트 하기 위함.
         }
     }
 
     private IEnumerator DoubleSpiralAttackPattern()
     {
-        Debug.Log("보스: 이중 나선 공격 (Touhou Style) 실행!");
+        Debug.Log("보스: 개지랄");
         Vector3 initialPosition = transform.position;
         Coroutine moveCoroutine = StartCoroutine(MoveBossDuringSpiralAttack(initialPosition.x));
 
@@ -245,11 +244,9 @@ public class Boss_R : Monster
         }
     }
 
-    
-
     private IEnumerator CombinationAttackPattern()
     {
-        Debug.Log("보스: 조합 공격(총알비+샷건) 실행!");
+        Debug.Log("보스: 사랑비가내려와");
         GameObject portal = null;
         Transform rainSource;
 
@@ -268,7 +265,7 @@ public class Boss_R : Monster
         }
         else
         {
-            Debug.LogWarning("Rain Effect Prefab이 할당되지 않아 연출이 생략됩니다.");
+            Debug.LogWarning("연출용 프리팹 미할당");
             rainSource = transform;
         }
 
@@ -308,7 +305,8 @@ public class Boss_R : Monster
         }
     }
 
-    // --- 총알 발사 유틸리티 ---
+    // 총알 발사 사전 설정 유틸
+
     private void FireBullet(Vector2 direction, float speed)
     {
         FireBulletAt(firePoint.position, direction, speed, bulletPrefab);
@@ -328,7 +326,7 @@ public class Boss_R : Monster
         return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
     }
 
-    // --- 전멸기 로직 ---
+    // 전멸기 로직
     private IEnumerator DoomsdayTimer()
     {
         yield return new WaitForSeconds(doomsdayTime);
@@ -342,9 +340,8 @@ public class Boss_R : Monster
     private void ActivateDoomsday()
     {
         Debug.Log("보스: 전멸기 발동!");
-        // TODO : 로직 구현해야함 
+        // TODO : 연출 구현해야함 
+
+        uiManager.GameOver();
     }
 }
-
-
-

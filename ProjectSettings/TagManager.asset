@@ -18,6 +18,8 @@ TagManager:
   - Oct
   - Shark
   - Item
+  - EnemyBullet
+  - Boss
   layers:
   - Default
   - TransparentFX

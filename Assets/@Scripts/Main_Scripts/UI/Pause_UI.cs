@@ -7,9 +7,6 @@ public class Pause_UI : MonoBehaviour
     public GameObject s_pauseMenuUI;
     public Button pauseButton;
     public Button resumeButton;
-
-
-
     private void Start()
     {
         pauseButton.onClick.AddListener(Pause);

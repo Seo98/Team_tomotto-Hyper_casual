@@ -14,6 +14,6 @@ public class Cannonball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) // 아마 여기서 참조해서 score ++ exp ++... 
     {
-        if (other.transform.CompareTag("Monster")) Destroy(gameObject);
+        if (other.transform.CompareTag("Monster") || other.transform.CompareTag("Boss")) Destroy(gameObject);
     }
 }

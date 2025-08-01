@@ -103,7 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   hp: 3
-  s_player: {fileID: 0}
+  player: {fileID: 0}
+  monsterLevelUpTime: 30
+  currentTime: 0
+  expAmount: 0
 --- !u!70 &-6407349593548893453
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -127,42 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 3775194400798946777, guid: bb4088ca205c782499f055f78e0cb930, type: 3}
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: rainSpawnWidth
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: rainEffectPrefab
-      value: 
-      objectReference: {fileID: 3775194400798946777, guid: 013d6e50ffac8c54c9efe5fd0424f734, type: 3}
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: spiralBulletCount
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: rainingBulletCount
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: rainingBulletSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: rainingBulletPrefab
-      value: 
-      objectReference: {fileID: 3775194400798946777, guid: 6eb4a7d2798bec44e9040751b5798b65, type: 3}
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: circularAttackRepeatCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4013945545407373068, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
-      propertyPath: slowCircularAttackBulletSpeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6347033893920019316, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

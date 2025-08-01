@@ -155,25 +155,42 @@ MonoBehaviour:
   monsterLevelUpTime: 30
   currentTime: 0
   expAmount: 0
-  isBoss: 0
+  uiManager: {fileID: 0}
   bulletPrefab: {fileID: 3775194400798946777, guid: bb4088ca205c782499f055f78e0cb930, type: 3}
   firePoint: {fileID: 1601507163079724375}
   playerTransform: {fileID: 0}
+  idleTime: 2
+  attackCooldown: 3
+  rainEffectPrefab: {fileID: 3775194400798946777, guid: 013d6e50ffac8c54c9efe5fd0424f734, type: 3}
+  rainEffectOffscreenOffset: 2
   circularAttackBulletCount: 16
   circularAttackBulletSpeed: 5
-  targetedAttackBulletCount: 5
-  targetedAttackSpreadAngle: 20
-  targetedAttackBulletSpeed: 7
-  timeBetweenShots: 0.1
+  circularAttackRepeatCount: 6
+  slowCircularAttackBulletSpeed: 1
+  circularAttackBulletDelay: 0.05
+  circularAttackRotationPerWave: 15
+  homingBurstCount: 4
+  homingBurstSpeed: 8
+  timeBetweenHomingShots: 0.2
   spiralBulletCount: 30
   spiralBulletSpeed: 6
   spiralBulletDelay: 0.05
-  waveBulletCount: 7
-  waveBulletSpeed: 8
-  waveBulletDelay: 0.1
-  waveSpreadAngle: 45
-  idleTime: 2
-  attackCooldown: 3
+  spiralWobbleFrequency: 4
+  spiralWobbleMagnitude: 12
+  spiralAsymmetry: 1.05
+  spiralAttackRepeatCount: 2
+  spiralAttackMoveSpeed: 1
+  spiralAttackMoveRange: 1
+  rainingBulletPrefab: {fileID: 3775194400798946777, guid: 6eb4a7d2798bec44e9040751b5798b65, type: 3}
+  rainingBulletCount: 4
+  rainingBulletSpeed: 5
+  rainSpawnWidth: 20
+  minRainingBulletDelay: 0.08
+  maxRainingBulletDelay: 0.2
+  targetedAttackBulletCount: 5
+  targetedAttackSpreadAngle: 20
+  targetedAttackBulletSpeed: 7
+  rainingBulletSpawnDelay: 0.1
   doomsdayTime: 60
 --- !u!50 &833312238870711953
 Rigidbody2D:

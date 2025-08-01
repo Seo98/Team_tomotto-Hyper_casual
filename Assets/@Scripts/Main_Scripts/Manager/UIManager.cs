@@ -27,6 +27,15 @@ public class UIManager : MonoBehaviour
     public PlayerController playerController;
 
 
+    [Header("보스 UI")]
+    public GameObject warringUI;
+
+    [Header("보스 / 몬스터 스포너 / 플레이어 관련 오브젝트")]
+    public GameObject bossSpawner;
+    public GameObject PlayerPos;
+    public GameObject[] MonsterSpawner;
+    
+
     private void Awake()
     {
         sManager = FindFirstObjectByType<SoundManager>();
@@ -49,10 +58,25 @@ public class UIManager : MonoBehaviour
         heart1.SetActive(true);
         heart2.SetActive(true);
         heart3.SetActive(true);
-
+        
 
         gameOverUI.SetActive(false);
-        ink.SetAlpha(0f); // 잉그 남아있는 이슈 사전처리
+        ink.SetAlpha(0f); // 잉크 남아있는 이슈 사전처리
+
+        // UI랑 상관 없는것
+        bossSpawner.SetActive(true);
+        PlayerPos.transform.position = new Vector3(0, -5.4f, 0);
+        MonsterSpawner[0].SetActive(true);
+        MonsterSpawner[1].SetActive(true);
+        MonsterSpawner[2].SetActive(true);
+
+        // 피버 조기화 이슈
+        FeverTimeManager fv = feverManager.GetComponent<FeverTimeManager>();
+        fv.isFever = false;
+        fv.player.moveSpeed = 0.2f;
+        fv.playColl.isTrigger = false;
+        fv.feverImage.fillAmount = 0f;
+        fv.feverStartImage.SetActive(false);
     }
 
     private void Update()
@@ -65,7 +89,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         sManager.EventSoundPlay("GameOver");
         introObj.SetActive(false);
@@ -107,7 +131,14 @@ private void ClearAllMonsters()
         {
             Destroy(inkBall.gameObject);
         }
+
+        EnemyBullet[] enemyBullets = FindObjectsByType<EnemyBullet>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (EnemyBullet enemyBullet in enemyBullets)
+        {
+            Destroy(enemyBullet.gameObject);
+        }
     }
+
 
     private void HpUISetting()
     {

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class FeverTimeManager : MonoBehaviour
 {
     // dev_s: 여기 은주님라인, 무브스피드 계수 건든거 말고는 손본거 없는걸로 기억합니다.
-    PlayerController player;
+    public PlayerController player;
 
-    Collider2D playColl;
+    public Collider2D playColl;
     public Image feverImage;
     public GameObject feverStartImage;
     public bool isFever;
