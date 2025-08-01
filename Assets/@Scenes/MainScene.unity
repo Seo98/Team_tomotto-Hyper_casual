@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ee9805eec5d4c48ab5ce4de0da240a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgMaterial: {fileID: 2100000, guid: 46f448cd34a30e04ca39c7288262c6a6, type: 2}
+  bgMaterial: {fileID: 2100000, guid: 171efa0d0baa7a341b8ced06e8c1d271, type: 2}
   scrollSpeed: 0.2
   playerController: {fileID: 1645635818}
 --- !u!33 &605422267
@@ -1809,7 +1809,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 46f448cd34a30e04ca39c7288262c6a6, type: 2}
+  - {fileID: 2100000, guid: 171efa0d0baa7a341b8ced06e8c1d271, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
