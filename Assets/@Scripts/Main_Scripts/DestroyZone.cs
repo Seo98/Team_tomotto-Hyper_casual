@@ -28,5 +28,8 @@ public class DestroyZone : MonoBehaviour
 
         if (other.CompareTag("Item"))
         Destroy(other.gameObject);
+
+        if (other.CompareTag("EnemyBullet"))
+        Destroy(other.gameObject);
     }
 }
