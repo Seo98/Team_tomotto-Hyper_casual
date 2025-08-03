@@ -2696,7 +2696,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.723
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3776,7 +3776,7 @@ MonoBehaviour:
   eventAudio: {fileID: 1937679283}
   clips:
   - {fileID: 8300000, guid: b701717e247f2dc4e9fc430a99ab39d7, type: 3}
-  - {fileID: 8300000, guid: d61faafffa1694f439173b89bd0ee95c, type: 3}
+  - {fileID: 8300000, guid: eacee0a9cb34ab245b5ab0614fc6b0ed, type: 3}
   - {fileID: 8300000, guid: b619d875386f4894bae602c004c2e03f, type: 3}
   - {fileID: 8300000, guid: 3a16e6f8b4231e64698d45531973c517, type: 3}
   bgmVolume: {fileID: 0}

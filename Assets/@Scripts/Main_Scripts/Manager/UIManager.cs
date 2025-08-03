@@ -91,7 +91,6 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        sManager.EventSoundPlay("GameOver");
         introObj.SetActive(false);
 
         startGameUI.SetActive(false);
@@ -101,6 +100,7 @@ public class UIManager : MonoBehaviour
 
         gameOverUI.SetActive(true);
 
+        sManager.EventSoundPlay("GameOver");
         ClearAllMonsters();
         ClearAllItems();
         ClearAllEnemyBullets();

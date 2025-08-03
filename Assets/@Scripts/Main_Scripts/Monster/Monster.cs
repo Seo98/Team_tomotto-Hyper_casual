@@ -70,7 +70,7 @@ public abstract class Monster : MonoBehaviour
         if (other.gameObject.CompareTag("fireball"))
         {
             hp -= player.damage;
-            sManager.EventSoundPlay("fire_arrow_hit");
+            sManager.EventSoundPlay("damaged");
             if (hp <= 0)
             {
                 Dead();
