@@ -1149,7 +1149,7 @@ Transform:
   m_GameObject: {fileID: 215809833}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2, y: 2.4099998, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1545,7 +1545,7 @@ Transform:
   m_GameObject: {fileID: 410958975}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 2.4099998, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1644,6 +1644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 458362312}
+  - component: {fileID: 458362313}
   m_Layer: 0
   m_Name: '[Shark] Enemy Spawners'
   m_TagString: BaseMob
@@ -1660,13 +1661,29 @@ Transform:
   m_GameObject: {fileID: 458362311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.61, y: 9.61, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1941310766}
   m_Father: {fileID: 1486337899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &458362313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458362311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd6b1ab845f986448d8df7f6b2c710c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveType: 0
+  theta: 0
+  power: 3
+  speed: 1
 --- !u!1 &496929346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,6 +2288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 763791229}
+  - component: {fileID: 763791230}
   m_Layer: 0
   m_Name: '[Oct] Enemy Spawner'
   m_TagString: BaseMob
@@ -2294,6 +2312,22 @@ Transform:
   - {fileID: 299574994}
   m_Father: {fileID: 1486337899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &763791230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763791228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd6b1ab845f986448d8df7f6b2c710c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveType: 1
+  theta: 0
+  power: 1
+  speed: 1
 --- !u!1 &786709050
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,6 +2512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 828991568}
+  - component: {fileID: 828991569}
   m_Layer: 0
   m_Name: '[Base] Enemy Spawners'
   m_TagString: BaseMob
@@ -2494,7 +2529,7 @@ Transform:
   m_GameObject: {fileID: 828991567}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 6.59, z: 0}
+  m_LocalPosition: {x: 0, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2503,6 +2538,22 @@ Transform:
   - {fileID: 2084457965}
   m_Father: {fileID: 1486337899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &828991569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828991567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd6b1ab845f986448d8df7f6b2c710c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveType: 0
+  theta: 0
+  power: 1
+  speed: 1
 --- !u!1 &886519795
 GameObject:
   m_ObjectHideFlags: 0
@@ -5218,7 +5269,7 @@ Transform:
   m_GameObject: {fileID: 2084457964}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 2.4099998, z: 0}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

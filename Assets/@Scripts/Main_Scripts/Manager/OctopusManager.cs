@@ -39,7 +39,7 @@ public class OctopusManager : MonoBehaviour
     {
         isRunning = true;
 
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(10f);
 
         if(transform.childCount > 0)
         {

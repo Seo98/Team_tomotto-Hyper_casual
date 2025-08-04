@@ -9,8 +9,8 @@ public class Octopus : Monster
     public float fireRate = 2f;
 
     [Header("이동 범위")]
-    public float rightBoundary = 5f;
-    public float leftBoundary = -5f;
+    public float rightBoundary = 8f;
+    public float leftBoundary = -8f;
 
     private float nextFireTime = 0f;
 

@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 8023629432973988720}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8505371, y: -1.8422521, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -142,8 +142,8 @@ MonoBehaviour:
   inkPrefab: {fileID: 3775194400798946777, guid: 07e864f7fc2ae66449177a1068471fc8, type: 3}
   FirePos: {fileID: 4923213485927293225}
   fireRate: 2
-  rightBoundary: 5
-  leftBoundary: -5
+  rightBoundary: 8
+  leftBoundary: -8
 --- !u!70 &5974345091629228215
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
