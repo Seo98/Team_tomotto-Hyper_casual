@@ -198,7 +198,7 @@ public class Boss_R : Monster
 
     private IEnumerator DoubleSpiralAttackPattern()
     {
-        Debug.Log("보스: 개지랄");
+        Debug.Log("보스: 발광");
         Vector3 initialPosition = transform.position;
         Coroutine moveCoroutine = StartCoroutine(MoveBossDuringSpiralAttack(initialPosition.x));
 
