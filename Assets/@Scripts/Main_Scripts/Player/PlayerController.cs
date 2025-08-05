@@ -9,28 +9,30 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 0.2f;
     public float hp = 3f;
     public float damage = 1f; // < 이 변수가 변경되면 실제 데미지 상승입니다 Canonball 스크립트 변수 damage는 안사용해요!
+    public int score = 0;
 
     [Header("상태")]
     public bool isAttack = false;
     public bool isShield = false;
 
     // 여기 아래에 있는거 헤더로 묶어서 정리하면 보기 편할거같긴해요
-
-    public int score = 0;
-
-    BonusItem currState;
-    public FeverTimeManager fever;
-    ItemManager itManage;
-
+  
+    [Header("프리팹")]
     public GameObject cannonPrefab;
     public GameObject firePosition;
     public GameObject feverFirePosition_1;
     public GameObject feverFirePosition_2;
 
+
     public float spawnTime = 2f;
+    private Rigidbody2D rb;
     float timer;
 
-    private Rigidbody2D rb;
+
+    //스크립트 연동
+    BonusItem currState;
+    ItemManager itManage;
+    public FeverTimeManager fever;
     private BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
 
     
@@ -113,17 +115,17 @@ public class PlayerController : MonoBehaviour
             isDirectDrag = false;
         }
 
-        // Dev_S : 은주님 라인 << 여기서 대포알 생성
+        #region 대포알 생성
         if (timer > spawnTime && !fever.isFever) //2초마다 대포알 생성 
         {
             timer = 0;
             GameObject bullet = Instantiate(cannonPrefab, firePosition.transform.position, Quaternion.identity);
             bullet.transform.parent = this.transform;
         }
+        #endregion
 
-
-        // 
-        if (timer > spawnTime && fever.isFever && boss.isBossSpawning)
+        //보스 스폰 시 대포 생성
+        if (timer > spawnTime && fever.isFever && boss.isBossSpawning) 
         {
             timer = 0;
             GameObject bullet = Instantiate(cannonPrefab, feverFirePosition_1.transform.position, Quaternion.identity);
@@ -151,7 +153,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // dev_s : 실드 깨지는거 함수화 시켯어요 여쪽에다
+    // dev_s : 실드 깨지는거 함수화
     public void BreakShield()
     {
         isShield = false;
