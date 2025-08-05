@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 782821818577772545}
   - component: {fileID: -3064672330509842483}
   - component: {fileID: -6407349593548893453}
+  - component: {fileID: -3666333311897979036}
   m_Layer: 0
   m_Name: Shark_Shadow
   m_TagString: Monster
@@ -144,3 +145,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.125, y: 1.78125}
   m_Direction: 0
+--- !u!95 &-3666333311897979036
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814949786159163569}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 81e11235b74ad694da9025ecab1d97cc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

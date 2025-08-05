@@ -25,20 +25,14 @@ public class PlayerController : MonoBehaviour
 
 
     public float spawnTime = 2f;
-    private Rigidbody2D rb;
     float timer;
 
-<<<<<<< Updated upstream
-
-    //스크립트 연동
     BonusItem currState;
     ItemManager itManage;
     public FeverTimeManager fever;
-=======
     private Rigidbody2D rb;
 
     //Dev_s 
->>>>>>> Stashed changes
     private BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
 
     
@@ -130,14 +124,10 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-<<<<<<< Updated upstream
         //보스 스폰 시 대포 생성
         if (timer > spawnTime && fever.isFever && boss.isBossSpawning) 
-=======
-
         // Dev_S : 여기서 피버타임 2일경우 조건에 따라 2개 발사
         if (timer > spawnTime && fever.isFever && boss.isBossSpawning)
->>>>>>> Stashed changes
         {
             timer = 0;
             GameObject bullet = Instantiate(cannonPrefab, feverFirePosition_1.transform.position, Quaternion.identity);

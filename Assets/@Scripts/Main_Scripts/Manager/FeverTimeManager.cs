@@ -11,6 +11,7 @@ public class FeverTimeManager : MonoBehaviour
     public Collider2D playColl;
     public Image feverImage;
     public GameObject feverStartImage;
+    public GameObject feverStartImage2;
     public bool isFever;
     public float nowGauge;
 
@@ -75,8 +76,10 @@ public class FeverTimeManager : MonoBehaviour
     IEnumerator FeverTime2()
     {
         isFever = true;
+        feverStartImage2.SetActive(true);
         yield return new WaitForSeconds(5f);
 
+        feverStartImage2.SetActive(false);
         isFever = false;
         feverImage.fillAmount = 0f;
         // 로직구현은 프레이어컨트롤러에서 두개발사됨.. 큰일남.. 꼬이고꼬이고잇서..

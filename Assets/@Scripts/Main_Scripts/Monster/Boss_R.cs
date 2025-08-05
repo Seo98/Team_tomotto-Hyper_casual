@@ -16,6 +16,9 @@ public class Boss_R : Monster
     // UI 매니저
     public UIManager uiManager;
 
+    //
+    private Animator animator;
+
     // 공격 세팅
     [Header("총알 프리팹 / 발사 포지션")]
     public GameObject bulletPrefab;
@@ -90,6 +93,8 @@ public class Boss_R : Monster
         float cameraWidth = cameraHeight * mainCamera.aspect;
         screenBounds = new Vector2(cameraWidth / 2, cameraHeight / 2);
 
+        animator = GetComponent<Animator>();
+
         if (firePoint == null) firePoint = transform;
 
         if (playerTransform == null)
@@ -116,6 +121,8 @@ public class Boss_R : Monster
 
     private IEnumerator IdleState()
     {
+        
+
         yield return new WaitForSeconds(idleTime);
         currentState = BossState.Attacking;
     }
@@ -145,15 +152,19 @@ public class Boss_R : Monster
         switch (randomAttack)
         {
             case 0:
+                animator.SetBool("isAttack", true);
                 currentAttackCoroutine = StartCoroutine(CircularAttackPattern());
                 break;
             case 1:
+                animator.SetBool("isAttack", true);
                 currentAttackCoroutine = StartCoroutine(HomingBurstPattern());
                 break;
             case 2:
+                animator.SetBool("isAttack", true);
                 currentAttackCoroutine = StartCoroutine(DoubleSpiralAttackPattern());
                 break;
             case 3:
+                animator.SetBool("isAttack", true);
                 currentAttackCoroutine = StartCoroutine(CombinationAttackPattern());
                 break;
         }
@@ -182,6 +193,7 @@ public class Boss_R : Monster
             totalRotation += circularAttackRotationPerWave; // 다음 웨이브를 위해 전체 각도 증가
             yield return new WaitForSeconds(0.2f); // 각 반복 사이의 딜레이
         }
+        animator.SetBool("isAttack", false);
     }
 
     private IEnumerator HomingBurstPattern()
@@ -194,6 +206,7 @@ public class Boss_R : Monster
             FireBullet(directionToPlayer, homingBurstSpeed);
             yield return new WaitForSeconds(timeBetweenHomingShots); // 어떤건 숫자고 어떤건 영어면 public으로 수치 테스트 하기 위함.
         }
+        animator.SetBool("isAttack", false);
     }
 
     private IEnumerator DoubleSpiralAttackPattern()
@@ -221,6 +234,8 @@ public class Boss_R : Monster
         }
         StopCoroutine(moveCoroutine);
         transform.position = initialPosition; // 패턴 종료 후 원래 위치로 복귀
+
+        animator.SetBool("isAttack", false);
     }
 
     private IEnumerator MoveBossDuringSpiralAttack(float startX)
@@ -253,6 +268,9 @@ public class Boss_R : Monster
         if (rainEffectPrefab != null)
         {
             portal = Instantiate(rainEffectPrefab, firePoint.position, Quaternion.identity);
+            //
+            animator.SetBool("isAttack", false);
+
             rainSource = portal.transform;
             Vector3 portalTargetPosition = new Vector3(transform.position.x, mainCamera.transform.position.y + screenBounds.y + rainEffectOffscreenOffset, 0);
             float portalMoveSpeed = 8f;
@@ -286,6 +304,8 @@ public class Boss_R : Monster
             }
         }
 
+        animator.SetBool("isAttack", false);
+
         yield return new WaitForSeconds(2.5f);
         if (portal != null) Destroy(portal);
     }
@@ -301,6 +321,7 @@ public class Boss_R : Monster
             float spawnX = Random.Range(minX, maxX);
             Vector2 spawnPosition = new Vector2(spawnX, spawnY);
             FireBulletAt(spawnPosition, Vector2.down, rainingBulletSpeed, rainingBulletPrefab);
+            animator.SetBool("isAttack", true);
             yield return new WaitForSeconds(rainingBulletSpawnDelay);
         }
     }

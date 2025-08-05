@@ -8,6 +8,8 @@ public class Octopus : Monster
     public GameObject FirePos;
     public float fireRate = 2f;
 
+    private Animator animator;
+
     [Header("이동 범위")]
     public float rightBoundary = 8f;
     public float leftBoundary = -8f;
@@ -19,6 +21,7 @@ public class Octopus : Monster
         hp = 1f;
         speed = 1f;
         dir = Vector3.right;
+        animator = GetComponent<Animator>();
     }
 
     // Dev_H: 경험치 부여량
@@ -64,7 +67,7 @@ public class Octopus : Monster
         {
             return;
         }
-
+        animator.SetTrigger("isAttack");
         GameObject tb = Instantiate(inkPrefab);
         tb.transform.position = FirePos.transform.position;
     }
