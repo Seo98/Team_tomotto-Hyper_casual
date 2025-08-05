@@ -91,6 +91,7 @@ public abstract class Monster : MonoBehaviour
                 player.BreakShield();
                 return;
             }
+
             player.hp -= 1f;
         }
     }
@@ -99,4 +100,5 @@ public abstract class Monster : MonoBehaviour
     {
         EXPManager.Instance.AddExp(expAmount);
     }
+
 }

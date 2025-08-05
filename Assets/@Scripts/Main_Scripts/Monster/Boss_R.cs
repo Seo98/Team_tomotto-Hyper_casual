@@ -327,6 +327,9 @@ public class Boss_R : Monster
     }
 
     // 전멸기 로직
+
+    // DEV_S
+    // FIXME : NULL 레퍼런스 이슈, 원인 UI 매니저 관련 추정
     private IEnumerator DoomsdayTimer()
     {
         yield return new WaitForSeconds(doomsdayTime);

@@ -24,13 +24,16 @@ public class PlayerController : MonoBehaviour
 
     public GameObject cannonPrefab;
     public GameObject firePosition;
+    public GameObject feverFirePosition_1;
+    public GameObject feverFirePosition_2;
 
     public float spawnTime = 2f;
     float timer;
 
     private Rigidbody2D rb;
+    private BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
 
-    //
+    
     #region :: 마우스 드래그 관련 변수
     private Camera mainCamera;
     private bool isDragging = false;
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         itManage = FindFirstObjectByType<ItemManager>();
         mainCamera = Camera.main;
+        boss = GameObject.FindFirstObjectByType<BossSpawner>();
 
         // 마우스 드래그 관련
         float camDistance = Vector3.Distance(transform.position, mainCamera.transform.position);
@@ -115,6 +119,17 @@ public class PlayerController : MonoBehaviour
             timer = 0;
             GameObject bullet = Instantiate(cannonPrefab, firePosition.transform.position, Quaternion.identity);
             bullet.transform.parent = this.transform;
+        }
+
+
+        // 
+        if (timer > spawnTime && fever.isFever && boss.isBossSpawning)
+        {
+            timer = 0;
+            GameObject bullet = Instantiate(cannonPrefab, feverFirePosition_1.transform.position, Quaternion.identity);
+            GameObject bullet2 = Instantiate(cannonPrefab, feverFirePosition_2.transform.position, Quaternion.identity);
+            bullet.transform.parent = this.transform;
+            bullet2.transform.parent = this.transform;
         }
 
     }
