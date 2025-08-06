@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public float spawnTime = 2f;
     float timer;
 
-    BonusItem currState;
+    //BonusItem bonusIt;
     ItemManager itManage;
     public FeverTimeManager fever;
     private Rigidbody2D rb;
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         // 연결고리
-        currState = FindFirstObjectByType<BonusItem>();
+        //bonusIt = FindFirstObjectByType<BonusItem>();
         rb = GetComponent<Rigidbody2D>();
         itManage = FindFirstObjectByType<ItemManager>();
         mainCamera = Camera.main;
@@ -116,16 +116,14 @@ public class PlayerController : MonoBehaviour
         }
 
         #region 대포알 생성
-        if (timer > spawnTime && !fever.isFever) //2초마다 대포알 생성 
+        if (timer > spawnTime && !fever.isFever) //피버 타임 아닐 때만 2초마다 대포알 생성 
         {
             timer = 0;
             GameObject bullet = Instantiate(cannonPrefab, firePosition.transform.position, Quaternion.identity);
             bullet.transform.parent = this.transform;
         }
         #endregion
-
-        //보스 스폰 시 대포 생성
-        if (timer > spawnTime && fever.isFever && boss.isBossSpawning) 
+        
         // Dev_S : 여기서 피버타임 2일경우 조건에 따라 2개 발사
         if (timer > spawnTime && fever.isFever && boss.isBossSpawning)
         {
@@ -135,7 +133,6 @@ public class PlayerController : MonoBehaviour
             bullet.transform.parent = this.transform;
             bullet2.transform.parent = this.transform;
         }
-
     }
 
     void FixedUpdate()

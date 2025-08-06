@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MonsterDropItem : MonoBehaviour
 {
-    // Dev_S: 생성만 하는 아이에요
+    // Dev_S: 생성만 하는 아이
     [SerializeField] GameObject[] items;
 
     public void DropItem(Vector3 dropPos)

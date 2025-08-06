@@ -24,7 +24,7 @@ public class FeverTimeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        feverImage.fillAmount = 0;
+        feverImage.fillAmount = 0; //켜질 때 초기화
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         playColl = player.GetComponent<Collider2D>();
         boss = GameObject.FindFirstObjectByType<BossSpawner>();
@@ -42,13 +42,14 @@ public class FeverTimeManager : MonoBehaviour
             nowGauge = feverImage.fillAmount;
             break;
         }
-        if (!boss.isBossSpawning &&!isFever && feverImage.fillAmount >= 1)
+        if (!boss.isBossSpawning &&!isFever && feverImage.fillAmount >= 1) //보스 아닐때
             StartCoroutine(FeverTime());
 
-        if (boss.isBossSpawning && !isFever && feverImage.fillAmount >= 1)
+        if (boss.isBossSpawning && !isFever && feverImage.fillAmount >= 1) //보스일 때
             StartCoroutine(FeverTime2());
     }
 
+    //피버 시작되면 플레이어 속도 업, 나머지는 이펙트 관련 setactive
     IEnumerator FeverTime()
     {
         feverStartImage.SetActive(true);
@@ -58,7 +59,7 @@ public class FeverTimeManager : MonoBehaviour
 
         Debug.Log("IsFever");
         isFever = true;
-        player.moveSpeed = 2f;
+        player.moveSpeed = 2f; 
         
         yield return new WaitForSeconds(5f);
 
@@ -73,7 +74,7 @@ public class FeverTimeManager : MonoBehaviour
     }
 
     // Dev_S: 피버타임 둘중하나 선택 
-    IEnumerator FeverTime2()
+    IEnumerator FeverTime2() //속도 업이 없는 피버. 보스전 시에만 적용 
     {
         isFever = true;
         feverStartImage2.SetActive(true);
