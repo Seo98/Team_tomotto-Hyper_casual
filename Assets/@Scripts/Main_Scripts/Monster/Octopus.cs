@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Octopus : Monster
 {
+    // Dev_H : 문어의 특성 스크립트, 원거리 공격을 하며 다른 몬스터와 다르게 좌우 왕복 운동을 합니다.
+
     // Dev_S: 문어
     [Header("문어 전용")]
     public GameObject inkPrefab;
@@ -11,6 +13,7 @@ public class Octopus : Monster
     private Animator animator;
 
     [Header("이동 범위")]
+    // Dev_H : -8 ~ 8 의 범위는 보기 좋게 뭉쳐다니도록 의도한 범위이니 참고해주세요. (스폰 타임도요)
     public float rightBoundary = 8f;
     public float leftBoundary = -8f;
 

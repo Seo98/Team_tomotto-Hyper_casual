@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class SpawnerMove : MonoBehaviour
 {
+    // Dev_H : 몬스터 스포너들이 상하or좌우로 움직이게 하도록 만들었습니다.
+    //         현재 몬스터들이 스포너의 자식으로 소환되니 같이 상하좌우로 움직여서 느낌이 좋습니다.
+
     public enum MoveType { Horizontal, Vertical }
     public MoveType moveType;
 

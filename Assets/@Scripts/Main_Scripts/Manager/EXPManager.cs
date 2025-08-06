@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EXPManager : MonoBehaviour
 {
+    // Dev_H : 경험치와 레벨 관리, 레벨에 따른 능력치 강화 (현재 공격력과 공격속도)를 다루는 스크립트
+
     public static EXPManager Instance { get; set; }
 
     // Dev_H: PlayerController에 있는 공격력, 공격속도 올리기 위해
@@ -11,7 +13,7 @@ public class EXPManager : MonoBehaviour
     // Dev_H: 현재 경혐치와 레벨, 최대경험치
     public int curExp = 0;
     public int curLevel = 1;
-    public float maxExp = 100;  
+    public float maxExp = 100;
 
     private void Awake()
     {
