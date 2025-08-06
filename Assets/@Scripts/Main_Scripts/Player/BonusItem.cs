@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class BonusItem : MonoBehaviour
 {
-
-    // Dev_s : 여기도 한번 주석작업 해주시면.....감사콩 
-    // 이쪽라인은 크게 안건드렸던걸로 기억합니다.
+    
     public enum BonusType { SHEILD, ATTACKUP };
     public BonusType bonusItem;
 
@@ -14,13 +12,11 @@ public class BonusItem : MonoBehaviour
     SpriteRenderer sr;
     public Cannonball fireball;
 
-    bool isShield;
-
-
     public Vector3 dir;
     public float speed = 3;
     GameObject target;
 
+    //스크립트 연결
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
@@ -29,12 +25,7 @@ public class BonusItem : MonoBehaviour
         itManager = FindFirstObjectByType<ItemManager>(); 
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
-
+    //드랍 아이템 플레이어 방향으로 따라가도록
     public void Update()
     {
         GameObject target = GameObject.FindWithTag("Player");
@@ -45,6 +36,7 @@ public class BonusItem : MonoBehaviour
         }
     }
 
+    //플레이어가 아이템 먹었을 때
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))

@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
         //bgmVolume.value = bgmaudio.volume; //현재 오디오 볼륨을 슬라이더값으로
         //eventVolume.value = eventAudio.volume;
 
-        //bgmMute.isOn = bgmaudio.mute;  //isOn이나 value 모두 인스펙터 안에 있는 거 접근한 것
+        //bgmMute.isOn = bgmaudio.mute;  
         //eventMute.isOn = eventAudio.mute;
     }
 
@@ -58,7 +58,7 @@ public class SoundManager : MonoBehaviour
             if (clip.name == clipname)
             {
                 eventAudio.volume = 0.4f;
-                eventAudio.PlayOneShot(clip);//실행하면 제어 x 
+                eventAudio.PlayOneShot(clip);
 
                 return;
             }
@@ -76,7 +76,7 @@ public class SoundManager : MonoBehaviour
     //    eventAudio.volume = volume;
     //}
 
-    //void OnBgmMute(bool isMute) //인게임에서 누른 게 여기 매개변수로 들어와서 값을 바로 바꿔줌.
+    //void OnBgmMute(bool isMute) 
     //{
     //    bgmaudio.mute = isMute;
     //}
