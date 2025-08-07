@@ -73,17 +73,20 @@ public class Boss_R : Monster
     public float targetedAttackBulletSpeed = 7f; // 총알속도
     public float rainingBulletSpawnDelay = 0.1f; // 각 총알 생성 전 고정 딜레이
 
+    // Dev_S : 354 주석설명 되어있음
+    /*
     [Header("전멸기 시간")]
     public float doomsdayTime = 60f;
     private bool doomsdayActivated = false;
+    */
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        BossSetting();
+        
     }
 
-    void BossSetting()
+    public void BossSetting()
     {
         Debug.Log("보스 세팅완료");
 
@@ -109,9 +112,11 @@ public class Boss_R : Monster
             }
         }
 
+
         currentState = BossState.Idle;
         StartCoroutine(BossAI_Routine());
-        StartCoroutine(DoomsdayTimer());
+        // StartCoroutine(DoomsdayTimer());
+        // Dev_S : 354 주석설명 되어있음
     }
 
     protected override void Initialize()
@@ -351,7 +356,11 @@ public class Boss_R : Monster
 
     // DEV_S
     // FIXME : NULL 레퍼런스 이슈, 원인 UI 매니저 관련 추정
-    private IEnumerator DoomsdayTimer()
+    // 수정하려하였으나, 해당 기능 구현여부에 대해서 정확하게 외주업체(멋사)측 확인 필요할듯.
+
+    // 추가 피드백에 따라 진행예정 -> 기획관련 -> 플레이어 실력과 무관하게 어떤 상황이더라도 무조건 2분 내외로 끝내야 하는지.
+    // 끝내야할경우 -> 시간지나면 전멸기 -> 다시하기 
+    /*private IEnumerator DoomsdayTimer()
     {
         yield return new WaitForSeconds(doomsdayTime);
         if (!doomsdayActivated)
@@ -359,8 +368,9 @@ public class Boss_R : Monster
             ActivateDoomsday();
             doomsdayActivated = true;
         }
-    }
+    }*/
 
+    /*
     private void ActivateDoomsday()
     {
         Debug.Log("보스: 전멸기 발동!");
@@ -368,4 +378,5 @@ public class Boss_R : Monster
 
         uiManager.GameOver();
     }
+    */
 }

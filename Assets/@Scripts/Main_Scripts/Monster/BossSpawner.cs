@@ -10,11 +10,12 @@ public class BossSpawner : MonoBehaviour
     private float bossSpawnTime = 90f; // 스폰시간 조건 초기화
     public float currentTime; // 델타타임 플플 가중치 줄 변수
     public bool isBossSpawning = false; // 스폰했는지?
-    private bool isBossMoveDone = false; // 이동완료했는지 ? 
+    public bool isBoss = false; // 보스전인지?
+    private bool isBossMoveDone = false; // 이동완료했는지? 
     public GameObject bossPrefab;
 
     // 보스 이동 관련 변수
-    private float startY = 8.5f; // 초기위치 -> 다음 게임 진행시에도 동일한 위치에서 동일한 연출을 위함.
+    private float startY = 20f; // 초기위치 -> 다음 게임 진행시에도 동일한 위치에서 동일한 연출을 위함.
     private float endY = 6.5f; // 
     private float moveSpeed = 2.0f;
     private Vector3 startPos;
@@ -35,11 +36,13 @@ public class BossSpawner : MonoBehaviour
     {
         currentTime = 0f;
         isBossSpawning = false;
+        isBoss = false;
         isBossMoveDone = false;
 
-        
         boss = Instantiate(bossPrefab);
         boss.SetActive(false);
+
+        boss.GetComponent<BoxCollider2D>().enabled = false;
         
     }
 
@@ -78,7 +81,7 @@ public class BossSpawner : MonoBehaviour
     private void StartSpawning()
     {
         isBossSpawning = true;
-        uiManager.warringUI.SetActive(true);
+        isBoss = true;
 
         // 시작 및 종료 위치 설정
         startPos = new Vector3(transform.position.x, startY, transform.position.z);
@@ -106,22 +109,20 @@ public class BossSpawner : MonoBehaviour
     {
         boss.transform.position = endPos;
         isBossMoveDone = true;
-        uiManager.warringUI.SetActive(false);
-        // 이동이 완료되면 보스 조우시 나오는 UI도 꺼줌
-        // 보스 AI 활성화
-        // 보스 이동하면서 스킬쓰면 짜쳐서 사전처리해줌
         ActivateBossAI();
     }
 
     // 보스 AI 활성화
     private void ActivateBossAI()
     {
-        /*
+        
         Boss_R bossR = boss.GetComponent<Boss_R>();
         if (bossR == null)
         {
             Debug.LogError("Boss_R 스크립트를 찾을 수 없습니다.");
         }
-        */
+        bossR.BossSetting();
+        boss.GetComponent<BoxCollider2D>().enabled = true;
+        isBossSpawning = false;
     }
 }

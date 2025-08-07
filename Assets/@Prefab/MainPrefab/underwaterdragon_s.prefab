@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5159270633701234371}
   m_Layer: 0
   m_Name: underwaterdragon_s
-  m_TagString: Monster
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

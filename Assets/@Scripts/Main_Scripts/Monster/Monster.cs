@@ -29,7 +29,7 @@ public abstract class Monster : MonoBehaviour
     protected virtual void OnEnable()
     {
         // 공통 초기화
-        dropIt = GameObject.Find("DropManager").GetComponent<MonsterDropItem>();
+        dropIt = GameObject.Find("DropManager [Active]").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         sManager = FindFirstObjectByType<SoundManager>();
 
