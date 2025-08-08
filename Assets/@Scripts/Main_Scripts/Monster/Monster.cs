@@ -26,6 +26,8 @@ public abstract class Monster : MonoBehaviour
     // Dev_H: 경험치 부여량, 각 몬스터 스크립트 참조
     public int expAmount;
 
+    public Animator animator;
+
     protected virtual void OnEnable()
     {
         // 공통 초기화
@@ -71,6 +73,7 @@ public abstract class Monster : MonoBehaviour
         {
             hp -= player.damage;
             sManager.EventSoundPlay("damaged");
+            animator.SetTrigger("isHit");
             if (hp <= 0)
             {
                 Dead();
@@ -82,6 +85,7 @@ public abstract class Monster : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             sManager.EventSoundPlay("hitting");
+            animator.SetTrigger("isHit");
             Dead();
 
             if (player.fever.isFever) return;

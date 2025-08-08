@@ -80,6 +80,10 @@ public class UIManager : MonoBehaviour
         MonsterSpawner[0].SetActive(true);
         MonsterSpawner[1].SetActive(true);
         MonsterSpawner[2].SetActive(true);
+        //
+        MonsterSpawner[3].SetActive(true);
+        //
+        MonsterSpawner[4].SetActive(true);
 
         // 피버 조기화 이슈
         FeverTimeManager fv = feverManager.GetComponent<FeverTimeManager>();
@@ -97,6 +101,9 @@ public class UIManager : MonoBehaviour
             imageColor.a = 1f;
             fadeImage.color = imageColor;
         }
+
+        // 사운드 초기화
+        sManager.isGameEnd = false;
     }
 
     private void Update()
@@ -128,7 +135,6 @@ public class UIManager : MonoBehaviour
                 {
                     child.gameObject.SetActive(true);
                 }
-                // Invoke는 한 번만 호출되도록, 애니메이션 완료 시점에 호출
                 Invoke("BossAnimEnd", 3f);
             }
         }
@@ -144,8 +150,11 @@ public class UIManager : MonoBehaviour
         feverManager.SetActive(false);
 
         gameOverUI.SetActive(true);
-
-        sManager.EventSoundPlay("GameOver");
+        if (sManager.isGameEnd == false)
+        {
+            sManager.isGameEnd = true;
+            sManager.EventSoundPlay("GameOver");
+        }
         ClearAllMonsters();
         ClearAllItems();
         ClearAllEnemyBullets();
@@ -182,6 +191,18 @@ public class UIManager : MonoBehaviour
         {
             Destroy(enemyBullet.gameObject);
         }
+
+        EnemyLazer[] enemyLasers = FindObjectsByType<EnemyLazer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (EnemyLazer enemylaser in enemyLasers)
+        {
+            Destroy(enemylaser.gameObject);
+        }
+
+        LazerWarring[] enemyLaserWarrings = FindObjectsByType<LazerWarring>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (LazerWarring enemyLaserWarring in enemyLaserWarrings)
+        {
+            Destroy(enemyLaserWarring.gameObject);
+        }
     }
 
 
@@ -211,8 +232,6 @@ public class UIManager : MonoBehaviour
     {
         Animator bossAnim = bossFadeIn.GetComponent<Animator>();
         bossAnim.SetTrigger("isFadeOut");
-        // 페이드 아웃 애니메이션이 끝난 후 오브젝트를 비활성화하기 위해 Invoke 사용
-        // '1f'는 페이드 아웃 애니메이션의 예상 지속 시간입니다. 실제 애니메이션 길이에 맞춰 조정해주세요.
         warringEffect.SetActive(false);
         bossText.SetActive(false);
         bossImage.SetActive(false);
