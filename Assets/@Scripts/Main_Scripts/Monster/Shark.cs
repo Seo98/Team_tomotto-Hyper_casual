@@ -10,6 +10,8 @@ public class Shark : Monster
 
     protected override void Initialize()
     {
+        animator = GetComponent<Animator>();
+
         isFollowing = true;
         hp = 2f;
         speed = 2f;

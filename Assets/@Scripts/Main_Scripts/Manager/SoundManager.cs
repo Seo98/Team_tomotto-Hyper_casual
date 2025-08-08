@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] Toggle bgmMute;
     [SerializeField] Toggle eventMute;
 
+
+    public bool isGameEnd = false;
     private void Awake() //초기화 작업 
     {
 
@@ -65,6 +67,16 @@ public class SoundManager : MonoBehaviour
         }
 
         Debug.Log($"{clipname}을 찾지 못했습니다.");
+    }
+
+    public void BgmSoundsPause()
+    {
+        bgmaudio.Pause();
+    }
+
+    public void BgmSoundsResume()
+    {
+        bgmaudio.UnPause();
     }
 
     //void OnBgmVolumeChange(float volume)

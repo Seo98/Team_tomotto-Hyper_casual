@@ -10,7 +10,7 @@ public class Octopus : Monster
     public GameObject FirePos;
     public float fireRate = 2f;
 
-    private Animator animator;
+    
 
     [Header("이동 범위")]
     // Dev_H : -8 ~ 8 의 범위는 보기 좋게 뭉쳐다니도록 의도한 범위이니 참고해주세요. (스폰 타임도요)
@@ -21,10 +21,11 @@ public class Octopus : Monster
 
     protected override void Initialize()
     {
+        animator = GetComponent<Animator>();
+
         hp = 1f;
         speed = 1f;
         dir = Vector3.right;
-        animator = GetComponent<Animator>();
     }
 
     // Dev_H: 경험치 부여량

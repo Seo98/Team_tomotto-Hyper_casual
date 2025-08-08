@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     public GameObject feverFirePosition_2;
 
 
-    public float spawnTime = 2f;
     float timer;
+    public float spawnTime = 2f;
 
     //BonusItem bonusIt;
     ItemManager itManage;
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         #endregion
         
         // Dev_S : 여기서 피버타임 2일경우 조건에 따라 2개 발사
-        if (timer > spawnTime && fever.isFever && boss.isBossSpawning)
+        if (timer > spawnTime && fever.isFever && boss.isBoss)
         {
             timer = 0;
             GameObject bullet = Instantiate(cannonPrefab, feverFirePosition_1.transform.position, Quaternion.identity);

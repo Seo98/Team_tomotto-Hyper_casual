@@ -64,9 +64,7 @@ public class BonusItem : MonoBehaviour
 
     void AttackUP()
     {
-        fireball.speed = 13f;
-        player.spawnTime = 1f;
-
+        player.spawnTime -= player.spawnTime / 10;
         player.damage += 1f;
     }
 }
