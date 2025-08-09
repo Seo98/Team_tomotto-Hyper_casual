@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -138,10 +138,10 @@ TextureImporter:
       name: pulse_small_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 12
-        width: 8
-        height: 8
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,10 +160,10 @@ TextureImporter:
       name: pulse_small_1
       rect:
         serializedVersion: 2
-        x: 44
-        y: 12
-        width: 8
-        height: 8
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +182,10 @@ TextureImporter:
       name: pulse_small_2
       rect:
         serializedVersion: 2
-        x: 75
-        y: 11
-        width: 10
-        height: 10
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: pulse_small_3
       rect:
         serializedVersion: 2
-        x: 107
-        y: 10
-        width: 43
-        height: 12
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,11 +222,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: pulse_small_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4cc5b61a6b775c41a090d2d2100ece7
+      internalID: -178817700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f2cbcd2dcae8e6c4fa9aed0c7bd843a2
     internalID: 0
     vertices: []
     indices: 
@@ -240,6 +262,7 @@ TextureImporter:
       pulse_small_1: -9133648854068941852
       pulse_small_2: 1955767599982760020
       pulse_small_3: 7575259052149031079
+      pulse_small_4: -178817700
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
