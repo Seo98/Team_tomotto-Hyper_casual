@@ -30,6 +30,9 @@ public abstract class Monster : MonoBehaviour
 
     public Animator animator;
 
+
+    public GameObject particle;
+
     protected virtual void OnEnable()
     {
         // 공통 초기화
@@ -38,6 +41,7 @@ public abstract class Monster : MonoBehaviour
         sManager = FindFirstObjectByType<SoundManager>();
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<CapsuleCollider2D>();
+        
 
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
         Initialize();
@@ -65,6 +69,7 @@ public abstract class Monster : MonoBehaviour
             if (dropPer > 8)dropIt.DropItem(nowPos);
         }
 
+        particle.SetActive(true);
         StartCoroutine(Wait());
         GiveExp();  // Dev_H: 경험치 부여하는 함수 호출
     }

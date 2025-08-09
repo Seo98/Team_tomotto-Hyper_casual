@@ -18,11 +18,5 @@ public class Cannonball : MonoBehaviour
     {
         if (other.transform.CompareTag("Monster") || other.transform.CompareTag("Boss")) Destroy(this.gameObject);
 
-        if (other.transform.CompareTag("Monster"))
-        {
-            other.transform.GetComponent<Jellyfish>().particle.SetActive(true);
-            other.transform.GetComponent<Shark>().particle.SetActive(true); //젤리피시 때리면 널 레퍼런스 
-            other.transform.GetComponent<Octopus>().particle.SetActive(true); //동일한 이유로 널레퍼런스 
-        }
     }
 }
