@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3982659029262180367}
   - component: {fileID: 6621801895985955011}
   - component: {fileID: 3569762352714134834}
-  - component: {fileID: 7032912982823591691}
   - component: {fileID: 1665041764738708538}
+  - component: {fileID: 8687173227252819827}
   m_Layer: 7
   m_Name: '[Player] Main'
   m_TagString: Player
@@ -85,12 +85,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 7838603001688086710, guid: 181f5646b32a67f40a805c5f79717a00, type: 3}
+  m_Sprite: {fileID: -4032481707582436298, guid: 51e91a45c7507014bbabcc6639fc47a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.28, y: 0.6}
+  m_Size: {x: 0.09, y: 0.19}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -111,16 +111,43 @@ MonoBehaviour:
   moveSpeed: 0.2
   hp: 3
   damage: 1
+  score: 0
   isAttack: 0
   isShield: 0
-  score: 0
-  fever: {fileID: 0}
   cannonPrefab: {fileID: 8493165749912826780, guid: 70142ed6a3aea2248a37cf461d0b6e47, type: 3}
   firePosition: {fileID: 2903532603125003418}
-  feverFirePosition_1: {fileID: 0}
-  feverFirePosition_2: {fileID: 0}
+  feverFirePosition_1: {fileID: 6112315289281214988}
+  feverFirePosition_2: {fileID: 6720467578751365078}
   spawnTime: 2
---- !u!70 &7032912982823591691
+  fever: {fileID: 0}
+--- !u!50 &1665041764738708538
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706445515035150317}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &8687173227252819827
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,36 +181,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.01121974, y: -0.09611678}
-  m_Size: {x: 1.00633, y: 1.4423194}
+  m_Offset: {x: 0.000000029802322, y: -0.31679505}
+  m_Size: {x: 0.89612263, y: 1.5125326}
   m_Direction: 0
---- !u!50 &1665041764738708538
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706445515035150317}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &963575575587701025
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 2157659371667615122}
   - component: {fileID: 5138814548108776222}
   m_Layer: 0
-  m_Name: Player_Idle_eff_0
+  m_Name: '[Player] Idle_eff_01'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 3090617770420820850}
   - component: {fileID: 7193793008511135213}
   m_Layer: 0
-  m_Name: '[Player] Shield'
+  m_Name: '[Player] Shield [NoActive]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,7 +423,7 @@ Animator:
   m_GameObject: {fileID: 4170820834088594417}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d4a589207a90656498d0367ce802e724, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 2134194467732572283}
   - component: {fileID: 4031099981734215187}
   m_Layer: 0
-  m_Name: Player_boost_eff01_0
+  m_Name: '[Player] boost_eff_01 [NoActive]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,9 +573,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 5334a60396bca40f19ac9d531fab2621, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.19607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
