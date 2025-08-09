@@ -12,29 +12,19 @@ public class SoundManager : MonoBehaviour
     [SerializeField] Slider bgmVolume;
     [SerializeField] Slider eventVolume;
 
-    [SerializeField] Toggle bgmMute;
-    [SerializeField] Toggle eventMute;
-
 
     public bool isGameEnd = false;
     private void Awake() //초기화 작업 
     {
-
-        //bgmVolume.value = bgmaudio.volume; //현재 오디오 볼륨을 슬라이더값으로
-        //eventVolume.value = eventAudio.volume;
-
-        //bgmMute.isOn = bgmaudio.mute;  
-        //eventMute.isOn = eventAudio.mute;
+        bgmVolume.value = bgmaudio.volume; //현재 오디오 볼륨을 슬라이더값으로
+        eventVolume.value = eventAudio.volume;
     }
 
     private void Start()
     {
         BgmSoundPlay("Gb 1");
-        //bgmVolume.onValueChanged.AddListener(OnBgmVolumeChange);
-        //eventVolume.onValueChanged.AddListener(OnEventVolumeChange);
-
-        //bgmMute.onValueChanged.AddListener(OnBgmMute);
-        //eventMute.onValueChanged.AddListener(OnEventMute);
+        bgmVolume.onValueChanged.AddListener(OnBgmVolumeChange);
+        eventVolume.onValueChanged.AddListener(OnEventVolumeChange);
     }
 
     public void BgmSoundPlay(string clipname)
@@ -58,8 +48,7 @@ public class SoundManager : MonoBehaviour
         foreach (var clip in clips)
         {
             if (clip.name == clipname)
-            {
-                eventAudio.volume = 0.4f;
+            {                
                 eventAudio.PlayOneShot(clip);
 
                 return;
@@ -79,23 +68,13 @@ public class SoundManager : MonoBehaviour
         bgmaudio.UnPause();
     }
 
-    //void OnBgmVolumeChange(float volume)
-    //{
-    //    bgmaudio.volume = volume;
-    //}
-    //void OnEventVolumeChange(float volume)
-    //{
-    //    eventAudio.volume = volume;
-    //}
-
-    //void OnBgmMute(bool isMute) 
-    //{
-    //    bgmaudio.mute = isMute;
-    //}
-
-    //void OnEventMute(bool isMute)
-    //{
-    //    eventAudio.mute = isMute;
-    //}
+    void OnBgmVolumeChange(float volume)
+    {
+        bgmaudio.volume = volume;
+    }
+    void OnEventVolumeChange(float volume)
+    {
+        eventAudio.volume = volume;
+    }
 }
 

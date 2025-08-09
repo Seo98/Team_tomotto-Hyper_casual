@@ -5,6 +5,7 @@ public class BossSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject boss;
     private UIManager uiManager;
+    SoundManager sManager;
 
     // 보스 스폰 관련 변수
     private float bossSpawnTime = 90f; // 스폰시간 조건 초기화
@@ -25,6 +26,7 @@ public class BossSpawner : MonoBehaviour
 
     private void OnEnable() 
     {
+        sManager = FindFirstObjectByType<SoundManager>();
         uiManager = FindFirstObjectByType<UIManager>();
         InitializeSpawner(); 
         // 스포너의 기초 값 초기화 
@@ -80,6 +82,7 @@ public class BossSpawner : MonoBehaviour
     // 스폰 시작
     private void StartSpawning()
     {
+        
         isBossSpawning = true;
         isBoss = true;
 
@@ -115,7 +118,7 @@ public class BossSpawner : MonoBehaviour
     // 보스 AI 활성화
     private void ActivateBossAI()
     {
-        
+        //sManager.BgmSoundPlay("boss 1");
         Boss_R bossR = boss.GetComponent<Boss_R>();
         if (bossR == null)
         {

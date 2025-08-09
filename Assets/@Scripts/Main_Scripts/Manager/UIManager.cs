@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
 
     private void StartGame()
     {
+        sManager.BgmSoundPlay("Gb 1");
         introObj.SetActive(false);
 
         startGameUI.SetActive(true);
@@ -126,10 +127,12 @@ public class UIManager : MonoBehaviour
         {
             Animator bossAnim = bossFadeIn.GetComponent<Animator>();
             AnimatorStateInfo currentStateInfo = bossAnim.GetCurrentAnimatorStateInfo(0);
+            sManager.EventSoundPlay("warning");
 
             // 페이드인 애니메이션이 완료되었는지 확인
             if (currentStateInfo.normalizedTime >= 1.0f)
             {
+                sManager.BgmSoundPlay("boss 1");
                 // warringUI의 자식 오브젝트들을 활성화
                 foreach (Transform child in bossProduction.transform)
                 {
@@ -236,6 +239,7 @@ public class UIManager : MonoBehaviour
         bossText.SetActive(false);
         bossImage.SetActive(false);
         Invoke("DeactivateBossUI", 0.5f);
+        sManager.BgmSoundPlay("boss 1");
 
     }
 
