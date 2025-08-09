@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     //Dev_s 
     private BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
 
+    //Dev_H
+    private SpriteRenderer sr;
     
     #region :: 마우스 드래그 관련 변수
     private Camera mainCamera;
@@ -47,7 +49,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 startPos;
     private bool firstStart;
     #endregion
-
 
     void OnEnable()
     {
@@ -76,8 +77,14 @@ public class PlayerController : MonoBehaviour
         maxY = topRight.y;
 
         hp = 3f;
-    }
 
+        // dev_h : 재시작 할때 투명할 때 가 있어서 추가했습니다
+        sr = GetComponent<SpriteRenderer>();
+        sr.enabled = true;
+        Color c = sr.color;
+        c.a = 1f;
+        sr.color = c;
+    }
 
     void Update()
     {
