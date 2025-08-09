@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6253970812217125482}
   - component: {fileID: 5855819111228891516}
   - component: {fileID: -9215891360557463090}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Breath
   m_TagString: Untagged
   m_Icon: {fileID: 0}

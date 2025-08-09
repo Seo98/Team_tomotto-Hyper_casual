@@ -16,13 +16,16 @@ public class EnemyLazer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if (player.isDamaged) return; // dev_h : 데미지 받고 잠깐 무적시 충돌 방지
+
             sManager.EventSoundPlay("hitting");
             if (player.isShield)
             {
                 player.BreakShield();
                 return;
             }
-            player.hp -= 1f;
+
+            player.StartCoroutine(player.Invincibility()); // dev_h : 데미지 받는 함수 호출
         }
     }
 }

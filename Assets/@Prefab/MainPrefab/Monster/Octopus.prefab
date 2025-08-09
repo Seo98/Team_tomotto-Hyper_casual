@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1798932162148383783}
   - component: {fileID: 3836637462072165576}
   - component: {fileID: 7109476179204372124}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: particle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5248403187073008246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 6001549007755295164}
   - component: {fileID: 5974345091629228215}
   - component: {fileID: 5247234291781958639}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Octopus
   m_TagString: Monster
   m_Icon: {fileID: 0}
