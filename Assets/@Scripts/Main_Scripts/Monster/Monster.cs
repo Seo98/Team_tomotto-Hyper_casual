@@ -1,6 +1,5 @@
+using System.Collections;
 using UnityEngine;
-
-
 
 /// <summary>
 /// 모든 몬스터의 기본이 되는 부모 클래스
@@ -23,10 +22,16 @@ public abstract class Monster : MonoBehaviour
     public float monsterLevelUpTime = 30;
     public float currentTime;
 
+    SpriteRenderer sr;
+    CapsuleCollider2D coll;
+
     // Dev_H: 경험치 부여량, 각 몬스터 스크립트 참조
     public int expAmount;
 
     public Animator animator;
+
+
+    public GameObject particle;
 
     protected virtual void OnEnable()
     {
@@ -34,6 +39,9 @@ public abstract class Monster : MonoBehaviour
         dropIt = GameObject.Find("DropManager [Active]").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         sManager = FindFirstObjectByType<SoundManager>();
+        sr = GetComponent<SpriteRenderer>();
+        coll = GetComponent<CapsuleCollider2D>();
+        
 
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
         Initialize();
@@ -61,7 +69,8 @@ public abstract class Monster : MonoBehaviour
             if (dropPer > 8)dropIt.DropItem(nowPos);
         }
 
-        Destroy(gameObject);
+        particle.SetActive(true);
+        StartCoroutine(Wait());
         GiveExp();  // Dev_H: 경험치 부여하는 함수 호출
     }
 
@@ -103,6 +112,13 @@ public abstract class Monster : MonoBehaviour
     protected void GiveExp() // Dev_H: 경험치 부여하는 기능
     {
         EXPManager.Instance.AddExp(expAmount);
+    }
+    IEnumerator Wait()
+    {
+        coll.enabled = false;
+        sr.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 
 }

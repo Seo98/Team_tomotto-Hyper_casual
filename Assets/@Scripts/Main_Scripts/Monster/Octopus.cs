@@ -3,6 +3,7 @@ using UnityEngine;
 public class Octopus : Monster
 {
     // Dev_H : 문어의 특성 스크립트, 원거리 공격을 하며 다른 몬스터와 다르게 좌우 왕복 운동을 합니다.
+    
 
     // Dev_S: 문어
     [Header("문어 전용")]
@@ -18,7 +19,6 @@ public class Octopus : Monster
     public float leftBoundary = -8f;
 
     private float nextFireTime = 0f;
-
     protected override void Initialize()
     {
         animator = GetComponent<Animator>();
