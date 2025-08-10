@@ -46,6 +46,9 @@ public class UIManager : MonoBehaviour
     public GameObject PlayerPos;
     public GameObject[] MonsterSpawner;
 
+    [Header("보스 / 몬스터 스포너 / 플레이어 관련 오브젝트")]
+    public int CurrentGameStage = 1;
+
 
     #region 사운드 관련 조건값
     private bool isWarringSound;
@@ -225,6 +228,12 @@ public class UIManager : MonoBehaviour
         foreach (LazerWarring enemyLaserWarring in enemyLaserWarrings)
         {
             Destroy(enemyLaserWarring.gameObject);
+        }
+
+        OrangeOctBullet[] orangeOctBullets = FindObjectsByType<OrangeOctBullet>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (OrangeOctBullet orangeOctBullet in orangeOctBullets)
+        {
+            Destroy(orangeOctBullet.gameObject);
         }
     }
 

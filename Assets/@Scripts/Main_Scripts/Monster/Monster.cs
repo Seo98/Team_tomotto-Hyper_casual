@@ -122,5 +122,4 @@ public abstract class Monster : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
-
 }

@@ -87,6 +87,11 @@ public class PlayerController : MonoBehaviour
         Color c = sr.color;
         c.a = 1f;
         sr.color = c;
+
+        gameObject.layer = LayerMask.NameToLayer("Player");
+
+        isDamaged = false;
+        isShield = false;
     }
 
     void Update()

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: -7208531344493770654}
   - component: {fileID: 7386807618149689575}
   - component: {fileID: 2888975247333883579}
-  - component: {fileID: -6479504977497875743}
+  - component: {fileID: 2591505559002143428}
   m_Layer: 10
-  m_Name: RedOct_Ball 1
-  m_TagString: Untagged
+  m_Name: OrangeOct_Ball 1
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,7 +148,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-6479504977497875743
+--- !u!114 &2591505559002143428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +157,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3775194400798946777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a935d63f000d0414abd3d79b64207d0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b083395ecea5a742baa823166d6f09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  speed: 4
