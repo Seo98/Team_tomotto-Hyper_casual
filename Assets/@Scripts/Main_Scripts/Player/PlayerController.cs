@@ -185,8 +185,8 @@ public class PlayerController : MonoBehaviour
             // dev_h : 스프라이트 렌더러 가져오기
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
 
-            // dev_h : 3초 동안 무적, 깜빡임 간격
-            float duration = 3f;
+            // dev_h : 1초 동안 무적, 깜빡임 간격
+            float duration = 1f;
             float blinkInterval = 0.1f;
             float elapsed = 0f;
 
