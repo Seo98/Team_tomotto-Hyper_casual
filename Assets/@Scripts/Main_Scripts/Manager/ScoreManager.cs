@@ -24,11 +24,11 @@ public class ScoreManager : MonoBehaviour
         score = 0f;
 
         bestScore = PlayerPrefs.GetInt("BestScore", 0);     // Dev_H: 초기 최고점
-        bestScoreText.text = "Bset Score  :  " + bestScore; // Dev_H: 최고점 UI에 불러오기
+        bestScoreText.text = "Bset Score : " + bestScore; // Dev_H: 최고점 UI에 불러오기
 
         if (scoreText != null)
         {
-            scoreText.text = "Score: 0";
+            scoreText.text = "0";
         }
     }
 
@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour
 
         if (scoreText != null)
         {
-            scoreText.text = $"Score: {Mathf.FloorToInt(score)}";
+            scoreText.text = $"Score : {Mathf.FloorToInt(score)}";
 
             if (score > bestScore)
             {
