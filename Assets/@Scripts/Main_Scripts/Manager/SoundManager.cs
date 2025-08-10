@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class SoundManager : MonoBehaviour
 {
@@ -68,6 +69,11 @@ public class SoundManager : MonoBehaviour
         bgmaudio.UnPause();
     }
 
+    public void BgmSoundStop()
+    {
+        bgmaudio.Stop();
+    }
+
     void OnBgmVolumeChange(float volume)
     {
         bgmaudio.volume = volume;
@@ -76,5 +82,6 @@ public class SoundManager : MonoBehaviour
     {
         eventAudio.volume = volume;
     }
+    
 }
 

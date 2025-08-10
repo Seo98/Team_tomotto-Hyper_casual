@@ -1,0 +1,383 @@
+fileFormatVersion: 2
+guid: 7e4e9a1588d043148b5fc568e328ed39
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4411563137423319955
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_0
+  - first:
+      213: 7345554552439786535
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_1
+  - first:
+      213: 3976207970935978148
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_2
+  - first:
+      213: 1594129712313958874
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_3
+  - first:
+      213: 3515871732020781341
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_4
+  - first:
+      213: -844656607389108125
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_5
+  - first:
+      213: -558152135123577338
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_6
+  - first:
+      213: -8190829045693018254
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_7
+  - first:
+      213: -4707501949948965451
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_8
+  - first:
+      213: 4496876295661509089
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_9
+  - first:
+      213: 4483544046967552265
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_10
+  - first:
+      213: 5188096791495477865
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_11
+  - first:
+      213: -6104431444318528550
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_12
+  - first:
+      213: -6719860632226484034
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_13
+  - first:
+      213: -6355057183327451682
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_14
+  - first:
+      213: -4353644047297396422
+    second: Heaven's Fury VFX_Animation 1_00-Sheet_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Heaven's Fury VFX_Animation 1_00-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 56
+        width: 52
+        height: 243
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6cdca133baf6c2c0800000000000000
+      internalID: -4411563137423319955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven's Fury VFX_Animation 1_00-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 56
+        width: 81
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72c4d6072f6a0f560800000000000000
+      internalID: 7345554552439786535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven's Fury VFX_Animation 1_00-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 56
+        width: 45
+        height: 243
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a837bc25145e2730800000000000000
+      internalID: 3976207970935978148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven's Fury VFX_Animation 1_00-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 56
+        width: 42
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad18e5cf68c7f1610800000000000000
+      internalID: 1594129712313958874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven's Fury VFX_Animation 1_00-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 56
+        width: 42
+        height: 243
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d11afee56b2eac030800000000000000
+      internalID: 3515871732020781341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven's Fury VFX_Animation 1_00-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 56
+        width: 42
+        height: 243
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 368b26f6a4d2744f0800000000000000
+      internalID: -844656607389108125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven's Fury VFX_Animation 1_00-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 56
+        width: 42
+        height: 243
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606555f179b0148f0800000000000000
+      internalID: -558152135123577338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heaven's Fury VFX_Animation 1_00-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 56
+        width: 42
+        height: 243
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27f048b3164545e80800000000000000
+      internalID: -8190829045693018254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: bb8b05d397b3ad7469b17be71e9fa5de
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Heaven's Fury VFX_Animation 1_00-Sheet_0: -4411563137423319955
+      Heaven's Fury VFX_Animation 1_00-Sheet_1: 7345554552439786535
+      Heaven's Fury VFX_Animation 1_00-Sheet_10: 4483544046967552265
+      Heaven's Fury VFX_Animation 1_00-Sheet_11: 5188096791495477865
+      Heaven's Fury VFX_Animation 1_00-Sheet_12: -6104431444318528550
+      Heaven's Fury VFX_Animation 1_00-Sheet_13: -6719860632226484034
+      Heaven's Fury VFX_Animation 1_00-Sheet_14: -6355057183327451682
+      Heaven's Fury VFX_Animation 1_00-Sheet_15: -4353644047297396422
+      Heaven's Fury VFX_Animation 1_00-Sheet_2: 3976207970935978148
+      Heaven's Fury VFX_Animation 1_00-Sheet_3: 1594129712313958874
+      Heaven's Fury VFX_Animation 1_00-Sheet_4: 3515871732020781341
+      Heaven's Fury VFX_Animation 1_00-Sheet_5: -844656607389108125
+      Heaven's Fury VFX_Animation 1_00-Sheet_6: -558152135123577338
+      Heaven's Fury VFX_Animation 1_00-Sheet_7: -8190829045693018254
+      Heaven's Fury VFX_Animation 1_00-Sheet_8: -4707501949948965451
+      Heaven's Fury VFX_Animation 1_00-Sheet_9: 4496876295661509089
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

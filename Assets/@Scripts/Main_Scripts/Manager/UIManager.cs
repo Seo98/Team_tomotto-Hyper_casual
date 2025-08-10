@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,15 +36,20 @@ public class UIManager : MonoBehaviour
     public GameObject bossImage;
 
 
-
+    [Header("보스 연출용 조건값")]
     public BossSpawner uIsBoss;
     public bool isBossAnim;
+    public bool oneShot;
 
     [Header("보스 / 몬스터 스포너 / 플레이어 관련 오브젝트")]
     public GameObject bossSpawner;
     public GameObject PlayerPos;
     public GameObject[] MonsterSpawner;
 
+
+    #region 사운드 관련 조건값
+    private bool isWarringSound;
+    #endregion
 
     private void Awake()
     {
@@ -102,9 +108,11 @@ public class UIManager : MonoBehaviour
             imageColor.a = 1f;
             fadeImage.color = imageColor;
         }
+        oneShot = false;
 
         // 사운드 초기화
         sManager.isGameEnd = false;
+        isWarringSound = false;
     }
 
     private void Update()
@@ -116,30 +124,42 @@ public class UIManager : MonoBehaviour
             GameOver();
         }
 
-        if (uIsBoss.isBossSpawning == true && !isBossAnim)
+        if (uIsBoss.isBossSpawning == true && !isBossAnim && oneShot == false)
         {
             isBossAnim = true;
             bossProduction.SetActive(true);
             bossFadeIn.SetActive(true);
+            oneShot = true;
         }
 
-        if (isBossAnim)
+        if (isBossAnim == true)
         {
+            
             Animator bossAnim = bossFadeIn.GetComponent<Animator>();
             AnimatorStateInfo currentStateInfo = bossAnim.GetCurrentAnimatorStateInfo(0);
-            sManager.EventSoundPlay("warning");
+
+
+            if (isWarringSound == false)
+            {
+                sManager.BgmSoundStop();
+                Debug.Log("사운드재생");
+                sManager.EventSoundPlay("warning"); 
+                isWarringSound = true;
+            }
 
             // 페이드인 애니메이션이 완료되었는지 확인
             if (currentStateInfo.normalizedTime >= 1.0f)
             {
-                sManager.BgmSoundPlay("boss 1");
-                // warringUI의 자식 오브젝트들을 활성화
+                isBossAnim = false;
+                Debug.Log("애니메이션 시작");
                 foreach (Transform child in bossProduction.transform)
                 {
                     child.gameObject.SetActive(true);
                 }
+                // warringUI의 자식 오브젝트들을 비활성화
                 Invoke("BossAnimEnd", 3f);
             }
+            
         }
     }
 
@@ -245,9 +265,8 @@ public class UIManager : MonoBehaviour
 
     private void DeactivateBossUI()
     {
-        isBossAnim = false;
         bossFadeIn.SetActive(false);
-
+        sManager.BgmSoundPlay("boss 1");
     }
 
 }
