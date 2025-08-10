@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3064672330509842483}
   - component: {fileID: -6407349593548893453}
   - component: {fileID: -3666333311897979036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shark_Shadow
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 2629273932382967538}
   - component: {fileID: 2527285950478990464}
   - component: {fileID: 4640426207764567028}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: particle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

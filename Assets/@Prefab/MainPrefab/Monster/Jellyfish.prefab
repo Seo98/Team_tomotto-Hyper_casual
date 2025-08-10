@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1509491740420049512}
   - component: {fileID: 2637740574264103489}
   - component: {fileID: 7707324461911385272}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Jellyfish
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 2272006195788460290}
   - component: {fileID: 5595368784247544213}
   - component: {fileID: 2704564996749083418}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

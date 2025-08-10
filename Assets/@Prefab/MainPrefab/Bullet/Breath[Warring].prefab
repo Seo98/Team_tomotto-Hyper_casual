@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7374659925206818594}
   - component: {fileID: 579520645468926486}
   - component: {fileID: 4873178008167480589}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 2236825246959833278}
   - component: {fileID: 8884725215410379195}
   - component: {fileID: -6209989568726658150}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 'Breath[Warring]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [Header("상태")]
     public bool isAttack = false;
     public bool isShield = false;
+    public bool isDamaged = false;
 
     // 여기 아래에 있는거 헤더로 묶어서 정리하면 보기 편할거같긴해요
   
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour
     //Dev_s 
     private BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
 
+    //Dev_H
+    private SpriteRenderer sr;
     
     #region :: 마우스 드래그 관련 변수
     private Camera mainCamera;
@@ -45,7 +49,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 startPos;
     private bool firstStart;
     #endregion
-
 
     void OnEnable()
     {
@@ -74,8 +77,14 @@ public class PlayerController : MonoBehaviour
         maxY = topRight.y;
 
         hp = 3f;
-    }
 
+        // dev_h : 재시작 할때 투명할 때 가 있어서 추가했습니다
+        sr = GetComponent<SpriteRenderer>();
+        sr.enabled = true;
+        Color c = sr.color;
+        c.a = 1f;
+        sr.color = c;
+    }
 
     void Update()
     {
@@ -158,5 +167,42 @@ public class PlayerController : MonoBehaviour
         isShield = false;
         itManage.ShiledHeart.SetActive(false);
         itManage.Shiledimage.SetActive(false);
+    }
+
+    // dev_h : 체력 피해 입을시 함수
+    public IEnumerator Invincibility()
+    {
+        if (!isDamaged)
+        {
+            isDamaged = true;
+
+            hp -= 1f;
+
+            // dev_h : 기존 레이어 저장 (피해 입으면 잠깐동안 충돌 막으려고)
+            int originalLayer = gameObject.layer;
+            gameObject.layer = LayerMask.NameToLayer("Invincible"); // dev_h : Invincible은 다른 레이어와 충돌하지 않음
+
+            // dev_h : 스프라이트 렌더러 가져오기
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+            // dev_h : 3초 동안 무적, 깜빡임 간격
+            float duration = 3f;
+            float blinkInterval = 0.1f;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                // 깜빡임: 투명 <-> 원래 색 반복
+                sr.enabled = !sr.enabled;
+
+                yield return new WaitForSeconds(blinkInterval);
+                elapsed += blinkInterval;
+            }
+
+            // 원래 상태 복원
+            sr.enabled = true;
+            gameObject.layer = originalLayer;
+            isDamaged = false;
+        }
     }
 }

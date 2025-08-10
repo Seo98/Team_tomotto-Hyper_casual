@@ -93,6 +93,8 @@ public abstract class Monster : MonoBehaviour
         // 플레이어와 직접 충돌했을 때
         if (other.gameObject.CompareTag("Player"))
         {
+            if (player.isDamaged) return; // dev_h : 데미지 받고 잠깐 무적시 충돌 방지
+
             sManager.EventSoundPlay("hitting");
             animator.SetTrigger("isHit");
             Dead();
@@ -105,7 +107,7 @@ public abstract class Monster : MonoBehaviour
                 return;
             }
 
-            player.hp -= 1f;
+            player.StartCoroutine(player.Invincibility()); // dev_h : 데미지 받는 함수 호출
         }
     }
 
