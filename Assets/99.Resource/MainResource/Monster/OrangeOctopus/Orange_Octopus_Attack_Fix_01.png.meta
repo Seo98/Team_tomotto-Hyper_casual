@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: b1575b2a694002e44af2ec990031a442
+guid: 0b276bc6520c2f548b87bdddd3076f14
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -923067322628010602
-    second: BlueHeart2_0
+      213: -8176757078865181431
+    second: Octopus_Attack_Fix_01-Sheet_0
+  - first:
+      213: -5613309018585971777
+    second: Octopus_Attack_Fix_01-Sheet_1
+  - first:
+      213: -1892527040915105517
+    second: Octopus_Attack_Fix_01-Sheet_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +52,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 10
+  spritePixelsToUnits: 12
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,23 +132,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BlueHeart2_0
+      name: Octopus_Attack_Fix_01-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 11
-        height: 10
+        x: 25
+        y: 27
+        width: 14
+        height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69d8cf2292b9033f0800000000000000
-      internalID: -923067322628010602
+      spriteID: 905849352c2568e80800000000000000
+      internalID: -8176757078865181431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Octopus_Attack_Fix_01-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 27
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb3cfac20358912b0800000000000000
+      internalID: -5613309018585971777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Octopus_Attack_Fix_01-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 26
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3191f6eeea46cb5e0800000000000000
+      internalID: -1892527040915105517
       vertices: []
       indices: 
       edges: []
@@ -151,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: eaa48234254b52741b6ff5a408ce0c11
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BlueHeart2_0: -923067322628010602
+      Octopus_Attack_Fix_01-Sheet_0: -8176757078865181431
+      Octopus_Attack_Fix_01-Sheet_1: -5613309018585971777
+      Octopus_Attack_Fix_01-Sheet_2: -1892527040915105517
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

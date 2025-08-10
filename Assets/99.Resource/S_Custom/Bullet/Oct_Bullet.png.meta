@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: b1575b2a694002e44af2ec990031a442
+guid: b050b5cf4f85cc24b87477741dba882a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -923067322628010602
-    second: BlueHeart2_0
+      213: 8713120321045492238
+    second: Sprite-0001-Sheet_0
+  - first:
+      213: 7900860951653682938
+    second: Sprite-0001-Sheet_1
+  - first:
+      213: 583417684835264956
+    second: Sprite-0001-Sheet_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -46,12 +52,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 10
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BlueHeart2_0
+      name: Sprite-0001-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 11
-        height: 10
+        width: 14
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +147,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69d8cf2292b9033f0800000000000000
-      internalID: -923067322628010602
+      spriteID: e02772594c83be870800000000000000
+      internalID: 8713120321045492238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0001-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afe821bcc2f75ad60800000000000000
+      internalID: 7900860951653682938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-0001-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb969441b47b81800800000000000000
+      internalID: 583417684835264956
       vertices: []
       indices: 
       edges: []
@@ -151,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +211,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BlueHeart2_0: -923067322628010602
+      Sprite-0001-Sheet_0: 8713120321045492238
+      Sprite-0001-Sheet_1: 7900860951653682938
+      Sprite-0001-Sheet_2: 583417684835264956
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
