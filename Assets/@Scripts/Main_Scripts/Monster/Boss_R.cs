@@ -16,9 +16,6 @@ public class Boss_R : Monster
     // UI 매니저
     public UIManager uiManager;
 
-    //
-    private Animator animator;
-
     // 공격 세팅
     [Header("총알 프리팹 / 발사 포지션")]
     public GameObject bulletPrefab;
@@ -73,17 +70,29 @@ public class Boss_R : Monster
     public float targetedAttackBulletSpeed = 7f; // 총알속도
     public float rainingBulletSpawnDelay = 0.1f; // 각 총알 생성 전 고정 딜레이
 
+
+    [Header("패턴 5 : 레이저 브레스")]
+    public GameObject warringBreathPrefab;
+    public GameObject breathPrefab;
+
+    public GameObject warringBreathPrefab2;
+    public GameObject breathPrefab2;
+    public int secondBreathLaserCount = 3; // 2단계 브레스 레이저 수
+
+
+    // Dev_S : 354 주석설명 되어있음
+    /*
     [Header("전멸기 시간")]
     public float doomsdayTime = 60f;
     private bool doomsdayActivated = false;
+    */
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        BossSetting();
     }
 
-    void BossSetting()
+    public void BossSetting()
     {
         Debug.Log("보스 세팅완료");
 
@@ -109,20 +118,20 @@ public class Boss_R : Monster
             }
         }
 
+
         currentState = BossState.Idle;
         StartCoroutine(BossAI_Routine());
-        StartCoroutine(DoomsdayTimer());
+        // StartCoroutine(DoomsdayTimer());
+        // Dev_S : 354 주석설명 되어있음
     }
 
     protected override void Initialize()
     {
-        hp = 999999f;
+        hp = 50000f;
     }
 
     private IEnumerator IdleState()
     {
-        
-
         yield return new WaitForSeconds(idleTime);
         currentState = BossState.Attacking;
     }
@@ -148,7 +157,7 @@ public class Boss_R : Monster
 
     private IEnumerator AttackState()
     {
-        int randomAttack = Random.Range(0, 4);
+        int randomAttack = Random.Range(0, 5);
         switch (randomAttack)
         {
             case 0:
@@ -166,6 +175,10 @@ public class Boss_R : Monster
             case 3:
                 animator.SetBool("isAttack", true);
                 currentAttackCoroutine = StartCoroutine(CombinationAttackPattern());
+                break;
+            case 4:
+                animator.SetBool("isAttack", true);
+                currentAttackCoroutine = StartCoroutine(BreathAttackPattern());
                 break;
         }
 
@@ -326,7 +339,90 @@ public class Boss_R : Monster
         }
     }
 
-    // 총알 발사 사전 설정 유틸
+
+    private IEnumerator BreathAttackPattern()
+    {
+        Debug.Log("보스: 브레스");
+        Animator breathAnimator = breathPrefab.GetComponent<Animator>();
+
+        warringBreathPrefab.SetActive(true);
+        Debug.Log("워링 활성화");
+        yield return new WaitForSeconds(1f); // 1초 대기
+        Debug.Log("워링 비활성화");
+        warringBreathPrefab.SetActive(false);
+
+        breathPrefab.SetActive(true);
+        Debug.Log("브레스 활성화");
+
+        // 브레스 주 공격 부분 (예: 2초)
+        yield return new WaitForSeconds(2f); 
+
+        // 종료 애니메이션 트리거 및 대기
+        if (breathAnimator != null)
+        {
+            Debug.Log("브레스 종료 애니메이션 트리거");
+            breathAnimator.SetTrigger("isEnd");
+
+            // 애니메이션 상태가 전환될 시간을 줌
+            yield return null; 
+
+            // 전환이 끝날 때까지 대기
+            yield return new WaitUntil(() => !breathAnimator.IsInTransition(0));
+
+            Debug.Log("브레스 종료 애니메이션 재생 중");
+            // 현재 재생중인 애니메이션(종료 애니메이션)이 끝날 때까지 대기
+            yield return new WaitUntil(() => breathAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+            Debug.Log("브레스 종료 애니메이션 완료");
+        }
+
+        breathPrefab.SetActive(false);
+        Debug.Log("브레스 비활성화");
+
+        // 2단계 브레스 패턴 호출
+        StartCoroutine(SecondBreathAttackPattern());
+        animator.SetBool("isAttack", false); // 일단 혹시모르니박아놔
+    }
+
+    private IEnumerator SecondBreathAttackPattern()
+    {
+        Debug.Log("보스: 2단계 브레스");
+
+        for (int i = 0; i < secondBreathLaserCount; i++)
+        {
+            // 화면 하단 1/3 내에서 랜덤 위치 계산
+            float randomX = Random.Range(-screenBounds.x, screenBounds.x);
+            float randomY = Random.Range(-screenBounds.y, -screenBounds.y / 3);
+            Vector2 spawnPosition = new Vector2(randomX, randomY);
+
+            // 랜덤 각도 계산 (수평, 수직, 대각선)
+            float[] angles = { 0f, 45f, 90f, 135f, 180f, 225f, 270f, 315f };
+            float randomAngle = angles[Random.Range(0, angles.Length)];
+            Quaternion spawnRotation = Quaternion.Euler(0, 0, randomAngle);
+
+            // 경고 프리팹 생성 및 1.5초 대기
+            GameObject warningLaser = Instantiate(warringBreathPrefab2, spawnPosition, spawnRotation);
+            yield return new WaitForSeconds(1.5f);
+            Destroy(warningLaser);
+
+            // 레이저 프리팹 생성
+            GameObject laser = Instantiate(breathPrefab2, spawnPosition, spawnRotation);
+            
+            // 레이저 애니메이션이 끝날 때까지 대기 (Animator가 있다고 가정)
+            Animator laserAnimator = laser.GetComponent<Animator>();
+            if (laserAnimator != null)
+            {
+                yield return new WaitUntil(() => laserAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+            }
+            else
+            {
+                // 애니메이터가 없으면 1초 후 파괴
+                yield return new WaitForSeconds(1f);
+            }
+            Destroy(laser);
+        }
+
+        animator.SetBool("isAttack", false);
+    }
 
     private void FireBullet(Vector2 direction, float speed)
     {
@@ -351,7 +447,11 @@ public class Boss_R : Monster
 
     // DEV_S
     // FIXME : NULL 레퍼런스 이슈, 원인 UI 매니저 관련 추정
-    private IEnumerator DoomsdayTimer()
+    // 수정하려하였으나, 해당 기능 구현여부에 대해서 정확하게 외주업체(멋사)측 확인 필요할듯.
+
+    // 추가 피드백에 따라 진행예정 -> 기획관련 -> 플레이어 실력과 무관하게 어떤 상황이더라도 무조건 2분 내외로 끝내야 하는지.
+    // 끝내야할경우 -> 시간지나면 전멸기 -> 다시하기 
+    /*private IEnumerator DoomsdayTimer()
     {
         yield return new WaitForSeconds(doomsdayTime);
         if (!doomsdayActivated)
@@ -359,8 +459,9 @@ public class Boss_R : Monster
             ActivateDoomsday();
             doomsdayActivated = true;
         }
-    }
+    }*/
 
+    /*
     private void ActivateDoomsday()
     {
         Debug.Log("보스: 전멸기 발동!");
@@ -368,4 +469,5 @@ public class Boss_R : Monster
 
         uiManager.GameOver();
     }
+    */
 }

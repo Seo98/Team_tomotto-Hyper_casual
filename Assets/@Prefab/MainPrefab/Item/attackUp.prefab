@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e941aa3a70c964aa1cd494064fecc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusItem: 0
+  bonusItem: 1
   fireball: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
   speed: 3

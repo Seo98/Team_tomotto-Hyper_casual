@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject scoreManager;
 
     [Header("UI 오브젝트(버튼)")]
-    public Button button;
+    public Button startbutton;
     public Button restratButton;
 
     [Header("UI 오브젝트(부모)")]
@@ -28,13 +29,27 @@ public class UIManager : MonoBehaviour
 
 
     [Header("보스 UI")]
-    public GameObject warringUI;
+    public GameObject bossProduction; // 부모
+    public GameObject bossFadeIn; // 페이드효과
+    public GameObject warringEffect;
+    public GameObject bossText;
+    public GameObject bossImage;
+
+
+    [Header("보스 연출용 조건값")]
+    public BossSpawner uIsBoss;
+    public bool isBossAnim;
+    public bool oneShot;
 
     [Header("보스 / 몬스터 스포너 / 플레이어 관련 오브젝트")]
     public GameObject bossSpawner;
     public GameObject PlayerPos;
     public GameObject[] MonsterSpawner;
-    
+
+
+    #region 사운드 관련 조건값
+    private bool isWarringSound;
+    #endregion
 
     private void Awake()
     {
@@ -43,12 +58,13 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        button.onClick.AddListener(StartGame);
+        startbutton.onClick.AddListener(StartGame);
         restratButton.onClick.AddListener(StartGame);
     }
 
     private void StartGame()
     {
+        sManager.BgmSoundPlay("Gb 1");
         introObj.SetActive(false);
 
         startGameUI.SetActive(true);
@@ -58,17 +74,23 @@ public class UIManager : MonoBehaviour
         heart1.SetActive(true);
         heart2.SetActive(true);
         heart3.SetActive(true);
-        
+
 
         gameOverUI.SetActive(false);
         ink.SetAlpha(0f); // 잉크 남아있는 이슈 사전처리
 
         // UI랑 상관 없는것
         bossSpawner.SetActive(true);
+        uIsBoss = bossSpawner.GetComponent<BossSpawner>();
+
         PlayerPos.transform.position = new Vector3(0, -5.4f, 0);
         MonsterSpawner[0].SetActive(true);
         MonsterSpawner[1].SetActive(true);
         MonsterSpawner[2].SetActive(true);
+        //
+        MonsterSpawner[3].SetActive(true);
+        //
+        MonsterSpawner[4].SetActive(true);
 
         // 피버 조기화 이슈
         FeverTimeManager fv = feverManager.GetComponent<FeverTimeManager>();
@@ -77,6 +99,20 @@ public class UIManager : MonoBehaviour
         fv.playColl.isTrigger = false;
         fv.feverImage.fillAmount = 0f;
         fv.feverStartImage.SetActive(false);
+
+        // 보스 UI 알파값 초기화
+        Image fadeImage = bossFadeIn.GetComponent<Image>();
+        if (fadeImage != null)
+        {
+            Color imageColor = fadeImage.color;
+            imageColor.a = 1f;
+            fadeImage.color = imageColor;
+        }
+        oneShot = false;
+
+        // 사운드 초기화
+        sManager.isGameEnd = false;
+        isWarringSound = false;
     }
 
     private void Update()
@@ -86,6 +122,44 @@ public class UIManager : MonoBehaviour
         if (playerController.hp <= 0)
         {
             GameOver();
+        }
+
+        if (uIsBoss.isBossSpawning == true && !isBossAnim && oneShot == false)
+        {
+            isBossAnim = true;
+            bossProduction.SetActive(true);
+            bossFadeIn.SetActive(true);
+            oneShot = true;
+        }
+
+        if (isBossAnim == true)
+        {
+            
+            Animator bossAnim = bossFadeIn.GetComponent<Animator>();
+            AnimatorStateInfo currentStateInfo = bossAnim.GetCurrentAnimatorStateInfo(0);
+
+
+            if (isWarringSound == false)
+            {
+                sManager.BgmSoundStop();
+                Debug.Log("사운드재생");
+                sManager.EventSoundPlay("warning"); 
+                isWarringSound = true;
+            }
+
+            // 페이드인 애니메이션이 완료되었는지 확인
+            if (currentStateInfo.normalizedTime >= 1.0f)
+            {
+                isBossAnim = false;
+                Debug.Log("애니메이션 시작");
+                foreach (Transform child in bossProduction.transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+                // warringUI의 자식 오브젝트들을 비활성화
+                Invoke("BossAnimEnd", 3f);
+            }
+            
         }
     }
 
@@ -99,32 +173,35 @@ public class UIManager : MonoBehaviour
         feverManager.SetActive(false);
 
         gameOverUI.SetActive(true);
-
-        sManager.EventSoundPlay("GameOver");
+        if (sManager.isGameEnd == false)
+        {
+            sManager.isGameEnd = true;
+            sManager.EventSoundPlay("GameOver");
+        }
         ClearAllMonsters();
         ClearAllItems();
         ClearAllEnemyBullets();
     }
 
-private void ClearAllMonsters()
+    public void ClearAllMonsters()
     {
-        Monster[] monsters = FindObjectsByType<Monster>(FindObjectsInactive.Include,FindObjectsSortMode.None);
+        Monster[] monsters = FindObjectsByType<Monster>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (Monster monster in monsters)
         {
             Destroy(monster.gameObject);
         }
     }
 
-    private void ClearAllItems()
+    public void ClearAllItems()
     {
-        BonusItem[] item = FindObjectsByType<BonusItem>(FindObjectsInactive.Include,FindObjectsSortMode.None);
+        BonusItem[] item = FindObjectsByType<BonusItem>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (BonusItem items in item)
         {
             Destroy(items.gameObject);
         }
     }
 
-    private void ClearAllEnemyBullets()
+    public void ClearAllEnemyBullets()
     {
         Inkball[] inkBalls = FindObjectsByType<Inkball>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (Inkball inkBall in inkBalls)
@@ -136,6 +213,18 @@ private void ClearAllMonsters()
         foreach (EnemyBullet enemyBullet in enemyBullets)
         {
             Destroy(enemyBullet.gameObject);
+        }
+
+        EnemyLazer[] enemyLasers = FindObjectsByType<EnemyLazer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (EnemyLazer enemylaser in enemyLasers)
+        {
+            Destroy(enemylaser.gameObject);
+        }
+
+        LazerWarring[] enemyLaserWarrings = FindObjectsByType<LazerWarring>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (LazerWarring enemyLaserWarring in enemyLaserWarrings)
+        {
+            Destroy(enemyLaserWarring.gameObject);
         }
     }
 
@@ -162,5 +251,21 @@ private void ClearAllMonsters()
         }
     }
 
+    private void BossAnimEnd()
+    {
+        Animator bossAnim = bossFadeIn.GetComponent<Animator>();
+        bossAnim.SetTrigger("isFadeOut");
+        warringEffect.SetActive(false);
+        bossText.SetActive(false);
+        bossImage.SetActive(false);
+        Invoke("DeactivateBossUI", 0.5f);
+
+    }
+
+    private void DeactivateBossUI()
+    {
+        bossFadeIn.SetActive(false);
+        sManager.BgmSoundPlay("boss 1");
+    }
 
 }

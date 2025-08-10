@@ -33,6 +33,11 @@ public class FeverTimeManager : MonoBehaviour
         feverDash.SetActive(false);
         normalDash.SetActive(true);
 
+        //Dev_S : 원래는 이거 UI매니저쪽에서 처리하는게 더 깔끔할거같은데 어차피 스파게티된거 하나더 넣는다고 크게 문제있겠어요 ㅎㅎ..?
+        feverStartImage.SetActive(false);
+        feverStartImage2.SetActive(false);
+        player.fever_Invincibility = false;
+
     }
     private void Update()
     {
@@ -42,10 +47,10 @@ public class FeverTimeManager : MonoBehaviour
             nowGauge = feverImage.fillAmount;
             break;
         }
-        if (!boss.isBossSpawning &&!isFever && feverImage.fillAmount >= 1) //보스 아닐때
+        if (boss.isBoss == false && !isFever && feverImage.fillAmount >= 1) //보스 아닐때
             StartCoroutine(FeverTime());
 
-        if (boss.isBossSpawning && !isFever && feverImage.fillAmount >= 1) //보스일 때
+        if (boss.isBoss == true && !isFever && feverImage.fillAmount >= 1) //보스일 때
             StartCoroutine(FeverTime2());
     }
 
@@ -71,6 +76,7 @@ public class FeverTimeManager : MonoBehaviour
         // Dev_S
         feverDash.SetActive(false);
         normalDash.SetActive(true);
+        player.fever_Invincibility = false;
     }
 
     // Dev_S: 피버타임 둘중하나 선택 

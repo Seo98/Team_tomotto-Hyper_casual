@@ -1,6 +1,5 @@
+using System.Collections;
 using UnityEngine;
-
-
 
 /// <summary>
 /// 모든 몬스터의 기본이 되는 부모 클래스
@@ -23,15 +22,26 @@ public abstract class Monster : MonoBehaviour
     public float monsterLevelUpTime = 30;
     public float currentTime;
 
+    SpriteRenderer sr;
+    CapsuleCollider2D coll;
+
     // Dev_H: 경험치 부여량, 각 몬스터 스크립트 참조
     public int expAmount;
+
+    public Animator animator;
+
+
+    public GameObject particle;
 
     protected virtual void OnEnable()
     {
         // 공통 초기화
-        dropIt = GameObject.Find("DropManager").GetComponent<MonsterDropItem>();
+        dropIt = GameObject.Find("DropManager [Active]").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         sManager = FindFirstObjectByType<SoundManager>();
+        sr = GetComponent<SpriteRenderer>();
+        coll = GetComponent<CapsuleCollider2D>();
+        
 
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
         Initialize();
@@ -59,7 +69,8 @@ public abstract class Monster : MonoBehaviour
             if (dropPer > 8)dropIt.DropItem(nowPos);
         }
 
-        Destroy(gameObject);
+        particle.SetActive(true);
+        StartCoroutine(Wait());
         GiveExp();  // Dev_H: 경험치 부여하는 함수 호출
     }
 
@@ -71,6 +82,7 @@ public abstract class Monster : MonoBehaviour
         {
             hp -= player.damage;
             sManager.EventSoundPlay("damaged");
+            animator.SetTrigger("isHit");
             if (hp <= 0)
             {
                 Dead();
@@ -81,7 +93,10 @@ public abstract class Monster : MonoBehaviour
         // 플레이어와 직접 충돌했을 때
         if (other.gameObject.CompareTag("Player"))
         {
+            if (player.isDamaged) return; // dev_h : 데미지 받고 잠깐 무적시 충돌 방지
+
             sManager.EventSoundPlay("hitting");
+            animator.SetTrigger("isHit");
             Dead();
 
             if (player.fever.isFever) return;
@@ -92,13 +107,20 @@ public abstract class Monster : MonoBehaviour
                 return;
             }
 
-            player.hp -= 1f;
+            player.StartCoroutine(player.Invincibility()); // dev_h : 데미지 받는 함수 호출
         }
     }
 
     protected void GiveExp() // Dev_H: 경험치 부여하는 기능
     {
         EXPManager.Instance.AddExp(expAmount);
+    }
+    IEnumerator Wait()
+    {
+        coll.enabled = false;
+        sr.enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
     }
 
 }
