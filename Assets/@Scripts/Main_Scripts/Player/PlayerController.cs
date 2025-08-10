@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public bool isDamaged = false;
 
     // 여기 아래에 있는거 헤더로 묶어서 정리하면 보기 편할거같긴해요
-  
+
     [Header("프리팹")]
     public GameObject cannonPrefab;
     public GameObject firePosition;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     //Dev_H
     private SpriteRenderer sr;
-    
+
     #region :: 마우스 드래그 관련 변수
     private Camera mainCamera;
     private bool isDragging = false;
@@ -49,6 +49,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 startPos;
     private bool firstStart;
     #endregion
+
+    public bool fever_Invincibility;
+
 
     void OnEnable()
     {
@@ -132,7 +135,7 @@ public class PlayerController : MonoBehaviour
             bullet.transform.parent = this.transform;
         }
         #endregion
-        
+
         // Dev_S : 여기서 피버타임 2일경우 조건에 따라 2개 발사
         if (timer > spawnTime && fever.isFever && boss.isBoss)
         {
@@ -141,6 +144,15 @@ public class PlayerController : MonoBehaviour
             GameObject bullet2 = Instantiate(cannonPrefab, feverFirePosition_2.transform.position, Quaternion.identity);
             bullet.transform.parent = this.transform;
             bullet2.transform.parent = this.transform;
+        }
+
+        if (fever.isFever == true && fever_Invincibility == false)
+        {
+            int originalLayer = gameObject.layer;
+            sr.enabled = true;
+            gameObject.layer = originalLayer;
+            isDamaged = false;
+            fever_Invincibility = true;
         }
     }
 
