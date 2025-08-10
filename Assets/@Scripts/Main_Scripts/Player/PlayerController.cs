@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         // 마우스 드래그 관련
         float camDistance = Vector3.Distance(transform.position, mainCamera.transform.position);
         Vector3 bottomLeft = mainCamera.ScreenToWorldPoint(new Vector3(0, 0, camDistance));
-        Vector3 topRight = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 3f, camDistance));
+        Vector3 topRight = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 3f + 6.5f, camDistance));
 
         if (!firstStart)
         {
