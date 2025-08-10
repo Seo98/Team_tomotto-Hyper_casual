@@ -9,16 +9,24 @@ public class Pause_UI : MonoBehaviour
     public GameObject s_pauseMenuUI;
     public Button pauseButton;
     public Button resumeButton;
+    public Button homeButton;
 
     public float countdownDuration = 3f;
     public TextMeshProUGUI countdownText; // UI Text 오브젝트 할당
 
     public SoundManager soundManager;
+    public UIManager uiManger;
+
+    public GameObject[] Managers;
+    public GameObject[] userInterface;
+    public GameObject mainGame;
+
+
     private void Start()
     {
         pauseButton.onClick.AddListener(Pause);
         resumeButton.onClick.AddListener(StartMyCoroutine);
-
+        homeButton.onClick.AddListener(GoHome);
     }
 
     public void StartMyCoroutine()
@@ -69,5 +77,33 @@ public class Pause_UI : MonoBehaviour
             s_isPaused = true;
             soundManager.BgmSoundsPause();
         }
+    }
+
+    void GoHome()
+    {
+        Time.timeScale = 1f;
+        s_isPaused = false;
+
+
+        Managers[0].SetActive(false);
+        Managers[1].SetActive(false);
+        //
+        userInterface[0].SetActive(true);
+        userInterface[1].SetActive(false);
+        userInterface[3].SetActive(false);
+        userInterface[4].SetActive(false);
+        userInterface[5].SetActive(false);
+        userInterface[6].SetActive(false);
+        userInterface[2].SetActive(false);
+        //
+        mainGame.SetActive(false);
+
+        uiManger.ClearAllMonsters();
+        uiManger.ClearAllItems();
+        uiManger.ClearAllEnemyBullets();
+
+        soundManager.BgmSoundStop();
+        soundManager.BgmSoundPlay("Gb 1");
+
     }
 }

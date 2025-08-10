@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject scoreManager;
 
     [Header("UI 오브젝트(버튼)")]
-    public Button button;
+    public Button startbutton;
     public Button restratButton;
 
     [Header("UI 오브젝트(부모)")]
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        button.onClick.AddListener(StartGame);
+        startbutton.onClick.AddListener(StartGame);
         restratButton.onClick.AddListener(StartGame);
     }
 
@@ -183,7 +183,7 @@ public class UIManager : MonoBehaviour
         ClearAllEnemyBullets();
     }
 
-    private void ClearAllMonsters()
+    public void ClearAllMonsters()
     {
         Monster[] monsters = FindObjectsByType<Monster>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (Monster monster in monsters)
@@ -192,7 +192,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ClearAllItems()
+    public void ClearAllItems()
     {
         BonusItem[] item = FindObjectsByType<BonusItem>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (BonusItem items in item)
@@ -201,7 +201,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ClearAllEnemyBullets()
+    public void ClearAllEnemyBullets()
     {
         Inkball[] inkBalls = FindObjectsByType<Inkball>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (Inkball inkBall in inkBalls)
@@ -259,7 +259,6 @@ public class UIManager : MonoBehaviour
         bossText.SetActive(false);
         bossImage.SetActive(false);
         Invoke("DeactivateBossUI", 0.5f);
-        sManager.BgmSoundPlay("boss 1");
 
     }
 
