@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8414641013827326278}
   - component: {fileID: 6048125231319683172}
   m_Layer: 8
-  m_Name: '[bonus] canonball'
+  m_Name: Player Bullet
   m_TagString: fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

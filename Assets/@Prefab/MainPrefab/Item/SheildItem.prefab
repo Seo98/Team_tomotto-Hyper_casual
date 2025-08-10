@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 617559521327754699}
   - component: {fileID: 6126232869684717512}
   - component: {fileID: 7960720104842095727}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SheildItem
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4087549553164286454}
   - component: {fileID: 8620692162574159356}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

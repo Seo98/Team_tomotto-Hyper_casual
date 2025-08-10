@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6352545178280576962}
   - component: {fileID: 8730374902330168839}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,8 +100,8 @@ GameObject:
   - component: {fileID: 7102332577901335494}
   - component: {fileID: 6999719510886281294}
   - component: {fileID: -8141298664723849026}
-  m_Layer: 0
-  m_Name: attackUp
+  m_Layer: 11
+  m_Name: Attack Up
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
