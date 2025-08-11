@@ -1,8 +1,12 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EXPManager : MonoBehaviour
 {
     // Dev_H : 경험치와 레벨 관리, 레벨에 따른 능력치 강화 (현재 공격력과 공격속도)를 다루는 스크립트
+
+    [SerializeField] private TextMeshProUGUI levelText;
 
     public static EXPManager Instance { get; set; }
 
@@ -19,6 +23,8 @@ public class EXPManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        levelText.text = "Lv : 1"; // Dev_H: 초기 레벨 표시
     }
 
     // Dev_H: Monster 스크립트에서 GiveExp 함수에서 기능
@@ -42,6 +48,8 @@ public class EXPManager : MonoBehaviour
         curExp = 0;
         maxExp += maxExp / 2f; ; // 점점 20%씩 많은 경험치 필요하도록 증가
 
+        LevelDisplay();
+
         Debug.Log($"Level Up! 현재 레벨: {curLevel}");
     }
 
@@ -52,5 +60,10 @@ public class EXPManager : MonoBehaviour
     {
         player.damage += 1f;
         player.spawnTime -= player.spawnTime / 5;
+    }
+
+    public void LevelDisplay()
+    {
+        levelText.text = "Lv : " + curLevel; // Dev_H: 현재 레벨 표시
     }
 }
