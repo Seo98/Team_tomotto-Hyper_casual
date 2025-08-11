@@ -79,7 +79,7 @@ public class Pause_UI : MonoBehaviour
         }
     }
 
-    public void GoHome()
+    void GoHome()
     {
         Time.timeScale = 1f;
         s_isPaused = false;
@@ -90,13 +90,11 @@ public class Pause_UI : MonoBehaviour
         //
         userInterface[0].SetActive(true);
         userInterface[1].SetActive(false);
-        userInterface[2].SetActive(false);
         userInterface[3].SetActive(false);
         userInterface[4].SetActive(false);
         userInterface[5].SetActive(false);
         userInterface[6].SetActive(false);
-        userInterface[7].SetActive(false);
-
+        userInterface[2].SetActive(false);
         //
         mainGame.SetActive(false);
 
@@ -106,8 +104,6 @@ public class Pause_UI : MonoBehaviour
 
         soundManager.BgmSoundStop();
         soundManager.BgmSoundPlay("Gb 1");
-
-        //
 
     }
 }

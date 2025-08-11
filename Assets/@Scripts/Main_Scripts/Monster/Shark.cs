@@ -13,9 +13,7 @@ public class Shark : Monster
         animator = GetComponent<Animator>();
 
         isFollowing = true;
-
-        stageGrowthRate = 1f;
-        SetBaseHP(1f);
+        hp = 2f;
         speed = 2f;
     }
 
@@ -27,7 +25,7 @@ public class Shark : Monster
 
     void Update()
     {
-        //MonsterLevelUp(); 시간에 따라 성장 -> 스테이지별 성장으로 비활성화 처리
+        MonsterLevelUp();
 
         transform.position += dir * (speed + player.moveSpeed) * Time.deltaTime;
 

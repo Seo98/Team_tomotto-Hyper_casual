@@ -127,8 +127,7 @@ public class Boss_R : Monster
 
     protected override void Initialize()
     {
-        stageGrowthRate = 1f;
-        SetBaseHP(1f);
+        hp = 50000f;
     }
 
     private IEnumerator IdleState()
@@ -442,21 +441,6 @@ public class Boss_R : Monster
     {
         float radian = angle * Mathf.Deg2Rad;
         return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
-    }
-
-    protected override void Dead()
-    {
-
-        StopAllCoroutines();
-        // 기존 사망 처리
-        base.Dead();
-
-        // 스테이지 클리어 처리
-        UIManager uiManager = FindFirstObjectByType<UIManager>();
-        if (uiManager != null)
-        {
-            uiManager.GameClear();
-        }
     }
 
     // 전멸기 로직

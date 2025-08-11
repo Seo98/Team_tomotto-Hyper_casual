@@ -12,7 +12,7 @@ public class BossSpawner : MonoBehaviour
     public float currentTime; // 델타타임 플플 가중치 줄 변수
     public bool isBossSpawning = false; // 스폰했는지?
     public bool isBoss = false; // 보스전인지?
-    public bool isBossMoveDone = false; // 이동완료했는지? 
+    private bool isBossMoveDone = false; // 이동완료했는지? 
     public GameObject bossPrefab;
 
     // 보스 이동 관련 변수
@@ -44,7 +44,7 @@ public class BossSpawner : MonoBehaviour
         boss = Instantiate(bossPrefab);
         boss.SetActive(false);
 
-        boss.GetComponent<CapsuleCollider2D>().enabled = false;
+        boss.GetComponent<BoxCollider2D>().enabled = false;
         
     }
 
@@ -125,8 +125,7 @@ public class BossSpawner : MonoBehaviour
             Debug.LogError("Boss_R 스크립트를 찾을 수 없습니다.");
         }
         bossR.BossSetting();
-        boss.GetComponent<CapsuleCollider2D>().enabled = true;
+        boss.GetComponent<BoxCollider2D>().enabled = true;
         isBossSpawning = false;
-        currentTime = 0f;
     }
 }

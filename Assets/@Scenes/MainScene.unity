@@ -1664,6 +1664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createTime: 5
   enemyFactory: {fileID: 538669075802798139, guid: 8f12da806e6851c4c83a781c723dde07, type: 3}
+  bossSpawner: {fileID: 0}
 --- !u!1 &220379937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,7 +1893,6 @@ MonoBehaviour:
   nowGauge: 0
   normalDash: {fileID: 2067882324}
   feverDash: {fileID: 1449824122}
-  boss: {fileID: 2023816513}
 --- !u!1 &254825269
 GameObject:
   m_ObjectHideFlags: 0
@@ -2275,6 +2275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createTime: 5
   enemyFactory: {fileID: 538669075802798139, guid: 8f12da806e6851c4c83a781c723dde07, type: 3}
+  bossSpawner: {fileID: 0}
 --- !u!1 &417880539
 GameObject:
   m_ObjectHideFlags: 0
@@ -5539,7 +5540,6 @@ MonoBehaviour:
   - {fileID: 1383227688}
   - {fileID: 1855897045}
   - {fileID: 85766967}
-  - {fileID: 1502043966}
   mainGame: {fileID: 723788102}
 --- !u!114 &1234017987
 MonoBehaviour:
@@ -5557,13 +5557,10 @@ MonoBehaviour:
   scoreManager: {fileID: 2020033390}
   startbutton: {fileID: 169664862}
   restratButton: {fileID: 1078620663}
-  homeButton: {fileID: 616459834}
-  nextButton: {fileID: 1032985547}
   introObj: {fileID: 886519795}
   startGameUI: {fileID: 2080635756}
   startGame: {fileID: 723788102}
   gameOverUI: {fileID: 424341081}
-  gameClearUI: {fileID: 1502043966}
   heart1: {fileID: 133521467}
   heart2: {fileID: 1174166993}
   heart3: {fileID: 1178578861}
@@ -5585,8 +5582,7 @@ MonoBehaviour:
   - {fileID: 2084457964}
   - {fileID: 299574993}
   - {fileID: 1941310765}
-  currentStage: 1
-  stageHPIncrease: 0.5
+  CurrentGameStage: 1
 --- !u!1 &1234625935
 GameObject:
   m_ObjectHideFlags: 0
@@ -8499,6 +8495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createTime: 15
   enemyFactory: {fileID: 1814949786159163569, guid: 3c07124dd49c8644abd80b5e02e9f794, type: 3}
+  bossSpawner: {fileID: 0}
 --- !u!1 &1958128491
 GameObject:
   m_ObjectHideFlags: 0
@@ -8772,7 +8769,6 @@ MonoBehaviour:
   currentTime: 0
   isBossSpawning: 0
   isBoss: 0
-  isBossMoveDone: 0
   bossPrefab: {fileID: 6689092867102886314, guid: fd2e05695676012479dce6ff156e2cbd, type: 3}
 --- !u!1 &2048995094
 GameObject:
@@ -9116,6 +9112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   createTime: 5
   enemyFactory: {fileID: 538669075802798139, guid: 8f12da806e6851c4c83a781c723dde07, type: 3}
+  bossSpawner: {fileID: 0}
 --- !u!1 &2091816408
 GameObject:
   m_ObjectHideFlags: 0
@@ -9451,10 +9448,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1946074797754559924, guid: 0baf62fed5e303641a747c12008e117b, type: 3}
-    - target: {fileID: 3569762352714134834, guid: 357cfe7c8875bb74289a68175ea590f7, type: 3}
-      propertyPath: boss
-      value: 
-      objectReference: {fileID: 2023816513}
     - target: {fileID: 3569762352714134834, guid: 357cfe7c8875bb74289a68175ea590f7, type: 3}
       propertyPath: fever
       value: 

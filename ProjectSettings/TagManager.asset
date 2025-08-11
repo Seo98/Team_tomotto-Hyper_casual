@@ -20,7 +20,6 @@ TagManager:
   - Item
   - EnemyBullet
   - Boss
-  - Breath
   layers:
   - Default
   - TransparentFX
