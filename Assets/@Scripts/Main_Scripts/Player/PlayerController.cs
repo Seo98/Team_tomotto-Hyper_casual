@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
 
     //Dev_s 
-    private BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
+    public BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
 
     //Dev_H
     private SpriteRenderer sr;
@@ -60,7 +60,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         itManage = FindFirstObjectByType<ItemManager>();
         mainCamera = Camera.main;
-        boss = GameObject.FindFirstObjectByType<BossSpawner>();
 
         // 마우스 드래그 관련
         float camDistance = Vector3.Distance(transform.position, mainCamera.transform.position);
@@ -91,7 +90,10 @@ public class PlayerController : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Player");
 
         isDamaged = false;
+
         isShield = false;
+        itManage.ShiledHeart.SetActive(false);
+        itManage.Shiledimage.SetActive(false);
     }
 
     void Update()

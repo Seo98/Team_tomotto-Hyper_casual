@@ -20,14 +20,13 @@ public class FeverTimeManager : MonoBehaviour
     public GameObject normalDash;
     public GameObject feverDash;
 
-    private BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
+    public BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
 
     private void OnEnable()
     {
         feverImage.fillAmount = 0; //켜질 때 초기화
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         playColl = player.GetComponent<Collider2D>();
-        boss = GameObject.FindFirstObjectByType<BossSpawner>();
 
         // Dev_S // 초기화 관련
         feverDash.SetActive(false);
@@ -47,6 +46,7 @@ public class FeverTimeManager : MonoBehaviour
             nowGauge = feverImage.fillAmount;
             break;
         }
+
         if (boss.isBoss == false && !isFever && feverImage.fillAmount >= 1) //보스 아닐때
             StartCoroutine(FeverTime());
 

@@ -23,7 +23,9 @@ public class Octopus : Monster
     {
         animator = GetComponent<Animator>();
 
-        hp = 1f;
+        stageGrowthRate = 1f;
+        SetBaseHP(1f);
+
         speed = 1f;
         dir = Vector3.right;
     }
@@ -36,7 +38,7 @@ public class Octopus : Monster
 
     void Update()
     {
-        MonsterLevelUp();
+        //MonsterLevelUp(); // 시간에 따라 성장 -> 스테이지별 성장으로 비활성화 처리
         HandleMovement();
         HandleShooting();
     }
