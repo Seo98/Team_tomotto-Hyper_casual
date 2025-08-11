@@ -12,6 +12,13 @@ public abstract class Monster : MonoBehaviour
     public float hp;
     SoundManager sManager;
 
+
+    [Header("스테이지에 따른 hp 더하기")]
+    public static float stageHPBonus = 0f; // 스테이지별 HP 보너스
+
+    [Header("스테이지별 각 몬스터 성장률")]
+    public float stageGrowthRate = 1f; // 각 몬스터의 성장 배율
+
     // 컴포넌트 및 참조
     private MonsterDropItem dropIt; // 은주님쪽 라인 참조
     public PlayerController player; // 은주님쪽 라인 참조
@@ -46,7 +53,11 @@ public abstract class Monster : MonoBehaviour
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
         Initialize();
     }
-    
+    protected void SetBaseHP(float baseHP)
+    {
+        hp = baseHP + stageHPBonus;
+    }
+
     protected abstract void Initialize(); // Dev_S: 여기서 코드쓰면 안되고 자식에서 오버라이딩 쓰고 쓰셔야해요 애들마다 맨처음 hp 달라야할거같아서 
 
     protected virtual void MonsterLevelUp() // Dev_S: 몬스터 레벨업 기능 // 웨이브 레벨업 시스템

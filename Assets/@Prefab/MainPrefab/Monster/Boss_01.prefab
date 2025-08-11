@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 4013945545407373068}
   - component: {fileID: 833312238870711953}
   - component: {fileID: 1688547171607511727}
-  - component: {fileID: 5159270633701234371}
+  - component: {fileID: 120638076814749626}
   m_Layer: 9
   m_Name: Boss_01
   m_TagString: Boss
@@ -219,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   hp: 0
+  stageGrowthRate: 1
   player: {fileID: 0}
   monsterLevelUpTime: 30
   currentTime: 0
@@ -315,8 +316,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &5159270633701234371
-BoxCollider2D:
+--- !u!70 &120638076814749626
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -349,18 +350,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.8125, y: 4}
-    newSize: {x: 3.2, y: 3.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 3.8125, y: 4}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.04792607, y: -0.07861304}
+  m_Size: {x: 3.986759, y: 4.157226}
+  m_Direction: 0
 --- !u!1 &7804436650105117795
 GameObject:
   m_ObjectHideFlags: 0
