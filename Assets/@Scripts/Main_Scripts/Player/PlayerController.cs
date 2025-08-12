@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 0.2f;
     public float hp = 3f;
     public float damage = 1f; // < 이 변수가 변경되면 실제 데미지 상승입니다 Canonball 스크립트 변수 damage는 안사용해요!
-    public int score = 0;
+    public int score = 0; // 이거없어도 될거같은
 
     [Header("상태")]
     public bool isAttack = false;

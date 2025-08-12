@@ -66,4 +66,11 @@ public class EXPManager : MonoBehaviour
     {
         levelText.text = "Lv : " + curLevel; // Dev_H: 현재 레벨 표시
     }
+
+    public void LevelInit()
+    {
+        curLevel = 1;
+        curExp = 0;
+        levelText.text = "Lv : " + curLevel; // 초기화된 레벨로 표시
+    }
 }
