@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -22,6 +23,7 @@ public abstract class Monster : MonoBehaviour
     // 컴포넌트 및 참조
     private MonsterDropItem dropIt; // 은주님쪽 라인 참조
     public PlayerController player; // 은주님쪽 라인 참조
+    Cannonball fireball;
 
     protected Vector3 dir; // 이동 방향
     int dropPer;
@@ -37,8 +39,10 @@ public abstract class Monster : MonoBehaviour
 
     public Animator animator;
 
-
+    public TextMeshProUGUI damageText;
     public GameObject particle;
+
+  
 
     protected virtual void OnEnable()
     {
@@ -46,9 +50,12 @@ public abstract class Monster : MonoBehaviour
         dropIt = GameObject.Find("DropManager [Active]").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         sManager = FindFirstObjectByType<SoundManager>();
+        fireball = FindFirstObjectByType<Cannonball>();
+
         sr = GetComponent<SpriteRenderer>();
-        coll = GetComponent<CapsuleCollider2D>();
-        
+        coll = GetComponent<CapsuleCollider2D>();        
+
+
 
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
         Initialize();
@@ -91,7 +98,8 @@ public abstract class Monster : MonoBehaviour
         // 플레이어의 공격에 맞았을 때
         if (other.gameObject.CompareTag("fireball"))
         {
-            hp -= player.damage;
+            TakeDamage(fireball.fireDamage);
+            //hp -= player.damage;
             sManager.EventSoundPlay("damaged");
             animator.SetTrigger("isHit");
             if (hp <= 0)
@@ -132,5 +140,12 @@ public abstract class Monster : MonoBehaviour
         sr.enabled = false;
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
+    }
+
+    public void TakeDamage(int damage)
+    {        
+        
+        this.hp -= damage;
+        damageText.text = $"-{damage}";
     }
 }

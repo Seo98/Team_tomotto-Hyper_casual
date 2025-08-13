@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -134,7 +133,7 @@ public class UIManager : MonoBehaviour
 
         //플레이어 초기화
         playerController.hp = 3f;
-        playerController.damage = 1f;
+        //playerController.playerDamage=1;
         playerController.spawnTime = 2f;
         LevelUpManager.Instance.LevelInit();
         

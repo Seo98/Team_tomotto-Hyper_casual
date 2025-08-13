@@ -9,9 +9,10 @@ public class Boss_R : Monster
     private BossState currentState;
     private Coroutine currentAttackCoroutine;
 
-    //카메라 / 스크린
+    //카메라 / 스크린/ Hp 바
     private Camera mainCamera;
     private Vector2 screenBounds;
+    public GameObject HpBar;
 
     // UI 매니저
     public UIManager uiManager;

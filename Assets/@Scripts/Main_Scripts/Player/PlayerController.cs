@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 능력치")]
     public float moveSpeed = 0.2f;
     public float hp = 3f;
-    public float damage = 1f; // < 이 변수가 변경되면 실제 데미지 상승입니다 Canonball 스크립트 변수 damage는 안사용해요!
+    public int damage; // < 이 변수가 변경되면 실제 데미지 상승입니다 Canonball 스크립트 변수 damage는 안사용해요!
     public int score = 0; // 이거없어도 될거같은
 
     [Header("상태")]
@@ -30,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public float spawnTime = 2f;
 
     //BonusItem bonusIt;
+    Cannonball fireball;
     ItemManager itManage;
     public FeverTimeManager fever;
     private Rigidbody2D rb;
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
         {
             isDamaged = true;
 
-            hp -= 1f;
+            hp -= 1;
 
             // dev_h : 기존 레이어 저장 (피해 입으면 잠깐동안 충돌 막으려고)
             int originalLayer = gameObject.layer;
@@ -224,4 +224,9 @@ public class PlayerController : MonoBehaviour
             isDamaged = false;
         }
     }
+    public void damageConnect(int cdamage)
+    {
+        damage = cdamage; //캐논볼의 데미지를 받아옴
+    }
+    
 }
