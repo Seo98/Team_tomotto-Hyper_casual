@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Boss_R : Monster
 {
@@ -12,7 +13,7 @@ public class Boss_R : Monster
     //카메라 / 스크린/ Hp 바
     private Camera mainCamera;
     private Vector2 screenBounds;
-    public GameObject HpBar;
+    public Image HpBar;
 
     // UI 매니저
     public UIManager uiManager;

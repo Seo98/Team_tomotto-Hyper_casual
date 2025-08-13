@@ -340,7 +340,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   damageText: {fileID: 0}
   particle: {fileID: 2111624705223328678}
-  HpBar: {fileID: 0}
+  HpBar: {fileID: 109474548194335499}
   uiManager: {fileID: 0}
   bulletPrefab: {fileID: 3775194400798946777, guid: bb4088ca205c782499f055f78e0cb930, type: 3}
   firePoint: {fileID: 1601507163079724375}
