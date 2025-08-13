@@ -104,8 +104,9 @@ public abstract class Monster : MonoBehaviour
         if (other.gameObject.CompareTag("fireball"))
         {
             fireball = FindFirstObjectByType<Cannonball>();
-            //TakeDamage(fireball.fireDamage);
-            hp -= fireball.fireDamage;
+            TakeDamage(fireball.fireDamage);
+            //hp -= fireball.fireDamage;
+
             sManager.EventSoundPlay("damaged");
             animator.SetTrigger("isHit");
             if (hp <= 0)
@@ -149,17 +150,12 @@ public abstract class Monster : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {                
+    {
         this.hp -= damage;
 
+        // 데미지 텍스트 생성
         GameObject dmgObj = Instantiate(damageTextPrefab, damageTextPos.position, Quaternion.identity);
         dmgObj.GetComponent<DamageText>().Setup(damage);
-        //damageText.text = $"-{damage}";
-        //uiManager?.ShowDamage(damage);        
-
-        //GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
-        //hudText.transform.position = hudPos.position; // 표시될 위치
-        //hudText.GetComponent<DamageText>().damage = damage; // 데미지 전달
 
     }
 }
