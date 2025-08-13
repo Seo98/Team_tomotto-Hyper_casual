@@ -739,6 +739,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: SkillUI_2
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c75a7e880e0a909489445687d0e90dc1
+      internalID: 1833758937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -753,6 +775,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      SkillUI_2: 1833758937
       ui_yellow_0: 5876943558261407070
       ui_yellow_1: -2317114270331426785
       ui_yellow_10: -5203695718892246472
@@ -769,7 +792,6 @@ TextureImporter:
       ui_yellow_20: -190034213809585431
       ui_yellow_21: -2567548820179288980
       ui_yellow_22: -4088842564291557398
-      ui_yellow_23: 3976411594724771782
       ui_yellow_24: -3287895863204329189
       ui_yellow_25: 8979219956366405784
       ui_yellow_26: 7787728721882964678

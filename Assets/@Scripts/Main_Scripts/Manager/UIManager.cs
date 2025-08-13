@@ -136,7 +136,7 @@ public class UIManager : MonoBehaviour
         playerController.hp = 3f;
         playerController.damage = 1f;
         playerController.spawnTime = 2f;
-        EXPManager.Instance.LevelInit();
+        LevelUpManager.Instance.LevelInit();
         
     }
 

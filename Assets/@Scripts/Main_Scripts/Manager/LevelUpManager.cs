@@ -1,14 +1,19 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
-public class EXPManager : MonoBehaviour
+public class LevelUpManager : MonoBehaviour
 {
     // Dev_H : 경험치와 레벨 관리, 레벨에 따른 능력치 강화 (현재 공격력과 공격속도)를 다루는 스크립트
 
-    [SerializeField] private TextMeshProUGUI levelText;
+    private enum stateType { AtdUp, AtsUp, AtcUp, Harpoon, Flame, Ice, Pet }
 
-    public static EXPManager Instance { get; set; }
+    [Header("UI 연결")]
+    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private GameObject levelUpUI;
+
+    public static LevelUpManager Instance { get; set; }
 
     // Dev_H: PlayerController에 있는 공격력, 공격속도 올리기 위해
     [Header("레벨업 대상 연결")]
@@ -19,12 +24,16 @@ public class EXPManager : MonoBehaviour
     public int curLevel = 1;
     public float maxExp = 100;
 
+    [SerializeField] private int slotAmount = 3;
+    [SerializeField] private GameObject[] skillPrefabs;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
         levelText.text = "Lv : 1"; // Dev_H: 초기 레벨 표시
+        levelUpUI.SetActive(false);
     }
 
     // Dev_H: Monster 스크립트에서 GiveExp 함수에서 기능
@@ -37,7 +46,7 @@ public class EXPManager : MonoBehaviour
         if (curExp >= maxExp)
         {
             LevelUp();
-            StateUp();
+            SkillUp();
         }
     }
 
@@ -53,15 +62,6 @@ public class EXPManager : MonoBehaviour
         Debug.Log($"Level Up! 현재 레벨: {curLevel}");
     }
 
-    // Dev_H: 레벨업시 능력치 상승
-    // 현재는 가하는 데미지 +1, 공격속도 현재속도에 20%씩 증가
-    // 레벨업 시 어떤 능력치를 올릴지 선택지가 나오는 것 도 좋겠죠
-    private void StateUp()
-    {
-        player.damage += 1f;
-        player.spawnTime -= player.spawnTime / 5;
-    }
-
     public void LevelDisplay()
     {
         levelText.text = "Lv : " + curLevel; // Dev_H: 현재 레벨 표시
@@ -72,5 +72,15 @@ public class EXPManager : MonoBehaviour
         curLevel = 1;
         curExp = 0;
         levelText.text = "Lv : " + curLevel; // 초기화된 레벨로 표시
+    }
+
+    // Dev_H: 레벨업시 능력치 상승
+    // 현재는 가하는 데미지 +1, 공격속도 현재속도에 20%씩 증가
+    private void SkillUp()
+    {
+        // player.damage += 1f;
+        // player.spawnTime -= player.spawnTime / 5;
+
+        levelUpUI.SetActive(true);
     }
 }

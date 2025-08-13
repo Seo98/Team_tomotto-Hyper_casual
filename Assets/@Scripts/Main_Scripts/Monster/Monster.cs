@@ -124,7 +124,7 @@ public abstract class Monster : MonoBehaviour
 
     protected void GiveExp() // Dev_H: 경험치 부여하는 기능
     {
-        EXPManager.Instance.AddExp(expAmount);
+        LevelUpManager.Instance.AddExp(expAmount);
     }
     IEnumerator Wait()
     {

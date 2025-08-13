@@ -762,7 +762,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_red_24
+      name: StateUpUI
       rect:
         serializedVersion: 2
         x: 1
@@ -771,7 +771,7 @@ TextureImporter:
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 4, y: 4, z: 4, w: 4}
       customData: 
       outline: []
       physicsShape: []
@@ -1004,7 +1004,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ui_red_35
+      name: SkillUI_1
       rect:
         serializedVersion: 2
         x: 97
@@ -1083,6 +1083,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      SkillUI_1: -9214901910848822204
+      StateUpUI: -79945954102895162
       ui_red_0: 1415434106881102962
       ui_red_1: 4103961115943970536
       ui_red_10: -4725552781567560094
@@ -1100,7 +1102,6 @@ TextureImporter:
       ui_red_21: 6111833969543016522
       ui_red_22: -3805754523653474462
       ui_red_23: 5038131662231348503
-      ui_red_24: -79945954102895162
       ui_red_25: 358312819605986661
       ui_red_26: -7763114806682866512
       ui_red_27: -6922141013484519393
@@ -1112,7 +1113,6 @@ TextureImporter:
       ui_red_32: 1825891386655264906
       ui_red_33: -6871675755368329416
       ui_red_34: -2429999716761698388
-      ui_red_35: -9214901910848822204
       ui_red_36: 9199577500231220461
       ui_red_37: 879391221
       ui_red_4: 5101230839062054125
