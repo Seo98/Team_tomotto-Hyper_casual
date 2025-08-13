@@ -461,7 +461,7 @@ public class Boss_R : Monster
             uiManager.GameClear();
         }
     }
-    protected override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         Hpbar.fillAmount -= damage /100f;

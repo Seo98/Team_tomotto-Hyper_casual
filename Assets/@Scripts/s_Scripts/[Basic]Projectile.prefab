@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 277357211368515209}
   - component: {fileID: 1157206785363223934}
   - component: {fileID: 4980246197273165173}
-  - component: {fileID: 8414641013827326278}
-  - component: {fileID: 6048125231319683172}
+  - component: {fileID: 7461486750957498390}
+  - component: {fileID: 3598214559213111550}
   m_Layer: 8
-  m_Name: Player Bullet
-  m_TagString: fireball
+  m_Name: '[Basic]Projectile'
+  m_TagString: BasicProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8493165749912826780}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0.0000029802318}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: -1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -98,11 +98,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8493165749912826780}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -117,7 +117,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8414641013827326278
+--- !u!114 &7461486750957498390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,12 +126,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8493165749912826780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3617bcc96000c924aac8329c3396b291, type: 3}
+  m_Script: {fileID: 11500000, guid: 0eb0c00b1f2d448419a69f1da287d1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!58 &6048125231319683172
-CircleCollider2D:
+--- !u!70 &3598214559213111550
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,9 +160,10 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.055
+  m_Size: {x: 0.35, y: 0.55}
+  m_Direction: 0

@@ -10,7 +10,6 @@ public class BonusItem : MonoBehaviour
     PlayerController player;
 
     SpriteRenderer sr;
-    public Cannonball fireball;
 
     public Vector3 dir;
     public float speed = 3;
@@ -64,7 +63,20 @@ public class BonusItem : MonoBehaviour
 
     void AttackUP()
     {
-        player.spawnTime -= player.spawnTime / 10;
-        player.damage += 1;
+        AttackManager attackManager = AttackManager.Instance;
+        // 요거 걍 세팅해놓을테니까 생각에 따라 구현하시면 될듯합니다.
+
+
+        if (attackManager.GetBasicAttack().isActive)
+        {
+            float currentSpawn = attackManager.GetBasicAttack().spawnTime;
+            attackManager.GetBasicAttack().Upgrade(1f, currentSpawn * 0.1f); // 10% 빠르게
+        }
+
+        if (attackManager.GetIceAttack().isActive)
+        {
+            float currentSpawn = attackManager.GetIceAttack().spawnTime;
+            attackManager.GetIceAttack().Upgrade(1f, currentSpawn * 0.1f);
+        }
     }
 }

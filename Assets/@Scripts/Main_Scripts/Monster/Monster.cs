@@ -23,7 +23,7 @@ public abstract class Monster : MonoBehaviour
     private MonsterDropItem dropIt; // 은주님쪽 라인 참조
     public PlayerController player; // 은주님쪽 라인 참조
 
-    protected Vector3 dir; // 이동 방향
+    public Vector3 dir; // 이동 방향
     int dropPer;
 
     public float monsterLevelUpTime = 30;
@@ -89,9 +89,16 @@ public abstract class Monster : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         // 플레이어의 공격에 맞았을 때
-        if (other.gameObject.CompareTag("fireball"))
+        if (other.gameObject.CompareTag("BasicProjectile"))
         {
-            TakeDamage(player.damage);
+            float damage = AttackManager.Instance.GetBasicAttack().damage;
+            TakeDamage(damage);
+        }
+        else if (other.gameObject.CompareTag("IceProjectile"))
+        {
+            float damage = AttackManager.Instance.GetIceAttack().damage;
+            TakeDamage(damage);
+            // ApplySlowEffect();
         }
 
         // 플레이어와 직접 충돌했을 때
@@ -127,9 +134,9 @@ public abstract class Monster : MonoBehaviour
         Destroy(gameObject);
     }
 
-    protected virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
-        hp -= player.damage;
+        hp -= damage;
         sManager.EventSoundPlay("damaged");
         animator.SetTrigger("isHit");
         if (hp <= 0)

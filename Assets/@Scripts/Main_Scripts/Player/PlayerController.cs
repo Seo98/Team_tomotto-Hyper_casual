@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 능력치")]
     public float moveSpeed = 0.2f;
     public float hp = 3f;
-    public int damage = 1; // < 이 변수가 변경되면 실제 데미지 상승입니다 Canonball 스크립트 변수 damage는 안사용해요!
     public int score = 0; // 이거없어도 될거같은
 
     [Header("상태")]
@@ -17,17 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool isShield = false;
     public bool isDamaged = false;
 
-    // 여기 아래에 있는거 헤더로 묶어서 정리하면 보기 편할거같긴해요
-
-    [Header("프리팹")]
-    public GameObject cannonPrefab;
-    public GameObject firePosition;
-    public GameObject feverFirePosition_1;
-    public GameObject feverFirePosition_2;
-
-
     float timer;
-    public float spawnTime = 2f;
 
     //BonusItem bonusIt;
     ItemManager itManage;
@@ -90,10 +79,13 @@ public class PlayerController : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Player");
 
         isDamaged = false;
-
         isShield = false;
+
+        // 테스트끝나면 다시풀거
+        /*
         itManage.ShiledHeart.SetActive(false);
         itManage.Shiledimage.SetActive(false);
+        */
     }
 
     void Update()
@@ -133,26 +125,8 @@ public class PlayerController : MonoBehaviour
             isDragging = false;
             isDirectDrag = false;
         }
-
-        #region 대포알 생성
-        if (timer > spawnTime && !fever.isFever) //피버 타임 아닐 때만 2초마다 대포알 생성 
-        {
-            timer = 0;
-            GameObject bullet = Instantiate(cannonPrefab, firePosition.transform.position, Quaternion.identity);
-            bullet.transform.parent = this.transform;
-        }
-        #endregion
-
-        // Dev_S : 여기서 피버타임 2일경우 조건에 따라 2개 발사
-        if (timer > spawnTime && fever.isFever && boss.isBoss)
-        {
-            timer = 0;
-            GameObject bullet = Instantiate(cannonPrefab, feverFirePosition_1.transform.position, Quaternion.identity);
-            GameObject bullet2 = Instantiate(cannonPrefab, feverFirePosition_2.transform.position, Quaternion.identity);
-            bullet.transform.parent = this.transform;
-            bullet2.transform.parent = this.transform;
-        }
-
+        // 테스트끝나면 다시풀거
+        /*
         if (fever.isFever == true && fever_Invincibility == false)
         {
             int originalLayer = gameObject.layer;
@@ -161,6 +135,7 @@ public class PlayerController : MonoBehaviour
             isDamaged = false;
             fever_Invincibility = true;
         }
+        */
     }
 
     void FixedUpdate()
