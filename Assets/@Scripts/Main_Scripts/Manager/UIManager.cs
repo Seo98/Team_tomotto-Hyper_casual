@@ -211,6 +211,7 @@ public class UIManager : MonoBehaviour
         
     }
 
+
     private void Update()
     {
         HpUISetting();
@@ -402,6 +403,10 @@ public class UIManager : MonoBehaviour
     {
         bossFadeIn.SetActive(false);
         sManager.BgmSoundPlay("boss 1");
+    }
+    public void ShowDamage()
+    {
+        
     }
 
 }

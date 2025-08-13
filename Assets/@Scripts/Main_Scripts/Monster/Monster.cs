@@ -31,6 +31,11 @@ public abstract class Monster : MonoBehaviour
     public float monsterLevelUpTime = 30;
     public float currentTime;
 
+    //데미지 텍스트 
+    public GameObject damageTextPrefab;
+    public Transform damageTextPos;
+
+
     SpriteRenderer sr;
     CapsuleCollider2D coll;
 
@@ -39,7 +44,7 @@ public abstract class Monster : MonoBehaviour
 
     public Animator animator;
 
-    public TextMeshProUGUI damageText;
+    //public TextMeshProUGUI damageText;
     public GameObject particle;
 
   
@@ -50,7 +55,7 @@ public abstract class Monster : MonoBehaviour
         dropIt = GameObject.Find("DropManager [Active]").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         sManager = FindFirstObjectByType<SoundManager>();
-        fireball = FindFirstObjectByType<Cannonball>();
+        //uiManager = FindFirstObjectByType<UIManager>();
 
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<CapsuleCollider2D>();        
@@ -98,8 +103,9 @@ public abstract class Monster : MonoBehaviour
         // 플레이어의 공격에 맞았을 때
         if (other.gameObject.CompareTag("fireball"))
         {
-            TakeDamage(fireball.fireDamage);
-            //hp -= player.damage;
+            fireball = FindFirstObjectByType<Cannonball>();
+            //TakeDamage(fireball.fireDamage);
+            hp -= fireball.fireDamage;
             sManager.EventSoundPlay("damaged");
             animator.SetTrigger("isHit");
             if (hp <= 0)
@@ -143,9 +149,17 @@ public abstract class Monster : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    {        
-        
+    {                
         this.hp -= damage;
-        damageText.text = $"-{damage}";
+
+        GameObject dmgObj = Instantiate(damageTextPrefab, damageTextPos.position, Quaternion.identity);
+        dmgObj.GetComponent<DamageText>().Setup(damage);
+        //damageText.text = $"-{damage}";
+        //uiManager?.ShowDamage(damage);        
+
+        //GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
+        //hudText.transform.position = hudPos.position; // 표시될 위치
+        //hudText.GetComponent<DamageText>().damage = damage; // 데미지 전달
+
     }
 }

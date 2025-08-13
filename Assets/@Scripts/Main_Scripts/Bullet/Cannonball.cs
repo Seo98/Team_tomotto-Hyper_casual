@@ -5,6 +5,8 @@ public class Cannonball : MonoBehaviour
 {
     public float speed = 10f;
     public int fireDamage = 1;
+    public GameObject damageTextPrefab;
+    public Transform damageTextPos;
 
     Vector3 dir = Vector3.up;
     Monster monster;
@@ -13,6 +15,7 @@ public class Cannonball : MonoBehaviour
     private void Awake()
     {
         player = FindFirstObjectByType<PlayerController>();
+        
        
     }
 
@@ -21,6 +24,7 @@ public class Cannonball : MonoBehaviour
         transform.position += dir * speed * Time.deltaTime;
         //위쪽으로 나간다
         player.damageConnect(this.fireDamage);
+
 
     }
 
@@ -31,7 +35,9 @@ public class Cannonball : MonoBehaviour
 
         if (monster != null)
         {
-            monster.TakeDamage(this.fireDamage);
+            monster.TakeDamage(fireDamage);
+            GameObject dmgObj = Instantiate(damageTextPrefab, damageTextPos.position, Quaternion.identity);
+            dmgObj.GetComponent<DamageText>().Setup(fireDamage);
         }
 
         if (other.transform.CompareTag("Monster") || other.transform.CompareTag("Boss")) Destroy(this.gameObject);
