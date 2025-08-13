@@ -65,6 +65,6 @@ public class BonusItem : MonoBehaviour
     void AttackUP()
     {
         player.spawnTime -= player.spawnTime / 10;
-        player.damage += 1f;
+        player.damage += 1;
     }
 }

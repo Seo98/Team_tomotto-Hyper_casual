@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Boss_R : Monster
 {
@@ -15,6 +16,9 @@ public class Boss_R : Monster
 
     // UI 매니저
     public UIManager uiManager;
+
+    //Hpbar 
+    public Image Hpbar;
 
     // 공격 세팅
     [Header("총알 프리팹 / 발사 포지션")]
@@ -154,7 +158,6 @@ public class Boss_R : Monster
         }
     }
 
-    
 
     private IEnumerator AttackState()
     {
@@ -458,7 +461,13 @@ public class Boss_R : Monster
             uiManager.GameClear();
         }
     }
+    protected override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        Hpbar.fillAmount -= damage /100f;
+    }
 
+    
     // 전멸기 로직
 
     // DEV_S

@@ -91,14 +91,7 @@ public abstract class Monster : MonoBehaviour
         // 플레이어의 공격에 맞았을 때
         if (other.gameObject.CompareTag("fireball"))
         {
-            hp -= player.damage;
-            sManager.EventSoundPlay("damaged");
-            animator.SetTrigger("isHit");
-            if (hp <= 0)
-            {
-                Dead();
-                return;
-            }
+            TakeDamage(player.damage);
         }
 
         // 플레이어와 직접 충돌했을 때
@@ -132,5 +125,17 @@ public abstract class Monster : MonoBehaviour
         sr.enabled = false;
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
+    }
+
+    protected virtual void TakeDamage(int damage)
+    {
+        hp -= player.damage;
+        sManager.EventSoundPlay("damaged");
+        animator.SetTrigger("isHit");
+        if (hp <= 0)
+        {
+            Dead();
+            return;
+        }
     }
 }
