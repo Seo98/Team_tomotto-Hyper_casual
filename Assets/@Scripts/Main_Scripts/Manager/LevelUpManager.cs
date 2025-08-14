@@ -84,9 +84,9 @@ public class LevelUpManager : MonoBehaviour
         levelUpUI.SetActive(true);
 
         // 기존 버튼 삭제
-        for (int i = skillContants.childCount - 1; i >= 0; i--)
+        foreach (Transform child in skillContants)
         {
-            Destroy(skillContants.GetChild(i).gameObject);
+            Destroy(child.gameObject);
         }
 
         // 랜덤 스킬 3개 선택

@@ -681,8 +681,8 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 70, y: 0}
+  m_CellSize: {x: 150, y: 200}
+  m_Spacing: {x: 20, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &108391473
@@ -3541,12 +3541,12 @@ MonoBehaviour:
   skillContants: {fileID: 96823208}
   allSkills: 000000000100000002000000030000000400000005000000
   skillPrefabs:
-  - {fileID: 3598486442316204690, guid: dfda16b4bb319fa44934ccf0147b90bf, type: 3}
-  - {fileID: 5558188373622619559, guid: d1a14293c51c00e40b02bc03aa83e74e, type: 3}
-  - {fileID: 1118371671793376460, guid: c4bf7c4cccce88141920176fe85ce099, type: 3}
-  - {fileID: 5336659763239805640, guid: 3007eec1f4b39ce4392b0a6346bebcd4, type: 3}
-  - {fileID: 6975144564732629551, guid: 47d6b867712a1c04fa84afbb7029869e, type: 3}
-  - {fileID: 6793129074548617431, guid: 9c865c4e66bf39a46a6197bcc238c6a0, type: 3}
+  - {fileID: 6284891644732236618, guid: 35ea63f888d29cb40be3aa92e1d2809c, type: 3}
+  - {fileID: 8725220869675683781, guid: 1ce0a6b0661dafc49b19d3f2daaddea5, type: 3}
+  - {fileID: 2895162109099615309, guid: 4135bb6ea50d36f4fba65b667cc378cb, type: 3}
+  - {fileID: 2000136504811127419, guid: bc61553397ee1544a819f9357324cfe1, type: 3}
+  - {fileID: 412718938229063517, guid: bda872241d59b7b4da5fa31fbf14e5c7, type: 3}
+  - {fileID: 313109431185440328, guid: f1729a082b0a59a48a736b323e325097, type: 3}
   player: {fileID: 1645635818}
   curExp: 0
   curLevel: 1
