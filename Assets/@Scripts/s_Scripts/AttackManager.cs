@@ -10,10 +10,10 @@ public class AttackManager : MonoBehaviour
 
     [Header("프리팹들")]
     public GameObject basicProjectilePrefab;
-    public GameObject flameProjectilePrefab;
     public GameObject iceProjectilePrefab;
-    public GameObject petProjectilePrefab;
     public GameObject harpoonProjectilePrefab;
+    public GameObject petProjectilePrefab; // 펫 스크립트 자체에 프리팹이 할당되어있어 필요없음.
+    public GameObject flameProjectilePrefab; // 플레이어 캐릭터에 할당되어 있어 필요없음
 
     [Header("발사 위치들")]
     public Transform[] firePositions;
@@ -27,9 +27,9 @@ public class AttackManager : MonoBehaviour
 
     public BasicAttack GetBasicAttack() { return basicAttack; }
     public IceAttack GetIceAttack() { return iceAttack; }
-    // public IceAttack HarpoonAttack() { return harpoonAttack; }
-    // public IceAttack PetAttack() { return petAttack; }
-    // public IceAttack FlameAttack() { return flameAttack; }
+    public PetAttack GetPetAttack() { return petAttack; }
+    public FlameAttack GetFlameAttack() { return flameAttack; }
+    public HarpoonAttack HarpoonAttack() { return harpoonAttack; }
 
     private bool feverSpeedApplied = false;
 
@@ -108,9 +108,4 @@ public class AttackManager : MonoBehaviour
         // 스타트할떄 한번 싹 클리어해줘서 크게 이슈없을경우 현상유지, 이슈있을시 변경
         basicAttack.Activate(); 
     }
-
-
-    public PetAttack GetPetAttack() { return petAttack; }
-    public FlameAttack GetFlameAttack() { return flameAttack; }
-
 }

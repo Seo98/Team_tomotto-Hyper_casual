@@ -302,13 +302,14 @@ public class UIManager : MonoBehaviour
 
     public void ClearAllBullets()
     {
-        /*
-        Cannonball[] cannonBalls = FindObjectsByType<Cannonball>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-        foreach (Cannonball cannonBall in cannonBalls)
+
+        BaseAttack[] BaseAttacks = FindObjectsByType<BaseAttack>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (BaseAttack baseAttack in BaseAttacks)
         {
-            Destroy(cannonBall.gameObject);
+            Destroy(baseAttack.gameObject);
         }
-        */
+        
     }
 
     public void ClearAllEnemyBullets()

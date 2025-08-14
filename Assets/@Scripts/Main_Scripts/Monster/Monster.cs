@@ -11,7 +11,7 @@ public abstract class Monster : MonoBehaviour
     public float speed;
     public float hp;
     SoundManager sManager;
-
+    private bool isInFlame = false; // 각 몬스터마다 개별 상태
 
     [Header("스테이지에 따른 hp 더하기")]
     public static float stageHPBonus = 0f; // 스테이지별 HP 보너스
@@ -85,6 +85,28 @@ public abstract class Monster : MonoBehaviour
         GiveExp();  // Dev_H: 경험치 부여하는 함수 호출
     }
 
+
+
+    // 지속데미지 처리 관련
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("FlameProjectile"))
+        {
+            if (!isInFlame)
+            {
+                isInFlame = true;
+                StartCoroutine(FlameDatamageDamage());
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("FlameProjectile"))
+        {
+            isInFlame = false;
+        }
+    }
+
     // Dev_S:공격 계산식 충돌 관련 계산로직
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -94,34 +116,23 @@ public abstract class Monster : MonoBehaviour
             float damage = AttackManager.Instance.GetBasicAttack().damage;
             TakeDamage(damage);
         }
-        else if (other.gameObject.CompareTag("IceProjectile"))
+        if (other.gameObject.CompareTag("IceProjectile"))
         {
             float damage = AttackManager.Instance.GetIceAttack().damage;
             TakeDamage(damage);
             // ApplySlowEffect();
         }
-        else if (other.gameObject.CompareTag("HarpoonProjectile"))
+        if (other.gameObject.CompareTag("HarpoonProjectile"))
         {
             float damage = AttackManager.Instance.GetIceAttack().damage;
             TakeDamage(damage);
             // ApplySlowEffect();
         }
-        else if (other.gameObject.CompareTag("PetProjectile"))
+        if (other.gameObject.CompareTag("PetProjectile"))
         {
             float damage = AttackManager.Instance.GetIceAttack().damage;
             TakeDamage(damage);
             // ApplySlowEffect();
-        }
-        else if (other.gameObject.CompareTag("FlameProjectile"))
-        {
-            /*
-            float damage = AttackManager.Instance.GetIceAttack().damage;
-
-            FlameAttack flame = player.GetComponent<FlameAttack>();
-            flame.at
-
-            TakeDamage(damage);
-            */
         }
 
         // 플레이어와 직접 충돌했을 때
@@ -168,4 +179,13 @@ public abstract class Monster : MonoBehaviour
             return;
         }
     }
+    private IEnumerator FlameDatamageDamage()
+    {
+        while (isInFlame)
+        {
+            TakeDamage(AttackManager.Instance.GetFlameAttack().damage);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
 }

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class LevelUpManager : MonoBehaviour
 {
     // Dev_H : 경험치와 레벨 관리, 레벨에 따른 능력치 강화 (현재 공격력과 공격속도)를 다루는 스크립트
-
     private enum stateType { AtdUp, AtsUp, AtcUp, Harpoon, Flame, Ice, Pet }
 
     [Header("UI 연결")]

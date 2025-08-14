@@ -135,10 +135,10 @@ TextureImporter:
       name: Ice VFX 1 Start_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 11
-        width: 15
-        height: 9
+        x: 0
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,10 +157,10 @@ TextureImporter:
       name: Ice VFX 1 Start_1
       rect:
         serializedVersion: 2
-        x: 57
-        y: 10
-        width: 20
-        height: 11
+        x: 48
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,10 +179,10 @@ TextureImporter:
       name: Ice VFX 1 Start_2
       rect:
         serializedVersion: 2
-        x: 105
-        y: 10
-        width: 21
-        height: 11
+        x: 96
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -201,7 +201,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cad5248241cda06498fa13a43c6b4164
     internalID: 0
     vertices: []
     indices: 

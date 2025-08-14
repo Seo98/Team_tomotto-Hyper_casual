@@ -5,9 +5,9 @@ public class FlameAttack : BaseAttack
 {
     [Header("Flame 전용")]
     public float flameDuration = 2f;      // 브레스 지속시간
-    public float damageInterval = 0.1f;   // 데미지 판정 간격
+    // public float damageInterval = 0.1f; // 제거 (Monster에서 처리)
 
-    private GameObject flameObject;       // 플레이어에 붙어있는 브레스 오브젝트
+    private GameObject flameObject;
     private bool isFlameActive = false;
 
     protected override void Initialize()
@@ -47,7 +47,6 @@ public class FlameAttack : BaseAttack
             flameObject.SetActive(true);
             isFlameActive = true;
 
-            // flameDuration 후에 끄기
             StartCoroutine(DeactivateFlameAfterDelay());
         }
     }
