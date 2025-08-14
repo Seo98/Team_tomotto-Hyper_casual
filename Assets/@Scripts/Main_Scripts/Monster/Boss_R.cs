@@ -13,7 +13,7 @@ public class Boss_R : Monster
     //카메라 / 스크린/ Hp 바
     private Camera mainCamera;
     private Vector2 screenBounds;
-    public Image HpBar;
+
 
     // UI 매니저
     public UIManager uiManager;

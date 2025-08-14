@@ -146,7 +146,7 @@ public abstract class Monster : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
-    public void TakeDamage(int damage)
+    protected virtual void TakeDamage(int damage)
     {
         this.hp -= damage;
 
