@@ -86,7 +86,7 @@ public abstract class Monster : MonoBehaviour
     }
 
     // Dev_S:공격 계산식 충돌 관련 계산로직
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어의 공격에 맞았을 때
         if (other.gameObject.CompareTag("BasicProjectile"))
@@ -99,6 +99,29 @@ public abstract class Monster : MonoBehaviour
             float damage = AttackManager.Instance.GetIceAttack().damage;
             TakeDamage(damage);
             // ApplySlowEffect();
+        }
+        else if (other.gameObject.CompareTag("HarpoonProjectile"))
+        {
+            float damage = AttackManager.Instance.GetIceAttack().damage;
+            TakeDamage(damage);
+            // ApplySlowEffect();
+        }
+        else if (other.gameObject.CompareTag("PetProjectile"))
+        {
+            float damage = AttackManager.Instance.GetIceAttack().damage;
+            TakeDamage(damage);
+            // ApplySlowEffect();
+        }
+        else if (other.gameObject.CompareTag("FlameProjectile"))
+        {
+            /*
+            float damage = AttackManager.Instance.GetIceAttack().damage;
+
+            FlameAttack flame = player.GetComponent<FlameAttack>();
+            flame.at
+
+            TakeDamage(damage);
+            */
         }
 
         // 플레이어와 직접 충돌했을 때

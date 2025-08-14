@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2131854480895868797}
   - component: {fileID: 8435673750423240812}
   - component: {fileID: -3971981186603101379}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '[Ice]Projetile'
-  m_TagString: Untagged
+  m_TagString: IceProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

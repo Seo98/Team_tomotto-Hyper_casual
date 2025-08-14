@@ -35,10 +35,11 @@ public class FlameProjectile : MonoBehaviour
             yield return new WaitForSeconds(flameAttack.damageInterval); // 0.1초 대기
 
             // 브레스 범위 내 모든 몬스터에게 데미지
-            DealDamageToMonstersInRange();
+            //DealDamageToMonstersInRange();
         }
     }
 
+    /*
     private void DealDamageToMonstersInRange()
     {
         // 브레스 콜라이더 범위 내 몬스터들 찾기
@@ -57,4 +58,5 @@ public class FlameProjectile : MonoBehaviour
             }
         }
     }
+    */
 }

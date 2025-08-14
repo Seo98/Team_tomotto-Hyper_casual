@@ -52,8 +52,6 @@ public class AttackManager : MonoBehaviour
 
     private void Update()
     {
-        // 테스트끝나면 다시풀거
-        /*
         if (feverManager.isFever && bossSpawner.isBoss && !feverSpeedApplied)
         {
             ApplyFeverSpeedBoost(); // 한 번만 실행
@@ -65,7 +63,6 @@ public class AttackManager : MonoBehaviour
             RemoveFeverSpeedBoost(); // 한 번만 복구
             feverSpeedApplied = false; // 플래그 해제
         }
-        */
     }
 
 
@@ -107,7 +104,9 @@ public class AttackManager : MonoBehaviour
         if (harpoonAttack != null) harpoonAttack.ResetToDefault();
 
         // BASIC만 활성화
-        basicAttack.Activate();
+        // FIXME : -> 인트로 씬에서 계속 발사되는 현상이 있어서 UI 매니저에서 스타트함수 호출시 활성하도록 설정해야하는데
+        // 스타트할떄 한번 싹 클리어해줘서 크게 이슈없을경우 현상유지, 이슈있을시 변경
+        basicAttack.Activate(); 
     }
 
 

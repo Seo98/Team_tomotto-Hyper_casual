@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4887999481837844027}
   - component: {fileID: -5996004943474831754}
   - component: {fileID: -446147039068876396}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '[Harpoon]Projectile'
-  m_TagString: Untagged
+  m_TagString: HarpoonProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

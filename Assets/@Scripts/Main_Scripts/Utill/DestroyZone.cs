@@ -12,22 +12,16 @@ public class DestroyZone : MonoBehaviour
 
         // Dev_H_8/6 : string 배열로 인스펙터에서 직접 태그들을 연결하는 방식으로 코드 줄일까 합니다
 
-        if (other.CompareTag("fireball"))
+        if (other.CompareTag("BasicProjectile"))
         Destroy(other.gameObject);
 
-        if (other.CompareTag("Monster"))
+        if (other.CompareTag("IceProjectile"))
         Destroy(other.gameObject);
 
-        if (other.CompareTag("BrokenShip"))
+        if (other.CompareTag("HarpoonProjectile"))
         Destroy(other.gameObject);
 
-        if (other.CompareTag("Rock"))
-        Destroy(other.gameObject);
-
-        if (other.CompareTag("Seaweed"))
-        Destroy(other.gameObject);
-
-        if (other.CompareTag("Whirlpool"))
+        if (other.CompareTag("PetProjectile"))
         Destroy(other.gameObject);
 
         if (other.CompareTag("Item"))
@@ -35,5 +29,8 @@ public class DestroyZone : MonoBehaviour
 
         if (other.CompareTag("EnemyBullet"))
         Destroy(other.gameObject);
+
+        if (other.CompareTag("Monster"))
+            Destroy(other.gameObject);
     }
 }

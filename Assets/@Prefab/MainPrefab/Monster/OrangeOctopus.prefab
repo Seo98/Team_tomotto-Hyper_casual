@@ -247,7 +247,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   hp: 3
+  stageGrowthRate: 1
   player: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
   monsterLevelUpTime: 30
   currentTime: 0
   expAmount: 0
@@ -288,7 +290,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
