@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class BaseAttack : MonoBehaviour
 {
-    [Header("공통 능력치")]
+    [Header("공돌 능력치")]
     public AttackType attackType;
     public float damage;
     public float spawnTime;

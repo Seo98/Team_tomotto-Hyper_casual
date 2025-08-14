@@ -6,6 +6,7 @@ public class BasicAttack : BaseAttack
     public int projectileCount = 1;
     public int maxProjectileCount = 3;  // 최대 발사체 개수
 
+    // 데미지는 여기서 초기화해줘요 최초에
     protected override void Initialize()
     {
         attackType = AttackType.BASIC;

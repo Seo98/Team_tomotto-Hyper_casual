@@ -96,6 +96,7 @@ public class AttackManager : MonoBehaviour
 
 
     // 초기화
+    // 추가타입 생기면 여기서도 그렇게 처리하면댑니당.
     public void InitializeAttacks()
     {
         // 모든 공격들 초기화
