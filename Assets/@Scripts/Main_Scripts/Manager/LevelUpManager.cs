@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -7,11 +8,16 @@ public class LevelUpManager : MonoBehaviour
 {
     // Dev_H : 경험치와 레벨 관리, 레벨에 따른 능력치 강화 (현재 공격력과 공격속도)를 다루는 스크립트
 
-    private enum stateType { AtdUp, AtsUp, AtcUp, Harpoon, Flame, Ice, Pet }
+    private enum skillType { AtkUp, AtkCountUp, Harpoon, Flame, Ice, Pet }
 
     [Header("UI 연결")]
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private GameObject levelUpUI;
+    [SerializeField] private Transform skillContants;
+
+    [Header("스킬 프리팹")]
+    [SerializeField] private List<skillType> allSkills;
+    [SerializeField] private GameObject[] skillPrefabs;
 
     public static LevelUpManager Instance { get; set; }
 
@@ -23,9 +29,6 @@ public class LevelUpManager : MonoBehaviour
     public int curExp = 0;
     public int curLevel = 1;
     public float maxExp = 100;
-
-    [SerializeField] private int slotAmount = 3;
-    [SerializeField] private GameObject[] skillPrefabs;
 
     private void Awake()
     {
@@ -78,9 +81,53 @@ public class LevelUpManager : MonoBehaviour
     // 현재는 가하는 데미지 +1, 공격속도 현재속도에 20%씩 증가
     private void SkillUp()
     {
-        // player.damage += 1f;
-        // player.spawnTime -= player.spawnTime / 5;
-
         levelUpUI.SetActive(true);
+
+        // 기존 버튼 삭제
+        foreach (Transform child in skillContants)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 랜덤 스킬 3개 선택
+        List<skillType> selectedSkills = GetRandomSkills(3);
+
+        // 버튼 생성
+        foreach (skillType skill in selectedSkills)
+        {
+            int index = (int)skill; // enum 순서를 index로 사용
+            GameObject prefab = skillPrefabs[index];
+
+            if (prefab == null)
+            {
+                Debug.LogError($"Skill prefab for {skill} is not assigned!");
+                continue; // 프리팹이 없으면 스킵
+            }
+
+            GameObject buttonObj = Instantiate(prefab, skillContants);
+            buttonObj.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                levelUpUI.SetActive(false);
+                Time.timeScale = 1f;
+            });
+        }
+
+        // 게임 일시정지
+        Time.timeScale = 0f;
+    }
+
+    private List<skillType> GetRandomSkills(int count)
+    {
+        List<skillType> tempList = new List<skillType>(allSkills);
+        List<skillType> result = new List<skillType>();
+
+        for (int i = 0; i < count; i++)
+        {
+            int randomIndex = Random.Range(0, tempList.Count);
+            result.Add(tempList[randomIndex]);
+            tempList.RemoveAt(randomIndex);
+        }
+
+        return result;
     }
 }
