@@ -3538,19 +3538,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelText: {fileID: 1210742537}
   levelUpUI: {fileID: 183480261}
+  skillContants: {fileID: 96823208}
+  allSkills: 000000000100000002000000030000000400000005000000
+  skillPrefabs:
+  - {fileID: 3598486442316204690, guid: dfda16b4bb319fa44934ccf0147b90bf, type: 3}
+  - {fileID: 5558188373622619559, guid: d1a14293c51c00e40b02bc03aa83e74e, type: 3}
+  - {fileID: 1118371671793376460, guid: c4bf7c4cccce88141920176fe85ce099, type: 3}
+  - {fileID: 5336659763239805640, guid: 3007eec1f4b39ce4392b0a6346bebcd4, type: 3}
+  - {fileID: 6975144564732629551, guid: 47d6b867712a1c04fa84afbb7029869e, type: 3}
+  - {fileID: 6793129074548617431, guid: 9c865c4e66bf39a46a6197bcc238c6a0, type: 3}
   player: {fileID: 1645635818}
   curExp: 0
   curLevel: 1
   maxExp: 100
-  slotAmount: 3
-  skillPrefabs:
-  - {fileID: 5558188373622619559, guid: d1a14293c51c00e40b02bc03aa83e74e, type: 3}
-  - {fileID: 3598486442316204690, guid: dfda16b4bb319fa44934ccf0147b90bf, type: 3}
-  - {fileID: 2840651492369257492, guid: 9ad66d861bbb17b4c9bc95a10fff39ff, type: 3}
-  - {fileID: 6793129074548617431, guid: 9c865c4e66bf39a46a6197bcc238c6a0, type: 3}
-  - {fileID: 5336659763239805640, guid: 3007eec1f4b39ce4392b0a6346bebcd4, type: 3}
-  - {fileID: 1118371671793376460, guid: c4bf7c4cccce88141920176fe85ce099, type: 3}
-  - {fileID: 6975144564732629551, guid: 47d6b867712a1c04fa84afbb7029869e, type: 3}
 --- !u!1 &735527970
 GameObject:
   m_ObjectHideFlags: 0
