@@ -17,6 +17,7 @@ public class Jellyfish : Monster
     // Dev_H: 경험치 부여량
     void Start()
     {
+        //damageText.text = ""; //체력바 안 닳을 때
         expAmount = 5;
     }
 

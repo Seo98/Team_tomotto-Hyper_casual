@@ -4,13 +4,19 @@ using UnityEngine;
 public class Cannonball : MonoBehaviour
 {
     public float speed = 10f;
+    public int fireDamage = 1;
 
     Vector3 dir = Vector3.up;
+
+    private void Awake()
+    {
+       
+    }
 
     private void Update()
     {
         transform.position += dir * speed * Time.deltaTime;
-        //위쪽으로 나간다
+
     }
 
     //충돌한 게 몬스터이거나 보스면 총알 사라지기

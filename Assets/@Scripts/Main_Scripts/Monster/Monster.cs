@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -22,12 +23,18 @@ public abstract class Monster : MonoBehaviour
     // 컴포넌트 및 참조
     private MonsterDropItem dropIt; // 은주님쪽 라인 참조
     public PlayerController player; // 은주님쪽 라인 참조
+    Cannonball fireball;
 
     protected Vector3 dir; // 이동 방향
     int dropPer;
 
     public float monsterLevelUpTime = 30;
     public float currentTime;
+
+    //데미지 텍스트 
+    public GameObject damageTextPrefab;
+    public Transform damageTextPos;
+
 
     SpriteRenderer sr;
     CapsuleCollider2D coll;
@@ -36,19 +43,22 @@ public abstract class Monster : MonoBehaviour
     public int expAmount;
 
     public Animator animator;
-
-
+  
     public GameObject particle;
+
+  
 
     protected virtual void OnEnable()
     {
         // 공통 초기화
         dropIt = GameObject.Find("DropManager [Active]").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        sManager = FindFirstObjectByType<SoundManager>();
+        sManager = FindFirstObjectByType<SoundManager>();      
+
         sr = GetComponent<SpriteRenderer>();
-        coll = GetComponent<CapsuleCollider2D>();
-        
+        coll = GetComponent<CapsuleCollider2D>();        
+
+
 
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
         Initialize();
@@ -91,7 +101,17 @@ public abstract class Monster : MonoBehaviour
         // 플레이어의 공격에 맞았을 때
         if (other.gameObject.CompareTag("fireball"))
         {
-            TakeDamage(player.damage);
+            fireball = FindFirstObjectByType<Cannonball>();
+            TakeDamage(fireball.fireDamage);
+            //hp -= fireball.fireDamage;
+
+            sManager.EventSoundPlay("damaged");
+            animator.SetTrigger("isHit");
+            if (hp <= 0)
+            {
+                Dead();
+                return;
+            }
         }
 
         // 플레이어와 직접 충돌했을 때
@@ -126,16 +146,14 @@ public abstract class Monster : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
     }
-
-    protected virtual void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
-        hp -= player.damage;
-        sManager.EventSoundPlay("damaged");
-        animator.SetTrigger("isHit");
-        if (hp <= 0)
-        {
-            Dead();
-            return;
-        }
+        this.hp -= damage;
+
+        // 데미지 텍스트 생성
+        GameObject dmgObj = Instantiate(damageTextPrefab, damageTextPos.position, Quaternion.identity);
+        dmgObj.transform.SetParent(damageTextPos); //빈 게임 오브젝트 자식으로 텍스트 생성
+        dmgObj.GetComponent<DamageText>().Setup(damage);
+
     }
 }

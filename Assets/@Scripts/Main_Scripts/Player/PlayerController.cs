@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public float spawnTime = 2f;
 
     //BonusItem bonusIt;
+    Cannonball fireball;
     ItemManager itManage;
     public FeverTimeManager fever;
     private Rigidbody2D rb;
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
         {
             isDamaged = true;
 
-            hp -= 1f;
+            hp -= 1;
 
             // dev_h : 기존 레이어 저장 (피해 입으면 잠깐동안 충돌 막으려고)
             int originalLayer = gameObject.layer;
@@ -224,4 +224,9 @@ public class PlayerController : MonoBehaviour
             isDamaged = false;
         }
     }
+    public void damageConnect(int cdamage)
+    {
+        //damage = cdamage; //캐논볼의 데미지를 받아옴
+    }
+    
 }
