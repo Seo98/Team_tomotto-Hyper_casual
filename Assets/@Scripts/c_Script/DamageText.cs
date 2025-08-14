@@ -54,7 +54,5 @@ public class DamageText : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-
 }
 

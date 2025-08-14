@@ -43,8 +43,7 @@ public abstract class Monster : MonoBehaviour
     public int expAmount;
 
     public Animator animator;
-
-    //public TextMeshProUGUI damageText;
+  
     public GameObject particle;
 
   
@@ -54,8 +53,7 @@ public abstract class Monster : MonoBehaviour
         // 공통 초기화
         dropIt = GameObject.Find("DropManager [Active]").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        sManager = FindFirstObjectByType<SoundManager>();
-        //uiManager = FindFirstObjectByType<UIManager>();
+        sManager = FindFirstObjectByType<SoundManager>();      
 
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<CapsuleCollider2D>();        
@@ -155,6 +153,7 @@ public abstract class Monster : MonoBehaviour
 
         // 데미지 텍스트 생성
         GameObject dmgObj = Instantiate(damageTextPrefab, damageTextPos.position, Quaternion.identity);
+        dmgObj.transform.SetParent(damageTextPos); //빈 게임 오브젝트 자식으로 텍스트 생성
         dmgObj.GetComponent<DamageText>().Setup(damage);
 
     }
