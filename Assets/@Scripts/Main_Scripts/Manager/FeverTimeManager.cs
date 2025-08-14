@@ -38,6 +38,8 @@ public class FeverTimeManager : MonoBehaviour
         player.fever_Invincibility = false;
 
     }
+
+
     private void Update()
     {
         while (feverImage.fillAmount < 1)
