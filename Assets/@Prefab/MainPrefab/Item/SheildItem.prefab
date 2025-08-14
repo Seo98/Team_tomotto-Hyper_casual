@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bonusItem: 0
-  fireball: {fileID: 0}
+  fireball: {fileID: 8414641013827326278, guid: 70142ed6a3aea2248a37cf461d0b6e47, type: 3}
   dir: {x: 0, y: 0, z: 0}
   speed: 3
 --- !u!61 &7960720104842095727
