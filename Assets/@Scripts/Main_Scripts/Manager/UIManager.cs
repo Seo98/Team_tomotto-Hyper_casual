@@ -302,14 +302,16 @@ public class UIManager : MonoBehaviour
 
     public void ClearAllBullets()
     {
-
         BaseAttack[] BaseAttacks = FindObjectsByType<BaseAttack>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
         foreach (BaseAttack baseAttack in BaseAttacks)
         {
-            Destroy(baseAttack.gameObject);
+            if (baseAttack.GetComponent<AttackManager>() == null)
+            {
+                Destroy(baseAttack.gameObject);
+            }
         }
-        
+
     }
 
     public void ClearAllEnemyBullets()

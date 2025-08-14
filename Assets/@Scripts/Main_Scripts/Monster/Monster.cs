@@ -23,7 +23,7 @@ public abstract class Monster : MonoBehaviour
     // 컴포넌트 및 참조
     private MonsterDropItem dropIt; // 은주님쪽 라인 참조
     public PlayerController player; // 은주님쪽 라인 참조
-    Cannonball fireball;
+    //Cannonball fireball;
 
     public Vector3 dir; // 이동 방향
     int dropPer;

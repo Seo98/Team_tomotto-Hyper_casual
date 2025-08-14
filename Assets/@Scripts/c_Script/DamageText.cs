@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class DamageText : MonoBehaviour
 {
 
-    public Cannonball fireball;
+    //public Cannonball fireball;
     //데미지 받으면 텍스트
     public GameObject hudDamageText;
     public Transform hudPos;
@@ -28,7 +28,7 @@ public class DamageText : MonoBehaviour
         }
     }
 
-    public void Setup(int damage)
+    public void Setup(float damage)
     {
         if (text == null)
         {

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     float timer;
 
     //BonusItem bonusIt;
-    Cannonball fireball;
+    //Cannonball fireball;
     ItemManager itManage;
     public FeverTimeManager fever;
     private Rigidbody2D rb;
