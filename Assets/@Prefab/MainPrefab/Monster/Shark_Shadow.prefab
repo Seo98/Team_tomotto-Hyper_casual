@@ -112,7 +112,7 @@ MonoBehaviour:
   monsterLevelUpTime: 30
   currentTime: 0
   damageTextPrefab: {fileID: 4501350978716665442, guid: b2a5612c4e0cd5f48bc8e01be09ebdbd, type: 3}
-  damageTextPos: {fileID: 5053268225163996029}
+  damageTextPos: {fileID: 2475078437741041609}
   expAmount: 0
   animator: {fileID: 0}
   particle: {fileID: 7982951103910973010}
@@ -175,7 +175,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &7163452590857188661
+--- !u!1 &2958356681871411801
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,33 +183,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5053268225163996029}
-  m_Layer: 5
+  - component: {fileID: 2475078437741041609}
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5053268225163996029
-RectTransform:
+--- !u!4 &2475078437741041609
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7163452590857188661}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 2958356681871411801}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.62, y: 0.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6880702324446961115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7982951103910973010
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +347,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5053268225163996029}
+  - {fileID: 2475078437741041609}
   m_Father: {fileID: 7032413071698927807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
