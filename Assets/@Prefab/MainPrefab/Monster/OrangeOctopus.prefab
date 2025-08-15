@@ -290,7 +290,7 @@ MonoBehaviour:
   currentTime: 0
   damageTextPrefab: {fileID: 4501350978716665442, guid: b2a5612c4e0cd5f48bc8e01be09ebdbd, type: 3}
   damageTextPos: {fileID: 1254312996760924606}
-  expAmount: 0
+  expAmount: 1000
   animator: {fileID: 5247234291781958639}
   particle: {fileID: 4794251336478533240}
   inkPrefab: {fileID: 3775194400798946777, guid: ae82f733271e9ca4f811e2fc07680077, type: 3}

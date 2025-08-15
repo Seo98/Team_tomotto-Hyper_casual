@@ -15,7 +15,7 @@ public class LevelUpManager : MonoBehaviour
     [SerializeField] private GameObject levelUpUI;
     [SerializeField] private Transform skillContants;
 
-    [Header("스킬 프리팹")]
+    [Header("스킬 데이터")]
     [SerializeField] private List<skillType> allSkills;
     [SerializeField] private GameObject[] skillPrefabs;
 
@@ -78,7 +78,6 @@ public class LevelUpManager : MonoBehaviour
     }
 
     // Dev_H: 레벨업시 능력치 상승
-    // 현재는 가하는 데미지 +1, 공격속도 현재속도에 20%씩 증가
     private void SkillUp()
     {
         levelUpUI.SetActive(true);
@@ -98,15 +97,11 @@ public class LevelUpManager : MonoBehaviour
             int index = (int)skill; // enum 순서를 index로 사용
             GameObject prefab = skillPrefabs[index];
 
-            if (prefab == null)
-            {
-                Debug.LogError($"Skill prefab for {skill} is not assigned!");
-                continue; // 프리팹이 없으면 스킵
-            }
-
             GameObject buttonObj = Instantiate(prefab, skillContants);
+
             buttonObj.GetComponent<Button>().onClick.AddListener(() =>
             {
+                ApplySkill(skill);
                 levelUpUI.SetActive(false);
                 Time.timeScale = 1f;
             });
@@ -129,5 +124,39 @@ public class LevelUpManager : MonoBehaviour
         }
 
         return result;
+    }
+
+    private void ApplySkill(skillType skill)
+    {
+        AttackManager atkManager = AttackManager.Instance;
+        Debug.Log("스킬획득 실행");
+
+        switch (skill)
+        {
+            case skillType.AtkUp:
+                atkManager.GetBasicAttack().Upgrade(1f, 0.3f);
+                Debug.Log("일반공격 강화");
+                break;
+            case skillType.AtkCountUp:
+                atkManager.GetBasicAttack().UpgradeProjectileCount();
+                Debug.Log("일반공격횟수 강화");
+                break;
+            case skillType.Harpoon:
+                atkManager.HarpoonAttack().Upgrade(1.5f, 0.2f);
+                Debug.Log("작살공격 획득");
+                break;
+            case skillType.Flame:
+                atkManager.GetFlameAttack().Upgrade(0.05f, 0.15f);
+                Debug.Log("화염공격 획득");
+                break;
+            case skillType.Ice:
+                atkManager.GetIceAttack().Upgrade(0.25f, 0.2f);
+                Debug.Log("얼음공격 획득");
+                break;
+            case skillType.Pet:
+                atkManager.GetPetAttack().Upgrade(0.5f, 0f);
+                Debug.Log("펫 획득");
+                break;
+        }
     }
 }
