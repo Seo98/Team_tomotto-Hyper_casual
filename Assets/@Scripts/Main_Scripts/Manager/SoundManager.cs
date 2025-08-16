@@ -13,12 +13,18 @@ public class SoundManager : MonoBehaviour
     [SerializeField] Slider bgmVolume;
     [SerializeField] Slider eventVolume;
 
+    [SerializeField] Slider bgmVolume2;
+    [SerializeField] Slider eventVolume2;
+
 
     public bool isGameEnd = false;
     private void Awake() //초기화 작업 
     {
         bgmVolume.value = bgmaudio.volume; //현재 오디오 볼륨을 슬라이더값으로
         eventVolume.value = eventAudio.volume;
+
+        bgmVolume2.value = bgmaudio.volume; //현재 오디오 볼륨을 슬라이더값으로
+        eventVolume2.value = eventAudio.volume;
 
     }
 
@@ -27,6 +33,9 @@ public class SoundManager : MonoBehaviour
         BgmSoundPlay("intro");
         bgmVolume.onValueChanged.AddListener(OnBgmVolumeChange);
         eventVolume.onValueChanged.AddListener(OnEventVolumeChange);
+
+        bgmVolume2.onValueChanged.AddListener(OnBgmVolumeChange);
+        eventVolume2.onValueChanged.AddListener(OnEventVolumeChange);
     }
 
     public void BgmSoundPlay(string clipname)

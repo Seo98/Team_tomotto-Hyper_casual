@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
     [Header("UI 연결")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI bestScoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreText2;
 
     [Header("점수 설정")]
     [SerializeField] private float score = 0f;
@@ -49,5 +50,10 @@ public class ScoreManager : MonoBehaviour
                 PlayerPrefs.SetInt("최고 점수", bestScore);
             }
         }
+    }
+    public void IntroScore() //dev_c : 인트로창에 표시할 스코어 함수
+    {
+        //PlayerPrefs.SetInt("최고 점수", bestScore);
+        bestScoreText2.text = $"{bestScore}";//Dev_c : 인트로 스코어창에 표시될 스코어       
     }
 }
