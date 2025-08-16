@@ -49,7 +49,7 @@ public class AttackManager : MonoBehaviour
     }
     private void Start()
     {
-        basicAttack.Activate();
+        
     }
 
     private void Update()

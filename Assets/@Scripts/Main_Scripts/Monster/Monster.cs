@@ -66,7 +66,9 @@ public abstract class Monster : MonoBehaviour
     }
     protected void SetBaseHP(float baseHP)
     {
-        hp = baseHP + stageHPBonus;
+        // 기본체력 * (1 + (스테이지 기본 배율 *몬스터별 성장률))
+        float finalMultiplier = 1f + (stageHPBonus * stageGrowthRate);
+        hp = baseHP * finalMultiplier;
         currHp = hp;
     }
 

@@ -81,11 +81,10 @@ public class PlayerController : MonoBehaviour
         isDamaged = false;
         isShield = false;
 
-        // 테스트끝나면 다시풀거
-        /*
+
         itManage.ShiledHeart.SetActive(false);
         itManage.Shiledimage.SetActive(false);
-        */
+
     }
 
     void Update()
@@ -97,41 +96,54 @@ public class PlayerController : MonoBehaviour
             return; // UI 위에 있으면 플레이어 조작 무시
         }
 
-        // 마우스 드래그 관련
-        if (Input.GetMouseButtonDown(0))
+        // 터치 입력 처리
+        if (Input.touchCount > 0)
         {
-            Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(new Vector2(mousePos.x, mousePos.y), Vector2.zero);
+            Touch touch = Input.GetTouch(0); // 첫 번째 터치만 사용
 
-            if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+            // 터치 시작
+            if (touch.phase == TouchPhase.Began)
             {
-                isDirectDrag = true;
+                Vector3 touchPos = mainCamera.ScreenToWorldPoint(touch.position);
+                RaycastHit2D hit = Physics2D.Raycast(new Vector2(touchPos.x, touchPos.y), Vector2.zero);
+                if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+                {
+                    isDirectDrag = true;
+                }
+                else
+                {
+                    isDirectDrag = false;
+                }
             }
-            else
+
+            // 터치 드래그 중
+            if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
             {
+                isDragging = true;
+                Vector3 screenPos = touch.position;
+                float camDistance = Vector3.Distance(transform.position, mainCamera.transform.position);
+                Vector3 worldPos = mainCamera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, camDistance));
+                float clampedX = Mathf.Clamp(worldPos.x, minX, maxX);
+                float clampedY = Mathf.Clamp(worldPos.y, minY, maxY);
+                targetPosition = new Vector2(clampedX, clampedY);
+            }
+
+            // 터치 끝
+            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+            {
+                isDragging = false;
                 isDirectDrag = false;
             }
         }
-
-        // 드래그 관련
-        if (Input.GetMouseButton(0))
-        {
-            isDragging = true;
-            Vector3 screenPos = Input.mousePosition;
-            float camDistance = Vector3.Distance(transform.position, mainCamera.transform.position);
-            Vector3 worldPos = mainCamera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, camDistance));
-
-            float clampedX = Mathf.Clamp(worldPos.x, minX, maxX);
-            float clampedY = Mathf.Clamp(worldPos.y, minY, maxY);
-            targetPosition = new Vector2(clampedX, clampedY);
-        }
         else
         {
+            // 터치가 없을 때
             isDragging = false;
             isDirectDrag = false;
         }
-        // 테스트끝나면 다시풀거
-        /*
+
+
+
         if (fever.isFever == true && fever_Invincibility == false)
         {
             int originalLayer = gameObject.layer;
@@ -140,11 +152,12 @@ public class PlayerController : MonoBehaviour
             isDamaged = false;
             fever_Invincibility = true;
         }
-        */
+
     }
 
     void FixedUpdate()
     {
+        
         // 드래그 관련 콜리더 hit가 아닐때 보정 이동합니다.
         if (isDragging)
         {
@@ -158,6 +171,7 @@ public class PlayerController : MonoBehaviour
                 rb.MovePosition(smoothedPosition);
             }
         }
+        
     }
 
     // dev_s : 실드 깨지는거 함수화
@@ -208,5 +222,5 @@ public class PlayerController : MonoBehaviour
     {
         //damage = cdamage; //캐논볼의 데미지를 받아옴
     }
-    
+
 }
