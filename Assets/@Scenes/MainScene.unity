@@ -1761,7 +1761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2EC\uC5F0\uC5D0 \uBB3B\uD600\uB77C"
+  m_text: "!! \uAD34\uC218 \uCD9C\uD604 !!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c91e397546b84634f8aec16d4fddb60c, type: 2}
   m_sharedMaterial: {fileID: -2498814145503533159, guid: c91e397546b84634f8aec16d4fddb60c, type: 2}
@@ -2094,7 +2094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d834bbdb5521f498c5afef26307948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createTime: 5
+  createTime: 4
   enemyFactory: {fileID: 538669075802798139, guid: 8f12da806e6851c4c83a781c723dde07, type: 3}
 --- !u!1 &220379937
 GameObject:
@@ -2944,7 +2944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d834bbdb5521f498c5afef26307948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createTime: 5
+  createTime: 4
   enemyFactory: {fileID: 538669075802798139, guid: 8f12da806e6851c4c83a781c723dde07, type: 3}
 --- !u!1 &417880539
 GameObject:
@@ -5263,7 +5263,7 @@ MonoBehaviour:
   levelText: {fileID: 1210742537}
   levelUpUI: {fileID: 183480261}
   skillContants: {fileID: 96823208}
-  allSkills: 000000000100000002000000030000000400000005000000
+  allSkills: 00000000010000000200000003000000040000000500000006000000
   skillPrefabs:
   - {fileID: 6284891644732236618, guid: 35ea63f888d29cb40be3aa92e1d2809c, type: 3}
   - {fileID: 8725220869675683781, guid: 1ce0a6b0661dafc49b19d3f2daaddea5, type: 3}
@@ -5271,6 +5271,7 @@ MonoBehaviour:
   - {fileID: 2000136504811127419, guid: bc61553397ee1544a819f9357324cfe1, type: 3}
   - {fileID: 412718938229063517, guid: bda872241d59b7b4da5fa31fbf14e5c7, type: 3}
   - {fileID: 313109431185440328, guid: f1729a082b0a59a48a736b323e325097, type: 3}
+  - {fileID: 412718938229063517, guid: 53cf4d53200ad5e459dad0334ca8a0f6, type: 3}
   player: {fileID: 6657169080855802578}
   curExp: 0
   curLevel: 1
@@ -11955,7 +11956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d834bbdb5521f498c5afef26307948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createTime: 5
+  createTime: 4
   enemyFactory: {fileID: 538669075802798139, guid: 8f12da806e6851c4c83a781c723dde07, type: 3}
 --- !u!1 &2091816408
 GameObject:

@@ -4,7 +4,7 @@ using static UnityEngine.GraphicsBuffer;
 public class HarpoonProjectile : MonoBehaviour
 {
     [Header("기본 설정")]
-    public float speed = 8f;
+    public float speed = 12f;
     public float lifeTime = 7f; // 7초 후 자동 삭제
 
     private Vector3 direction;

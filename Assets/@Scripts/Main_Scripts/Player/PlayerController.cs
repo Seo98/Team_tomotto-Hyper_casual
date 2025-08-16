@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 능력치")]
     public float moveSpeed = 0.2f;
     public float hp = 3f;
-    public int score = 0; // 이거없어도 될거같은
+    public float maxHp = 3f;
 
     [Header("상태")]
     public bool isAttack = false;

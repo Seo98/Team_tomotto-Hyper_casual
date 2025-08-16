@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LevelUpManager : MonoBehaviour
 {
-    private enum skillType { AtkUp, AtkCountUp, Harpoon, Flame, Ice, Pet }
+    private enum skillType { AtkUp, AtkCountUp, Harpoon, Flame, Ice, Pet, Heal }
     SoundManager sManager;
 
     [Header("UI 연결")]
@@ -156,6 +156,9 @@ public class LevelUpManager : MonoBehaviour
                 break;
             case skillType.Pet:
                 atkManager.GetPetAttack().Upgrade(0.2f, 0f);
+                break;
+            case skillType.Heal:
+                player.hp = Mathf.Min(player.hp + 1, player.maxHp);
                 break;
         }
     }

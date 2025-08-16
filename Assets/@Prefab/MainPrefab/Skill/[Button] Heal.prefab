@@ -188,7 +188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4893381700976686955, guid: 31c5b6783c6d7a948ad5e2a68c0afc5d, type: 3}
+  m_Sprite: {fileID: -7030609315507195921, guid: 56bbc5d03be346740991a633899a1ee5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -263,9 +263,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ice
+  m_text: 'HP
 
-    Missile'
+    Heal'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c91e397546b84634f8aec16d4fddb60c, type: 2}
   m_sharedMaterial: {fileID: -2498814145503533159, guid: c91e397546b84634f8aec16d4fddb60c, type: 2}
