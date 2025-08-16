@@ -8,7 +8,7 @@ public class LevelUpManager : MonoBehaviour
 {
     // Dev_H : 경험치와 레벨 관리, 레벨에 따른 능력치 강화 (현재 공격력과 공격속도)를 다루는 스크립트
     private enum skillType { AtkUp, AtkCountUp, Harpoon, Flame, Ice, Pet }
-
+    SoundManager sManager;
 
     [Header("UI 연결")]
     [SerializeField] private TextMeshProUGUI levelText;
@@ -37,6 +37,7 @@ public class LevelUpManager : MonoBehaviour
 
         levelText.text = "Lv : 1"; // Dev_H: 초기 레벨 표시
         levelUpUI.SetActive(false);
+        sManager = FindFirstObjectByType<SoundManager>();
     }
 
     // Dev_H: Monster 스크립트에서 GiveExp 함수에서 기능
@@ -80,6 +81,7 @@ public class LevelUpManager : MonoBehaviour
     // Dev_H: 레벨업시 능력치 상승
     private void SkillUp()
     {
+        sManager.EventSoundPlay("Level up");
         levelUpUI.SetActive(true);
 
         // 기존 버튼 삭제

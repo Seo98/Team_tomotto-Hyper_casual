@@ -60,7 +60,8 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        sManager = FindFirstObjectByType<SoundManager>();
+
+        sManager = FindFirstObjectByType<SoundManager>();        
     }
 
     private void Start()
@@ -76,7 +77,7 @@ public class UIManager : MonoBehaviour
     {
         PlayerPos.transform.position = new Vector3(0, -5.4f, 0); // 유저 초기위치 초기화
 
-        sManager.BgmSoundPlay("Gb 1"); // 스타트시 브금재생
+        sManager.GamePlayBGM(); // 스타트시 브금재생
 
         introObj.SetActive(false); // 필요없는 UI제거
 
@@ -140,6 +141,7 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
+
         introObj.SetActive(false);
 
         startGameUI.SetActive(false);
@@ -152,6 +154,7 @@ public class UIManager : MonoBehaviour
 
         if (sManager.isGameEnd == false)
         {
+            sManager.BgmSoundStop();
             sManager.isGameEnd = true;
             sManager.EventSoundPlay("GameOver");
         }
@@ -179,7 +182,7 @@ public class UIManager : MonoBehaviour
 
     public void NextStage()
     {
-        sManager.BgmSoundPlay("Gb 1"); // 넥스트 진행시 브금재생
+        sManager.GamePlayBGM(); // 넥스트 진행시 브금재생
         currentStage++;
         Monster.stageHPBonus = (currentStage - 1) * stageHPIncrease;
         Debug.Log($"Stage {currentStage} Start! Monster HP Bonus: +{Monster.stageHPBonus}");

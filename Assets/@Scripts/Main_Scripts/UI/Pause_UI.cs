@@ -81,6 +81,7 @@ public class Pause_UI : MonoBehaviour
 
     public void GoHome()
     {
+        
         Time.timeScale = 1f;
         s_isPaused = false;
 
@@ -104,8 +105,8 @@ public class Pause_UI : MonoBehaviour
         uiManger.ClearAllItems();
         uiManger.ClearAllEnemyBullets();
 
-        soundManager.BgmSoundStop();
-        soundManager.BgmSoundPlay("Gb 1");
+        //soundManager.BgmSoundStop();
+        soundManager.Intro();
 
         //
 

@@ -19,11 +19,12 @@ public class SoundManager : MonoBehaviour
     {
         bgmVolume.value = bgmaudio.volume; //현재 오디오 볼륨을 슬라이더값으로
         eventVolume.value = eventAudio.volume;
+
     }
 
     private void Start()
-    {
-        BgmSoundPlay("Gb 1");
+    {       
+        BgmSoundPlay("intro");
         bgmVolume.onValueChanged.AddListener(OnBgmVolumeChange);
         eventVolume.onValueChanged.AddListener(OnEventVolumeChange);
     }
@@ -83,5 +84,14 @@ public class SoundManager : MonoBehaviour
         eventAudio.volume = volume;
     }
     
+    public void Intro()
+    {
+        BgmSoundPlay("intro");
+    }
+
+    public void GamePlayBGM()
+    {
+        BgmSoundPlay("newBGM1");
+    }
 }
 
