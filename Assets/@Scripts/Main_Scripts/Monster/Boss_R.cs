@@ -133,7 +133,7 @@ public class Boss_R : Monster
 
     protected override void Initialize()
     {
-        stageGrowthRate = 1f;
+        stageGrowthRate *= 3f;
         SetBaseHP(300f);
         UpdateBar();
     }
