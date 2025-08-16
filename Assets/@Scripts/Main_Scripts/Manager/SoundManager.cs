@@ -40,7 +40,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {       
-        BgmSoundPlay("intro");
+        //BgmSoundPlay("intro");
         bgmVolume.onValueChanged.AddListener(OnBgmVolumeChange);
         eventVolume.onValueChanged.AddListener(OnEventVolumeChange);
 

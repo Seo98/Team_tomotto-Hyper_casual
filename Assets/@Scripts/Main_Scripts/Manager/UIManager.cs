@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Button startbutton;
     public Button restratButton;
     public Button homeButton;
+    public Button homeButton2;
     public Button nextButton;
 
     [Header("UI 오브젝트(부모)")]
@@ -73,6 +74,7 @@ public class UIManager : MonoBehaviour
         restratButton.onClick.AddListener(StartGame);
         Pause_UI home = FindFirstObjectByType<Pause_UI>();
         homeButton.onClick.AddListener(home.GoHome);
+        homeButton2.onClick.AddListener(home.GoHome);
         nextButton.onClick.AddListener(NextStage);
     }
 
