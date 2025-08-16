@@ -12,7 +12,7 @@ public class PetAttack : BaseAttack
     protected override void Initialize() // 초기 데이터
     {
         attackType = AttackType.PET;
-        damage = 1f;
+        damage = 0.4f;
     }
 
     private void Update()

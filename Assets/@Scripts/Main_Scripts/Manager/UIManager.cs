@@ -136,7 +136,8 @@ public class UIManager : MonoBehaviour
         playerController.hp = 3f;
         AttackManager.Instance.InitializeAttacks();
         LevelUpManager.Instance.LevelInit();
-        
+
+
     }
 
     public void GameOver()

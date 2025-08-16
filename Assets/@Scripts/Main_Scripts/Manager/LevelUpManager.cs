@@ -76,6 +76,7 @@ public class LevelUpManager : MonoBehaviour
     {
         curLevel = 1;
         curExp = 0;
+        maxExp = 100;
         levelText.text = "Lv : " + curLevel;
     }
 
@@ -143,27 +144,27 @@ public class LevelUpManager : MonoBehaviour
         switch (skill)
         {
             case skillType.AtkUp:
-                atkManager.GetBasicAttack().Upgrade(1f, 0.3f);
-                Debug.Log("일반공격 강화");
+                atkManager.GetBasicAttack().Upgrade(0.5f, 0.2f);
+                Debug.Log($"일반공격 강화");
                 break;
             case skillType.AtkCountUp:
                 atkManager.GetBasicAttack().UpgradeProjectileCount();
-                Debug.Log($"일반공격횟수 강화 ({skillLevels[skill]}/{AtkCountUpMax})");
+                Debug.Log("일반공격횟수 강화)");
                 break;
             case skillType.Harpoon:
-                atkManager.HarpoonAttack().Upgrade(1.5f, 0.2f);
+                atkManager.HarpoonAttack().Upgrade(1f, 0.2f);
                 Debug.Log("작살공격 획득");
                 break;
             case skillType.Flame:
-                atkManager.GetFlameAttack().Upgrade(0.05f, 0.15f);
+                atkManager.GetFlameAttack().Upgrade(0.02f, 0.15f);
                 Debug.Log("화염공격 획득");
                 break;
             case skillType.Ice:
-                atkManager.GetIceAttack().Upgrade(0.25f, 0.2f);
+                atkManager.GetIceAttack().Upgrade(0.2f, 0.2f);
                 Debug.Log("얼음공격 획득");
                 break;
             case skillType.Pet:
-                atkManager.GetPetAttack().Upgrade(0.5f, 0f);
+                atkManager.GetPetAttack().Upgrade(0.2f, 0f);
                 Debug.Log("펫 획득");
                 break;
         }
