@@ -14,7 +14,7 @@ public class Shark : Monster
 
         isFollowing = true;
 
-        stageGrowthRate = 1f;
+        stageGrowthRate *= 3f;
         SetBaseHP(1f);
         speed = 2f;
     }
@@ -23,7 +23,7 @@ public class Shark : Monster
     void Start()
     {
         //damageText.text = ""; //체력바 안 닳을 때
-        expAmount = 15;
+        expAmount = 20;
     }
 
     void Update()

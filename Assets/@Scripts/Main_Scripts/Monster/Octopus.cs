@@ -23,7 +23,7 @@ public class Octopus : Monster
     {
         animator = GetComponent<Animator>();
 
-        stageGrowthRate = 1f;
+        stageGrowthRate *= 1.5f;
         SetBaseHP(1f);
 
         speed = 1f;

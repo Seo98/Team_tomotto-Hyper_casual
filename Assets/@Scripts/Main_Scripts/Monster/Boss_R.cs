@@ -51,7 +51,7 @@ public class Boss_R : Monster
     public float homingBurstSpeed = 8f;
     public float timeBetweenHomingShots = 0.2f; // 연사 간격
 
-    [Header("패턴 3 : 개지랄")]
+    [Header("패턴 3 : 발광")]
     public int spiralBulletCount = 45;
     public float spiralBulletSpeed = 5f;
     public float spiralBulletDelay = 0.04f;
@@ -134,7 +134,7 @@ public class Boss_R : Monster
     protected override void Initialize()
     {
         stageGrowthRate = 1f;
-        SetBaseHP(500f);
+        SetBaseHP(300f);
         UpdateBar();
     }
 

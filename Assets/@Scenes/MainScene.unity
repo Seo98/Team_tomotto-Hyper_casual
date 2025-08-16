@@ -6426,7 +6426,7 @@ MonoBehaviour:
   spawnTime: 0
   isActive: 0
   petPrefab: {fileID: 8598439341429744869, guid: 018b742181e1d2a41ab85bba51d0808f, type: 3}
-  petBulletPrefab: {fileID: 8493165749912826780, guid: 70142ed6a3aea2248a37cf461d0b6e47, type: 3}
+  petBulletPrefab: {fileID: 8493165749912826780, guid: 30c74b7a81d96d84d8d4bfe8b1bdb6b1, type: 3}
 --- !u!114 &923437227
 MonoBehaviour:
   m_ObjectHideFlags: 0
