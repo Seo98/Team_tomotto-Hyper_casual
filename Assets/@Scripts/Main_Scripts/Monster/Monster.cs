@@ -11,6 +11,7 @@ public abstract class Monster : MonoBehaviour
     [Header("기본 능력치")]
     public float speed;
     public float hp;
+    public float currHp;
     SoundManager sManager;
     private bool isInFlame = false; // 각 몬스터마다 개별 상태
 
@@ -56,8 +57,8 @@ public abstract class Monster : MonoBehaviour
         sManager = FindFirstObjectByType<SoundManager>();      
 
         sr = GetComponent<SpriteRenderer>();
-        coll = GetComponent<CapsuleCollider2D>();        
-
+        coll = GetComponent<CapsuleCollider2D>();
+        
 
 
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
@@ -66,6 +67,7 @@ public abstract class Monster : MonoBehaviour
     protected void SetBaseHP(float baseHP)
     {
         hp = baseHP + stageHPBonus;
+        currHp = hp;
     }
 
     protected abstract void Initialize(); // Dev_S: 여기서 코드쓰면 안되고 자식에서 오버라이딩 쓰고 쓰셔야해요 애들마다 맨처음 hp 달라야할거같아서 
@@ -179,14 +181,14 @@ public abstract class Monster : MonoBehaviour
     }
     public virtual void TakeDamage(float damage)
     {
-        hp -= damage;
+        currHp -= damage;
         GameObject dmgObj = Instantiate(damageTextPrefab, damageTextPos.position, Quaternion.identity);
         dmgObj.transform.SetParent(damageTextPos); //빈 게임 오브젝트 자식으로 텍스트 생성
         dmgObj.GetComponent<DamageText>().Setup(damage);
 
         sManager.EventSoundPlay("damaged");
         animator.SetTrigger("isHit");
-        if (hp <= 0)
+        if (currHp <= 0)
         {
             Dead();
             return;

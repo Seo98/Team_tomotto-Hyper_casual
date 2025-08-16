@@ -19,7 +19,7 @@ public class Boss_R : Monster
     public UIManager uiManager;
 
     //Hpbar 
-    public Image Hpbar;
+    public Image Hpbar;    
 
     // 공격 세팅
     [Header("총알 프리팹 / 발사 포지션")]
@@ -94,7 +94,8 @@ public class Boss_R : Monster
 
     protected override void OnEnable()
     {
-        base.OnEnable();
+        base.OnEnable();     
+
     }
 
     public void BossSetting()
@@ -134,6 +135,7 @@ public class Boss_R : Monster
     {
         stageGrowthRate = 1f;
         SetBaseHP(1000f);
+        UpdateBar();
     }
 
     private IEnumerator IdleState()
@@ -465,7 +467,14 @@ public class Boss_R : Monster
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
-        Hpbar.fillAmount -= damage /100f;
+        currHp = Mathf.Clamp(currHp, 0, hp);
+        UpdateBar();
+    }
+
+    public void UpdateBar()
+    {        
+        Hpbar.fillAmount = currHp / hp;
+
     }
 
     
