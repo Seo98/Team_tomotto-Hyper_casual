@@ -51,14 +51,12 @@ public class BasicAttack : BaseAttack
 
     public override void Upgrade(float damageIncrease, float spawnSpeedIncrease)
     {
-        Debug.Log("일반공격 강화2");
         damage += damageIncrease;
         spawnTime = Mathf.Max(0.1f, spawnTime - spawnSpeedIncrease);
     }
 
     public void UpgradeProjectileCount()
     {
-        Debug.Log("일반공격횟수 강화2");
         if (projectileCount < maxProjectileCount)
             projectileCount++;
     }

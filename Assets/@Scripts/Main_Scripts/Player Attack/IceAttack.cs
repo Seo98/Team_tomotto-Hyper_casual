@@ -33,7 +33,6 @@ public class IceAttack : BaseAttack
 
     public override void Upgrade(float damageIncrease, float spawnSpeedIncrease)
     {
-        Debug.Log("얼음공격 획득2");
         isActive = true;
         damage += damageIncrease;
         spawnTime = Mathf.Max(0.1f, spawnTime - spawnSpeedIncrease);

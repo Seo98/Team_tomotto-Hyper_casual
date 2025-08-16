@@ -48,7 +48,6 @@ public class LevelUpManager : MonoBehaviour
     public void AddExp(int expAmount)
     {
         curExp += expAmount;
-        Debug.Log($"Exp +{expAmount}, 현재: {curExp}");
 
         if (curExp >= maxExp)
         {
@@ -63,8 +62,6 @@ public class LevelUpManager : MonoBehaviour
         curExp = 0;
         maxExp += maxExp / 2f;
         LevelDisplay();
-
-        Debug.Log($"Level Up! 현재 레벨: {curLevel}");
     }
 
     public void LevelDisplay()
@@ -136,7 +133,6 @@ public class LevelUpManager : MonoBehaviour
     private void ApplySkill(skillType skill)
     {
         AttackManager atkManager = AttackManager.Instance;
-        Debug.Log("스킬획득 실행");
 
         // 카운트 증가
         skillLevels[skill]++;
@@ -145,27 +141,21 @@ public class LevelUpManager : MonoBehaviour
         {
             case skillType.AtkUp:
                 atkManager.GetBasicAttack().Upgrade(0.5f, 0.2f);
-                Debug.Log($"일반공격 강화");
                 break;
             case skillType.AtkCountUp:
                 atkManager.GetBasicAttack().UpgradeProjectileCount();
-                Debug.Log("일반공격횟수 강화)");
                 break;
             case skillType.Harpoon:
                 atkManager.HarpoonAttack().Upgrade(1f, 0.2f);
-                Debug.Log("작살공격 획득");
                 break;
             case skillType.Flame:
                 atkManager.GetFlameAttack().Upgrade(0.02f, 0.15f);
-                Debug.Log("화염공격 획득");
                 break;
             case skillType.Ice:
                 atkManager.GetIceAttack().Upgrade(0.2f, 0.2f);
-                Debug.Log("얼음공격 획득");
                 break;
             case skillType.Pet:
                 atkManager.GetPetAttack().Upgrade(0.2f, 0f);
-                Debug.Log("펫 획득");
                 break;
         }
     }

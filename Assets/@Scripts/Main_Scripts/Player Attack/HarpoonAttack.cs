@@ -30,7 +30,6 @@ public class HarpoonAttack : BaseAttack
 
     public override void Upgrade(float damageIncrease, float spawnSpeedIncrease)
     {
-        Debug.Log("작살공격 획득2");
         isActive = true;
         damage += damageIncrease;
         spawnTime = Mathf.Max(0.1f, spawnTime - spawnSpeedIncrease);
