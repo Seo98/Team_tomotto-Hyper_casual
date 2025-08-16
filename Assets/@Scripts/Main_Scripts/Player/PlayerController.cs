@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
-
+using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     // Dev_s : 은주님라인
@@ -9,33 +8,23 @@ public class PlayerController : MonoBehaviour
     [Header("플레이어 능력치")]
     public float moveSpeed = 0.2f;
     public float hp = 3f;
-    public float damage = 1f; // < 이 변수가 변경되면 실제 데미지 상승입니다 Canonball 스크립트 변수 damage는 안사용해요!
-    public int score = 0;
+    public int score = 0; // 이거없어도 될거같은
 
     [Header("상태")]
     public bool isAttack = false;
     public bool isShield = false;
     public bool isDamaged = false;
 
-    // 여기 아래에 있는거 헤더로 묶어서 정리하면 보기 편할거같긴해요
-
-    [Header("프리팹")]
-    public GameObject cannonPrefab;
-    public GameObject firePosition;
-    public GameObject feverFirePosition_1;
-    public GameObject feverFirePosition_2;
-
-
     float timer;
-    public float spawnTime = 2f;
 
     //BonusItem bonusIt;
+    //Cannonball fireball;
     ItemManager itManage;
     public FeverTimeManager fever;
     private Rigidbody2D rb;
 
     //Dev_s 
-    private BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
+    public BossSpawner boss; // 진짜 큰일났다 스파게티가 되가고있어요
 
     //Dev_H
     private SpriteRenderer sr;
@@ -60,12 +49,11 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         itManage = FindFirstObjectByType<ItemManager>();
         mainCamera = Camera.main;
-        boss = GameObject.FindFirstObjectByType<BossSpawner>();
 
         // 마우스 드래그 관련
         float camDistance = Vector3.Distance(transform.position, mainCamera.transform.position);
         Vector3 bottomLeft = mainCamera.ScreenToWorldPoint(new Vector3(0, 0, camDistance));
-        Vector3 topRight = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 3f, camDistance));
+        Vector3 topRight = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height / 3f + 6.5f, camDistance));
 
         if (!firstStart)
         {
@@ -87,11 +75,27 @@ public class PlayerController : MonoBehaviour
         Color c = sr.color;
         c.a = 1f;
         sr.color = c;
+
+        gameObject.layer = LayerMask.NameToLayer("Player");
+
+        isDamaged = false;
+        isShield = false;
+
+        // 테스트끝나면 다시풀거
+        /*
+        itManage.ShiledHeart.SetActive(false);
+        itManage.Shiledimage.SetActive(false);
+        */
     }
 
     void Update()
     {
         timer += Time.deltaTime;
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return; // UI 위에 있으면 플레이어 조작 무시
+        }
 
         // 마우스 드래그 관련
         if (Input.GetMouseButtonDown(0))
@@ -126,26 +130,8 @@ public class PlayerController : MonoBehaviour
             isDragging = false;
             isDirectDrag = false;
         }
-
-        #region 대포알 생성
-        if (timer > spawnTime && !fever.isFever) //피버 타임 아닐 때만 2초마다 대포알 생성 
-        {
-            timer = 0;
-            GameObject bullet = Instantiate(cannonPrefab, firePosition.transform.position, Quaternion.identity);
-            bullet.transform.parent = this.transform;
-        }
-        #endregion
-
-        // Dev_S : 여기서 피버타임 2일경우 조건에 따라 2개 발사
-        if (timer > spawnTime && fever.isFever && boss.isBoss)
-        {
-            timer = 0;
-            GameObject bullet = Instantiate(cannonPrefab, feverFirePosition_1.transform.position, Quaternion.identity);
-            GameObject bullet2 = Instantiate(cannonPrefab, feverFirePosition_2.transform.position, Quaternion.identity);
-            bullet.transform.parent = this.transform;
-            bullet2.transform.parent = this.transform;
-        }
-
+        // 테스트끝나면 다시풀거
+        /*
         if (fever.isFever == true && fever_Invincibility == false)
         {
             int originalLayer = gameObject.layer;
@@ -154,6 +140,7 @@ public class PlayerController : MonoBehaviour
             isDamaged = false;
             fever_Invincibility = true;
         }
+        */
     }
 
     void FixedUpdate()
@@ -188,7 +175,7 @@ public class PlayerController : MonoBehaviour
         {
             isDamaged = true;
 
-            hp -= 1f;
+            hp -= 1;
 
             // dev_h : 기존 레이어 저장 (피해 입으면 잠깐동안 충돌 막으려고)
             int originalLayer = gameObject.layer;
@@ -217,4 +204,9 @@ public class PlayerController : MonoBehaviour
             isDamaged = false;
         }
     }
+    public void damageConnect(int cdamage)
+    {
+        //damage = cdamage; //캐논볼의 데미지를 받아옴
+    }
+    
 }

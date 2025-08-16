@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -10,17 +11,31 @@ public abstract class Monster : MonoBehaviour
     [Header("기본 능력치")]
     public float speed;
     public float hp;
+    public float currHp;
     SoundManager sManager;
+    private bool isInFlame = false; // 각 몬스터마다 개별 상태
+
+    [Header("스테이지에 따른 hp 더하기")]
+    public static float stageHPBonus = 0f; // 스테이지별 HP 보너스
+
+    [Header("스테이지별 각 몬스터 성장률")]
+    public float stageGrowthRate = 1f; // 각 몬스터의 성장 배율
 
     // 컴포넌트 및 참조
     private MonsterDropItem dropIt; // 은주님쪽 라인 참조
     public PlayerController player; // 은주님쪽 라인 참조
+    //Cannonball fireball;
 
-    protected Vector3 dir; // 이동 방향
+    public Vector3 dir; // 이동 방향
     int dropPer;
 
     public float monsterLevelUpTime = 30;
     public float currentTime;
+
+    //데미지 텍스트 
+    public GameObject damageTextPrefab;
+    public Transform damageTextPos;
+
 
     SpriteRenderer sr;
     CapsuleCollider2D coll;
@@ -29,24 +44,32 @@ public abstract class Monster : MonoBehaviour
     public int expAmount;
 
     public Animator animator;
-
-
+  
     public GameObject particle;
+
+  
 
     protected virtual void OnEnable()
     {
         // 공통 초기화
         dropIt = GameObject.Find("DropManager [Active]").GetComponent<MonsterDropItem>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        sManager = FindFirstObjectByType<SoundManager>();
+        sManager = FindFirstObjectByType<SoundManager>();      
+
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<CapsuleCollider2D>();
         
 
+
         // Dev_S: 자식 클래스에서 구현할 개별 몬스터 초기화 호출
         Initialize();
     }
-    
+    protected void SetBaseHP(float baseHP)
+    {
+        hp = baseHP + stageHPBonus;
+        currHp = hp;
+    }
+
     protected abstract void Initialize(); // Dev_S: 여기서 코드쓰면 안되고 자식에서 오버라이딩 쓰고 쓰셔야해요 애들마다 맨처음 hp 달라야할거같아서 
 
     protected virtual void MonsterLevelUp() // Dev_S: 몬스터 레벨업 기능 // 웨이브 레벨업 시스템
@@ -74,20 +97,54 @@ public abstract class Monster : MonoBehaviour
         GiveExp();  // Dev_H: 경험치 부여하는 함수 호출
     }
 
+
+
+    // 지속데미지 처리 관련
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("FlameProjectile"))
+        {
+            if (!isInFlame)
+            {
+                isInFlame = true;
+                StartCoroutine(FlameDatamageDamage());
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("FlameProjectile"))
+        {
+            isInFlame = false;
+        }
+    }
+
     // Dev_S:공격 계산식 충돌 관련 계산로직
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어의 공격에 맞았을 때
-        if (other.gameObject.CompareTag("fireball"))
+        if (other.gameObject.CompareTag("BasicProjectile"))
         {
-            hp -= player.damage;
-            sManager.EventSoundPlay("damaged");
-            animator.SetTrigger("isHit");
-            if (hp <= 0)
-            {
-                Dead();
-                return;
-            }
+            float damage = AttackManager.Instance.GetBasicAttack().damage;
+            TakeDamage(damage);
+        }
+        if (other.gameObject.CompareTag("IceProjectile"))
+        {
+            float damage = AttackManager.Instance.GetIceAttack().damage;
+            TakeDamage(damage);
+            // ApplySlowEffect();
+        }
+        if (other.gameObject.CompareTag("HarpoonProjectile"))
+        {
+            float damage = AttackManager.Instance.GetIceAttack().damage;
+            TakeDamage(damage);
+            // ApplySlowEffect();
+        }
+        if (other.gameObject.CompareTag("PetProjectile"))
+        {
+            float damage = AttackManager.Instance.GetIceAttack().damage;
+            TakeDamage(damage);
+            // ApplySlowEffect();
         }
 
         // 플레이어와 직접 충돌했을 때
@@ -113,7 +170,7 @@ public abstract class Monster : MonoBehaviour
 
     protected void GiveExp() // Dev_H: 경험치 부여하는 기능
     {
-        EXPManager.Instance.AddExp(expAmount);
+        LevelUpManager.Instance.AddExp(expAmount);
     }
     IEnumerator Wait()
     {
@@ -121,6 +178,29 @@ public abstract class Monster : MonoBehaviour
         sr.enabled = false;
         yield return new WaitForSeconds(0.1f);
         Destroy(gameObject);
+    }
+    public virtual void TakeDamage(float damage)
+    {
+        currHp -= damage;
+        GameObject dmgObj = Instantiate(damageTextPrefab, damageTextPos.position, Quaternion.identity);
+        dmgObj.transform.SetParent(damageTextPos); //빈 게임 오브젝트 자식으로 텍스트 생성
+        dmgObj.GetComponent<DamageText>().Setup(damage);
+
+        sManager.EventSoundPlay("damaged");
+        animator.SetTrigger("isHit");
+        if (currHp <= 0)
+        {
+            Dead();
+            return;
+        }
+    }
+    private IEnumerator FlameDatamageDamage()
+    {
+        while (isInFlame)
+        {
+            TakeDamage(AttackManager.Instance.GetFlameAttack().damage);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
 }

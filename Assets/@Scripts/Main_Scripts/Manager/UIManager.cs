@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +11,17 @@ public class UIManager : MonoBehaviour
     [Header("UI 오브젝트(버튼)")]
     public Button startbutton;
     public Button restratButton;
+    public Button homeButton;
+    public Button nextButton;
 
     [Header("UI 오브젝트(부모)")]
     public GameObject introObj;
     public GameObject startGameUI;
     public GameObject startGame;
     public GameObject gameOverUI;
+    public GameObject gameClearUI;
 
+    [Header("UI 오브젝트(체력)")]
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
@@ -46,6 +49,10 @@ public class UIManager : MonoBehaviour
     public GameObject PlayerPos;
     public GameObject[] MonsterSpawner;
 
+    [Header("스테이지 관리")]
+    public int currentStage = 1;
+    public float stageHPIncrease = 1f;
+
 
     #region 사운드 관련 조건값
     private bool isWarringSound;
@@ -53,20 +60,28 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        sManager = FindFirstObjectByType<SoundManager>();
+
+        sManager = FindFirstObjectByType<SoundManager>();        
     }
 
     private void Start()
     {
         startbutton.onClick.AddListener(StartGame);
         restratButton.onClick.AddListener(StartGame);
+        Pause_UI home = FindFirstObjectByType<Pause_UI>();
+        homeButton.onClick.AddListener(home.GoHome);
+        nextButton.onClick.AddListener(NextStage);
     }
 
     private void StartGame()
     {
-        sManager.BgmSoundPlay("Gb 1");
-        introObj.SetActive(false);
+        PlayerPos.transform.position = new Vector3(0, -5.4f, 0); // 유저 초기위치 초기화
 
+        sManager.GamePlayBGM(); // 스타트시 브금재생
+
+        introObj.SetActive(false); // 필요없는 UI제거
+
+        // 필요한 UIOn
         startGameUI.SetActive(true);
         startGame.SetActive(true);
         scoreManager.SetActive(true);
@@ -83,7 +98,6 @@ public class UIManager : MonoBehaviour
         bossSpawner.SetActive(true);
         uIsBoss = bossSpawner.GetComponent<BossSpawner>();
 
-        PlayerPos.transform.position = new Vector3(0, -5.4f, 0);
         MonsterSpawner[0].SetActive(true);
         MonsterSpawner[1].SetActive(true);
         MonsterSpawner[2].SetActive(true);
@@ -113,7 +127,92 @@ public class UIManager : MonoBehaviour
         // 사운드 초기화
         sManager.isGameEnd = false;
         isWarringSound = false;
+
+        // 스테이지 // 몬스터 피통 초기화
+        currentStage = 1;
+        Monster.stageHPBonus = 0f;
+
+        //플레이어 초기화
+        playerController.hp = 3f;
+        AttackManager.Instance.InitializeAttacks();
+        LevelUpManager.Instance.LevelInit();
+        
     }
+
+    public void GameOver()
+    {
+
+        introObj.SetActive(false);
+
+        startGameUI.SetActive(false);
+        startGame.SetActive(false);
+        scoreManager.SetActive(false);
+        feverManager.SetActive(false);
+
+        gameOverUI.SetActive(true);
+        bossProduction.SetActive(false);
+
+        if (sManager.isGameEnd == false)
+        {
+            sManager.BgmSoundStop();
+            sManager.isGameEnd = true;
+            sManager.EventSoundPlay("GameOver");
+        }
+
+        ClearAllMonsters();
+        ClearAllItems();
+        ClearAllEnemyBullets();
+        ClearAllBullets();
+
+        currentStage = 1;
+    }
+
+    public void GameClear()
+    {
+        gameClearUI.SetActive(true);
+        uIsBoss.gameObject.SetActive(false);
+        bossProduction.gameObject.SetActive(false);
+
+
+        isWarringSound = false;
+
+        ClearAllEnemyBullets(); // dev_s : 지금은 일괄로 부셔버려서 바로 사라지는데,
+                           // 시간되면 보스가 죽으면 모든 총알도 애니메이션 효과 진행 후 사라지면 좋을듯합니다
+    }
+
+    public void NextStage()
+    {
+        sManager.GamePlayBGM(); // 넥스트 진행시 브금재생
+        currentStage++;
+        Monster.stageHPBonus = (currentStage - 1) * stageHPIncrease;
+        Debug.Log($"Stage {currentStage} Start! Monster HP Bonus: +{Monster.stageHPBonus}");
+
+        uIsBoss.gameObject.SetActive(true);
+        //
+        MonsterSpawner[0].SetActive(true);
+        MonsterSpawner[1].SetActive(true);
+        MonsterSpawner[2].SetActive(true);
+        //
+        MonsterSpawner[3].SetActive(true);
+        //
+        MonsterSpawner[4].SetActive(true);
+        //
+
+        gameClearUI.SetActive(false);
+        oneShot = false;
+
+        Image fadeImage = bossFadeIn.GetComponent<Image>();
+        if (fadeImage != null)
+        {
+            Color imageColor = fadeImage.color;
+            imageColor.a = 1f;
+            fadeImage.color = imageColor;
+        }
+        oneShot = false;
+
+        
+    }
+
 
     private void Update()
     {
@@ -130,6 +229,11 @@ public class UIManager : MonoBehaviour
             bossProduction.SetActive(true);
             bossFadeIn.SetActive(true);
             oneShot = true;
+
+            foreach (GameObject spawner in MonsterSpawner)
+            {
+                spawner.SetActive(false);
+            }
         }
 
         if (isBossAnim == true)
@@ -145,6 +249,9 @@ public class UIManager : MonoBehaviour
                 Debug.Log("사운드재생");
                 sManager.EventSoundPlay("warning"); 
                 isWarringSound = true;
+
+                ClearMonsters();
+                ClearEnemyBullets();
             }
 
             // 페이드인 애니메이션이 완료되었는지 확인
@@ -163,32 +270,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
-    {
-        introObj.SetActive(false);
-
-        startGameUI.SetActive(false);
-        startGame.SetActive(false);
-        scoreManager.SetActive(false);
-        feverManager.SetActive(false);
-
-        gameOverUI.SetActive(true);
-        if (sManager.isGameEnd == false)
-        {
-            sManager.isGameEnd = true;
-            sManager.EventSoundPlay("GameOver");
-        }
-        ClearAllMonsters();
-        ClearAllItems();
-        ClearAllEnemyBullets();
-    }
-
+    #region 적총알 / 내총알 / 몬스터 / 아이템 / Destroy
     public void ClearAllMonsters()
     {
         Monster[] monsters = FindObjectsByType<Monster>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (Monster monster in monsters)
         {
-            Destroy(monster.gameObject);
+             Destroy(monster.gameObject);
+        }
+    }
+
+    // 보스제외 몬스터초기화
+    public void ClearMonsters()
+    {
+        Monster[] monsters = FindObjectsByType<Monster>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (Monster monster in monsters)
+        {
+            if (!monster.CompareTag("Boss"))
+            {
+                Destroy(monster.gameObject);
+            }
         }
     }
 
@@ -199,6 +300,21 @@ public class UIManager : MonoBehaviour
         {
             Destroy(items.gameObject);
         }
+    }
+
+
+    public void ClearAllBullets()
+    {
+        BaseAttack[] BaseAttacks = FindObjectsByType<BaseAttack>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (BaseAttack baseAttack in BaseAttacks)
+        {
+            if (baseAttack.GetComponent<AttackManager>() == null)
+            {
+                Destroy(baseAttack.gameObject);
+            }
+        }
+
     }
 
     public void ClearAllEnemyBullets()
@@ -226,8 +342,36 @@ public class UIManager : MonoBehaviour
         {
             Destroy(enemyLaserWarring.gameObject);
         }
+
+        OrangeOctBullet[] orangeOctBullets = FindObjectsByType<OrangeOctBullet>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (OrangeOctBullet orangeOctBullet in orangeOctBullets)
+        {
+            Destroy(orangeOctBullet.gameObject);
+        }
     }
 
+    // 레이저 제외
+    public void ClearEnemyBullets()
+    {
+        Inkball[] inkBalls = FindObjectsByType<Inkball>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (Inkball inkBall in inkBalls)
+        {
+            Destroy(inkBall.gameObject);
+        }
+
+        EnemyBullet[] enemyBullets = FindObjectsByType<EnemyBullet>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (EnemyBullet enemyBullet in enemyBullets)
+        {
+            Destroy(enemyBullet.gameObject);
+        }
+
+        OrangeOctBullet[] orangeOctBullets = FindObjectsByType<OrangeOctBullet>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (OrangeOctBullet orangeOctBullet in orangeOctBullets)
+        {
+            Destroy(orangeOctBullet.gameObject);
+        }
+    }
+    #endregion
 
     private void HpUISetting()
     {
@@ -266,6 +410,10 @@ public class UIManager : MonoBehaviour
     {
         bossFadeIn.SetActive(false);
         sManager.BgmSoundPlay("boss 1");
+    }
+    public void ShowDamage()
+    {
+        
     }
 
 }

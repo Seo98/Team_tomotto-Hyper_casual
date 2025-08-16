@@ -1,0 +1,297 @@
+fileFormatVersion: 2
+guid: 31306a8eb1450ac4784b473d8945974e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5601323976189978565
+    second: Weapons_0
+  - first:
+      213: -761887118410055393
+    second: Weapons_1
+  - first:
+      213: 9147546874185701050
+    second: Weapons_2
+  - first:
+      213: -8951780388439148649
+    second: Weapons_3
+  - first:
+      213: -5082318553336741150
+    second: Weapons_4
+  - first:
+      213: -3087264978319007404
+    second: Weapons_5
+  - first:
+      213: -21522807587195298
+    second: Weapons_6
+  - first:
+      213: -3776783329477156521
+    second: Weapons_7
+  - first:
+      213: 7834802711767081893
+    second: Weapons_8
+  - first:
+      213: 7569684938147083892
+    second: Weapons_9
+  - first:
+      213: 8789762969407134151
+    second: Weapons_10
+  - first:
+      213: -7651578999465136024
+    second: Weapons_11
+  - first:
+      213: 4247077973319795576
+    second: Weapons_12
+  - first:
+      213: 5066663443394370621
+    second: Weapons_13
+  - first:
+      213: -3161990638662096906
+    second: Weapons_14
+  - first:
+      213: 1708842436377342384
+    second: Weapons_15
+  - first:
+      213: -4994013504720742411
+    second: Weapons_16
+  - first:
+      213: 4806463276367451825
+    second: Weapons_17
+  - first:
+      213: -3381449088394115441
+    second: Weapons_18
+  - first:
+      213: 5711273657361161810
+    second: Weapons_19
+  - first:
+      213: 4774762479299409953
+    second: Weapons_20
+  - first:
+      213: 131278801844023632
+    second: Weapons_21
+  - first:
+      213: 4521503878155881252
+    second: Weapons_22
+  - first:
+      213: 6866815247170767786
+    second: Weapons_23
+  - first:
+      213: -8331011272066912826
+    second: Weapons_24
+  - first:
+      213: -150671194606510068
+    second: Weapons_25
+  - first:
+      213: 111540097082384536
+    second: Weapons_26
+  - first:
+      213: 8681363007004761560
+    second: Weapons_27
+  - first:
+      213: -3422229986052813780
+    second: Weapons_28
+  - first:
+      213: -1927235674067380734
+    second: Weapons_29
+  - first:
+      213: -1541056526609149816
+    second: Weapons_30
+  - first:
+      213: -6288762130912202625
+    second: Weapons_31
+  - first:
+      213: 6805589676669568565
+    second: Weapons_32
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Weapons_11
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860ba06907120d590800000000000000
+      internalID: -7651578999465136024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 825c8ecf709ada849b33ce5d706c6989
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Weapons_0: 5601323976189978565
+      Weapons_1: -761887118410055393
+      Weapons_10: 8789762969407134151
+      Weapons_11: -7651578999465136024
+      Weapons_12: 4247077973319795576
+      Weapons_13: 5066663443394370621
+      Weapons_14: -3161990638662096906
+      Weapons_15: 1708842436377342384
+      Weapons_16: -4994013504720742411
+      Weapons_17: 4806463276367451825
+      Weapons_18: -3381449088394115441
+      Weapons_19: 5711273657361161810
+      Weapons_2: 9147546874185701050
+      Weapons_20: 4774762479299409953
+      Weapons_21: 131278801844023632
+      Weapons_22: 4521503878155881252
+      Weapons_23: 6866815247170767786
+      Weapons_24: -8331011272066912826
+      Weapons_25: -150671194606510068
+      Weapons_26: 111540097082384536
+      Weapons_27: 8681363007004761560
+      Weapons_28: -3422229986052813780
+      Weapons_29: -1927235674067380734
+      Weapons_3: -8951780388439148649
+      Weapons_30: -1541056526609149816
+      Weapons_31: -6288762130912202625
+      Weapons_32: 6805589676669568565
+      Weapons_4: -5082318553336741150
+      Weapons_5: -3087264978319007404
+      Weapons_6: -21522807587195298
+      Weapons_7: -3776783329477156521
+      Weapons_8: 7834802711767081893
+      Weapons_9: 7569684938147083892
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

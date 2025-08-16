@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
     [Header("UI 연결")]
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI bestScoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreText2;
 
     [Header("점수 설정")]
     [SerializeField] private float score = 0f;
@@ -23,12 +24,12 @@ public class ScoreManager : MonoBehaviour
     {
         score = 0f;
 
-        bestScore = PlayerPrefs.GetInt("BestScore", 0);     // Dev_H: 초기 최고점
-        bestScoreText.text = "Bset Score  :  " + bestScore; // Dev_H: 최고점 UI에 불러오기
+        bestScore = PlayerPrefs.GetInt("최고 점수", 0);     // Dev_H: 초기 최고점
+        bestScoreText.text = "최고 점수 : " + bestScore; // Dev_H: 최고점 UI에 불러오기
 
         if (scoreText != null)
         {
-            scoreText.text = "Score: 0";
+            scoreText.text = "0";
         }
     }
 
@@ -39,15 +40,20 @@ public class ScoreManager : MonoBehaviour
 
         if (scoreText != null)
         {
-            scoreText.text = $"Score: {Mathf.FloorToInt(score)}";
+            scoreText.text = $"점수 : {Mathf.FloorToInt(score)}";
 
             if (score > bestScore)
             {
                 bestScore = (int)score; // Dev_H: 베스트 스코어는 int값으로 변형되어 저장되게
-                bestScoreText.text = "Best Score : " + bestScore;
+                bestScoreText.text = "최고 점수 : " + bestScore;
 
-                PlayerPrefs.SetInt("BestScore", bestScore);
+                PlayerPrefs.SetInt("최고 점수", bestScore);
             }
         }
+    }
+    public void IntroScore() //dev_c : 인트로창에 표시할 스코어 함수
+    {
+        //PlayerPrefs.SetInt("최고 점수", bestScore);
+        bestScoreText2.text = $"{bestScore}";//Dev_c : 인트로 스코어창에 표시될 스코어       
     }
 }

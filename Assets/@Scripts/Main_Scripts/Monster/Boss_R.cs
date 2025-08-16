@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Boss_R : Monster
 {
@@ -9,12 +10,16 @@ public class Boss_R : Monster
     private BossState currentState;
     private Coroutine currentAttackCoroutine;
 
-    //카메라 / 스크린
+    //카메라 / 스크린/ Hp 바
     private Camera mainCamera;
     private Vector2 screenBounds;
 
+
     // UI 매니저
     public UIManager uiManager;
+
+    //Hpbar 
+    public Image Hpbar;    
 
     // 공격 세팅
     [Header("총알 프리팹 / 발사 포지션")]
@@ -89,7 +94,8 @@ public class Boss_R : Monster
 
     protected override void OnEnable()
     {
-        base.OnEnable();
+        base.OnEnable();     
+
     }
 
     public void BossSetting()
@@ -127,7 +133,9 @@ public class Boss_R : Monster
 
     protected override void Initialize()
     {
-        hp = 50000f;
+        stageGrowthRate = 1f;
+        SetBaseHP(1000f);
+        UpdateBar();
     }
 
     private IEnumerator IdleState()
@@ -153,7 +161,6 @@ public class Boss_R : Monster
         }
     }
 
-    
 
     private IEnumerator AttackState()
     {
@@ -443,6 +450,34 @@ public class Boss_R : Monster
         return new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
     }
 
+    protected override void Dead()
+    {
+
+        StopAllCoroutines();
+        // 기존 사망 처리
+        base.Dead();
+
+        // 스테이지 클리어 처리
+        UIManager uiManager = FindFirstObjectByType<UIManager>();
+        if (uiManager != null)
+        {
+            uiManager.GameClear();
+        }
+    }
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        currHp = Mathf.Clamp(currHp, 0, hp);
+        UpdateBar();
+    }
+
+    public void UpdateBar()
+    {        
+        Hpbar.fillAmount = currHp / hp;
+
+    }
+
+    
     // 전멸기 로직
 
     // DEV_S

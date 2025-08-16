@@ -4,14 +4,9 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Seaweed
-  - Rock
-  - Whirlpool
-  - BrokenShip
   - Boat
   - Sea
   - Area
-  - fireball
   - Background
   - Monster
   - BaseMob
@@ -20,6 +15,12 @@ TagManager:
   - Item
   - EnemyBullet
   - Boss
+  - Breath
+  - BasicProjectile
+  - IceProjectile
+  - PetProjectile
+  - HarpoonProjectile
+  - FlameProjectile
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - Bullet
   - Enemy
   - Enemy Bullet
-  - 
+  - Item
   - Obstacle
   - Bonus
   - 
