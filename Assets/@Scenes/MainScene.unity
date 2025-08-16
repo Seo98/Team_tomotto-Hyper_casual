@@ -1615,8 +1615,8 @@ RectTransform:
   - {fileID: 1502043967}
   - {fileID: 424341082}
   - {fileID: 117354747}
-  - {fileID: 1787850866}
   - {fileID: 1332761531}
+  - {fileID: 1787850866}
   - {fileID: 542569128}
   - {fileID: 1383227689}
   - {fileID: 1855897046}
@@ -8190,7 +8190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
