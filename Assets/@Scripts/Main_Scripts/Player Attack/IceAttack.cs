@@ -10,7 +10,7 @@ public class IceAttack : BaseAttack
     protected override void Initialize() // 초기데이터
     {
         attackType = AttackType.ICE;
-        damage = 1f;  // 슬로우 효과 있어서 약간 낮게? 흠..
+        damage = 0.3f;  // 슬로우 효과 있어서 약간 낮게? 흠..
         spawnTime = 3f;  // 유도탄이니까 조금 느리게
     }
 
@@ -21,6 +21,7 @@ public class IceAttack : BaseAttack
         timer += Time.deltaTime;
         if (timer >= spawnTime)
         {
+            SoundManager.Instance.EventSoundPlay("ice");
             Attack();
             timer = 0f;
         }
@@ -32,7 +33,6 @@ public class IceAttack : BaseAttack
 
     public override void Upgrade(float damageIncrease, float spawnSpeedIncrease)
     {
-        Debug.Log("얼음공격 획득2");
         isActive = true;
         damage += damageIncrease;
         spawnTime = Mathf.Max(0.1f, spawnTime - spawnSpeedIncrease);

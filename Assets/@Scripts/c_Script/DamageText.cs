@@ -35,8 +35,9 @@ public class DamageText : MonoBehaviour
             text = GetComponent<TextMeshProUGUI>();
         }
         alpha = text.color;
+        text.fontSize = 5;
 
-        text.text = damage.ToString();
+        text.text = damage.ToString("F2"); // 소수점 2자리까지 표시
 
         Invoke("DestroyObject", destroyTime);
     }

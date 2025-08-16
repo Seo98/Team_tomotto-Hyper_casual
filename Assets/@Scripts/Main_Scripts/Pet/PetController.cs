@@ -3,7 +3,7 @@ using UnityEngine;
 public class PetController : MonoBehaviour
 {
     [Header("Pet 설정")]
-    public float moveSpeed = 10f;
+    private float moveSpeed = 10f;
     public float fireRate = 1f;
 
     private Transform currentTarget;
@@ -115,7 +115,7 @@ public class PetController : MonoBehaviour
         }
 
         // 실시간으로 타겟 위치 업데이트하면서 따라가기
-        attackPosition = new Vector3(currentTarget.position.x, currentTarget.position.y - 2f, currentTarget.position.z);
+        attackPosition = new Vector3(currentTarget.position.x, currentTarget.position.y - 3f, currentTarget.position.z);
         transform.position = Vector3.MoveTowards(transform.position, attackPosition, moveSpeed * Time.deltaTime);
 
         fireTimer += Time.deltaTime;

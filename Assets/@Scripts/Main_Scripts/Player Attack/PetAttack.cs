@@ -12,7 +12,7 @@ public class PetAttack : BaseAttack
     protected override void Initialize() // 초기 데이터
     {
         attackType = AttackType.PET;
-        damage = 1f;
+        damage = 0.4f;
     }
 
     private void Update()
@@ -43,7 +43,6 @@ public class PetAttack : BaseAttack
 
     public override void Upgrade(float damageIncrease, float spawnSpeedIncrease)
     {
-        Debug.Log("펫 획득2");
         isActive = true;
         damage += damageIncrease;
     }

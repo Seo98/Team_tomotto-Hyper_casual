@@ -12,7 +12,7 @@ public class FlameAttack : BaseAttack
     protected override void Initialize() // 초기데이터
     {
         attackType = AttackType.FLAME;
-        damage = 0.5f;
+        damage = 0.08f;
         spawnTime = 3f;
 
         flameObject = AttackManager.Instance.firePositions[6].gameObject;
@@ -63,7 +63,6 @@ public class FlameAttack : BaseAttack
 
     public override void Upgrade(float damageIncrease, float spawnSpeedIncrease)
     {
-        Debug.Log("화염공격 획득2");
         isActive = true;
         damage += damageIncrease;
         spawnTime = Mathf.Max(0.1f, spawnTime - spawnSpeedIncrease);

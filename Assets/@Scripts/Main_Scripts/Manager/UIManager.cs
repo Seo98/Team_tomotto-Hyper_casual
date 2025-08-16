@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Button startbutton;
     public Button restratButton;
     public Button homeButton;
+    public Button homeButton2;
     public Button nextButton;
 
     [Header("UI 오브젝트(부모)")]
@@ -53,6 +54,9 @@ public class UIManager : MonoBehaviour
     public int currentStage = 1;
     public float stageHPIncrease = 1f;
 
+    [Header("스테이지별 체력 증가율 설정")]
+    [Range(0.1f, 1.0f)]
+    public float baseStageMultiplier = 0.3f; // 기본 30% 증가 (각 몬스터의 성장률과 곱해짐)
 
     #region 사운드 관련 조건값
     private bool isWarringSound;
@@ -70,6 +74,7 @@ public class UIManager : MonoBehaviour
         restratButton.onClick.AddListener(StartGame);
         Pause_UI home = FindFirstObjectByType<Pause_UI>();
         homeButton.onClick.AddListener(home.GoHome);
+        homeButton2.onClick.AddListener(home.GoHome);
         nextButton.onClick.AddListener(NextStage);
     }
 
@@ -136,7 +141,7 @@ public class UIManager : MonoBehaviour
         playerController.hp = 3f;
         AttackManager.Instance.InitializeAttacks();
         LevelUpManager.Instance.LevelInit();
-        
+
     }
 
     public void GameOver()
@@ -184,8 +189,9 @@ public class UIManager : MonoBehaviour
     {
         sManager.GamePlayBGM(); // 넥스트 진행시 브금재생
         currentStage++;
-        Monster.stageHPBonus = (currentStage - 1) * stageHPIncrease;
-        Debug.Log($"Stage {currentStage} Start! Monster HP Bonus: +{Monster.stageHPBonus}");
+
+        // 스테이지별 기본 배율 설정 (각 몬스터가 자신의 성장률과 곱해서 사용)
+        Monster.stageHPBonus = (currentStage - 1) * baseStageMultiplier;
 
         uIsBoss.gameObject.SetActive(true);
         //
@@ -245,9 +251,7 @@ public class UIManager : MonoBehaviour
 
             if (isWarringSound == false)
             {
-                sManager.BgmSoundStop();
-                Debug.Log("사운드재생");
-                sManager.EventSoundPlay("warning"); 
+                sManager.BgmSoundStop();         
                 isWarringSound = true;
 
                 ClearMonsters();
@@ -257,6 +261,8 @@ public class UIManager : MonoBehaviour
             // 페이드인 애니메이션이 완료되었는지 확인
             if (currentStateInfo.normalizedTime >= 1.0f)
             {
+                Debug.Log("사운드재생");
+                sManager.EventSoundPlay("warning");
                 isBossAnim = false;
                 Debug.Log("애니메이션 시작");
                 foreach (Transform child in bossProduction.transform)

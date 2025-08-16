@@ -49,7 +49,7 @@ public class AttackManager : MonoBehaviour
     }
     private void Start()
     {
-        basicAttack.Activate();
+        
     }
 
     private void Update()
@@ -84,6 +84,7 @@ public class AttackManager : MonoBehaviour
     }
 
 
+
     public void RemoveFeverSpeedBoost()
     {
         if (basicAttack.isActive) basicAttack.spawnTime *= 2f;
@@ -99,6 +100,7 @@ public class AttackManager : MonoBehaviour
     // 추가타입 생기면 여기서도 그렇게 처리하면댑니당.
     public void InitializeAttacks()
     {
+        feverSpeedApplied = false;
         // 모든 공격들 초기화
         basicAttack.ResetToDefault();
         if (iceAttack != null) iceAttack.ResetToDefault();
