@@ -245,9 +245,7 @@ public class UIManager : MonoBehaviour
 
             if (isWarringSound == false)
             {
-                sManager.BgmSoundStop();
-                Debug.Log("사운드재생");
-                sManager.EventSoundPlay("warning"); 
+                sManager.BgmSoundStop();         
                 isWarringSound = true;
 
                 ClearMonsters();
@@ -257,6 +255,8 @@ public class UIManager : MonoBehaviour
             // 페이드인 애니메이션이 완료되었는지 확인
             if (currentStateInfo.normalizedTime >= 1.0f)
             {
+                Debug.Log("사운드재생");
+                sManager.EventSoundPlay("warning");
                 isBossAnim = false;
                 Debug.Log("애니메이션 시작");
                 foreach (Transform child in bossProduction.transform)

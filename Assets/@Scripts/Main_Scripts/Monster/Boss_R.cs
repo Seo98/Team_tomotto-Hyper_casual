@@ -357,7 +357,7 @@ public class Boss_R : Monster
         yield return new WaitForSeconds(1f); // 1초 대기
         Debug.Log("워링 비활성화");
         warringBreathPrefab.SetActive(false);
-
+        SoundManager.Instance.EventSoundPlay("dragon1");
         breathPrefab.SetActive(true);
         Debug.Log("브레스 활성화");
 

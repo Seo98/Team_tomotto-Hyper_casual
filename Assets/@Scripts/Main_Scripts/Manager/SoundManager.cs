@@ -4,6 +4,7 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance;
 
     [SerializeField] AudioSource bgmaudio;
     [SerializeField] AudioSource eventAudio;
@@ -20,6 +21,15 @@ public class SoundManager : MonoBehaviour
     public bool isGameEnd = false;
     private void Awake() //초기화 작업 
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         bgmVolume.value = bgmaudio.volume; //현재 오디오 볼륨을 슬라이더값으로
         eventVolume.value = eventAudio.volume;
 

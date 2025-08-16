@@ -21,6 +21,7 @@ public class IceAttack : BaseAttack
         timer += Time.deltaTime;
         if (timer >= spawnTime)
         {
+            SoundManager.Instance.EventSoundPlay("ice1");
             Attack();
             timer = 0f;
         }

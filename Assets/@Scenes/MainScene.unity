@@ -212,7 +212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NEXT
+  m_text: "\uB2E4\uC74C \uC2A4\uD14C\uC774\uC9C0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c91e397546b84634f8aec16d4fddb60c, type: 2}
   m_sharedMaterial: {fileID: -2498814145503533159, guid: c91e397546b84634f8aec16d4fddb60c, type: 2}
@@ -1922,7 +1922,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 169664863}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1449162790}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: EventSoundPlay
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &169664863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3032,7 +3044,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3390,7 +3402,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8382,9 +8394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Home(Init)
-
-'
+  m_text: "\uBA54\uC778\uD654\uBA74"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c91e397546b84634f8aec16d4fddb60c, type: 2}
   m_sharedMaterial: {fileID: -2498814145503533159, guid: c91e397546b84634f8aec16d4fddb60c, type: 2}
@@ -9369,10 +9379,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c5db282920f121f49a38f6af91bb2cae, type: 3}
   - {fileID: 8300000, guid: 3786e36d0b111374893691655dc40817, type: 3}
   - {fileID: 8300000, guid: 4eaf380e5945e8c4e8bdb45258da9887, type: 3}
-  - {fileID: 8300000, guid: 44d812fd903c7d0488a99ba18b1e1258, type: 3}
+  - {fileID: 8300000, guid: 8db6838e29931954b9a3c709e39bb7ba, type: 3}
   - {fileID: 8300000, guid: 6f23df38135f00c4c85e784a743e6b47, type: 3}
-  - {fileID: 8300000, guid: 306201142f8db47498d496e44a9786d3, type: 3}
-  - {fileID: 8300000, guid: 50472a2c4dd06e94194105e9ee937949, type: 3}
+  - {fileID: 8300000, guid: 4be8cbd210109264ba14d050763138d8, type: 3}
+  - {fileID: 8300000, guid: 3eee8fee60e0ad9469d2e14f2bad39ab, type: 3}
   - {fileID: 8300000, guid: ff0dbfdda2f0a994d9b0917782427de8, type: 3}
   - {fileID: 8300000, guid: 7071166a9b732cf438842f04ec4a9e5e, type: 3}
   bgmVolume: {fileID: 914477470}
