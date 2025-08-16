@@ -136,13 +136,13 @@ public abstract class Monster : MonoBehaviour
         }
         if (other.gameObject.CompareTag("HarpoonProjectile"))
         {
-            float damage = AttackManager.Instance.GetIceAttack().damage;
+            float damage = AttackManager.Instance.HarpoonAttack().damage;
             TakeDamage(damage);
             // ApplySlowEffect();
         }
         if (other.gameObject.CompareTag("PetProjectile"))
         {
-            float damage = AttackManager.Instance.GetIceAttack().damage;
+            float damage = AttackManager.Instance.GetPetAttack().damage;
             TakeDamage(damage);
             // ApplySlowEffect();
         }
