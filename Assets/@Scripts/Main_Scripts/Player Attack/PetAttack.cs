@@ -43,6 +43,8 @@ public class PetAttack : BaseAttack
 
     public override void Upgrade(float damageIncrease, float spawnSpeedIncrease)
     {
+        Debug.Log("펫 획득2");
+        isActive = true;
         damage += damageIncrease;
     }
 
