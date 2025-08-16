@@ -81,8 +81,8 @@ public class LevelUpManager : MonoBehaviour
 
     private void SkillUp()
     {
-        sManager.EventSoundPlay("Level up");
         levelUpUI.SetActive(true);
+        sManager.EventSoundPlay("Level up"); //레벨업 사운드. 위치 옮기셔도 됩니다 (Dev_C)
 
         foreach (Transform child in skillContants)
         {
