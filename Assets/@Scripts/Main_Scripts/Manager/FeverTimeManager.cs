@@ -70,6 +70,11 @@ public class FeverTimeManager : MonoBehaviour
         
         yield return new WaitForSeconds(5f);
 
+        EndFeverTime();
+    }
+
+    public void EndFeverTime()
+    {
         isFever = false;
         player.moveSpeed = 0.2f;
         playColl.isTrigger = false;
@@ -87,10 +92,14 @@ public class FeverTimeManager : MonoBehaviour
         isFever = true;
         feverStartImage2.SetActive(true);
         yield return new WaitForSeconds(5f);
+        // 로직구현은 프레이어컨트롤러에서 두개발사됨.. 큰일남.. 꼬이고꼬이고잇서..
+        EndFeverTime2();
+    }
 
+    public void EndFeverTime2()
+    {
         feverStartImage2.SetActive(false);
         isFever = false;
         feverImage.fillAmount = 0f;
-        // 로직구현은 프레이어컨트롤러에서 두개발사됨.. 큰일남.. 꼬이고꼬이고잇서..
     }
 }
