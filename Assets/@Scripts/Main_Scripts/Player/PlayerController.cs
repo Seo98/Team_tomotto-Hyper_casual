@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     // Dev_s : 은주님라인
@@ -91,6 +91,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return; // UI 위에 있으면 플레이어 조작 무시
+        }
 
         // 마우스 드래그 관련
         if (Input.GetMouseButtonDown(0))
