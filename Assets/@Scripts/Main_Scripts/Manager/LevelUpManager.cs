@@ -81,8 +81,8 @@ public class LevelUpManager : MonoBehaviour
     // Dev_H: 레벨업시 능력치 상승
     private void SkillUp()
     {
-        sManager.EventSoundPlay("Level up");
         levelUpUI.SetActive(true);
+        sManager.EventSoundPlay("Level up"); //레벨업 사운드. 위치 옮기셔도 됩니다 (Dev_C)
 
         // 기존 버튼 삭제
         foreach (Transform child in skillContants)
