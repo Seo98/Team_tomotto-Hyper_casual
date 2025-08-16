@@ -62,4 +62,9 @@ public class BasicAttack : BaseAttack
         if (projectileCount < maxProjectileCount)
             projectileCount++;
     }
+    public override void Deactivate()
+    {
+        base.Deactivate();
+        projectileCount = 1;
+    }
 }
