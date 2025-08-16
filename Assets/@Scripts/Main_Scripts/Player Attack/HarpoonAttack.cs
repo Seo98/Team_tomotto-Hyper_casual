@@ -5,8 +5,8 @@ public class HarpoonAttack : BaseAttack
     protected override void Initialize() // 초기데이터
     {
         attackType = AttackType.Harpoon;
-        damage = 1.5f;
-        spawnTime = 2.5f;
+        damage = 1f;
+        spawnTime = 3f;
     }
 
     private void Update()

@@ -10,7 +10,7 @@ public class IceAttack : BaseAttack
     protected override void Initialize() // 초기데이터
     {
         attackType = AttackType.ICE;
-        damage = 1f;  // 슬로우 효과 있어서 약간 낮게? 흠..
+        damage = 0.3f;  // 슬로우 효과 있어서 약간 낮게? 흠..
         spawnTime = 3f;  // 유도탄이니까 조금 느리게
     }
 
