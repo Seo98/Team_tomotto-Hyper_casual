@@ -112,5 +112,10 @@ public class SoundManager : MonoBehaviour
     {
         BgmSoundPlay("newBGM1");
     }
+
+    public void ClickEvent()
+    {
+        EventSoundPlay("click");
+    }
 }
 

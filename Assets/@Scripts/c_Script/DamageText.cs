@@ -35,6 +35,7 @@ public class DamageText : MonoBehaviour
             text = GetComponent<TextMeshProUGUI>();
         }
         alpha = text.color;
+        text.fontSize = 5;
 
         text.text = damage.ToString();
 
