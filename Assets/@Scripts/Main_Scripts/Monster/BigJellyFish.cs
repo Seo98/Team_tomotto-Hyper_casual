@@ -11,10 +11,11 @@ public class BigJellyFish : Monster
         speed = 0.4f;
         dir = Vector3.down;
     }
+
     // Dev_H: 경험치 부여량
     void Start()
     {
-        expAmount = 30;
+        expAmount = 100;
     }
 
     void Update()
