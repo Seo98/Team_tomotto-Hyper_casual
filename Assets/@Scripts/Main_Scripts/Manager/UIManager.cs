@@ -58,6 +58,8 @@ public class UIManager : MonoBehaviour
     [Range(0.1f, 1.0f)]
     public float baseStageMultiplier = 0.3f; // 기본 30% 증가 (각 몬스터의 성장률과 곱해짐)
 
+    public bool isGameOverTriggered = false;
+
     #region 사운드 관련 조건값
     private bool isWarringSound;
     #endregion
@@ -136,6 +138,7 @@ public class UIManager : MonoBehaviour
         // 스테이지 // 몬스터 피통 초기화
         currentStage = 1;
         Monster.stageHPBonus = 0f;
+        isGameOverTriggered = false;
 
         //플레이어 초기화
         playerController.hp = 3f;
@@ -224,8 +227,9 @@ public class UIManager : MonoBehaviour
     {
         HpUISetting();
 
-        if (playerController.hp <= 0)
+        if (playerController.hp <= 0 && !isGameOverTriggered)
         {
+            isGameOverTriggered = true;
             GameOver();
         }
 
