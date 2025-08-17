@@ -10,7 +10,7 @@ public class InkEffect : MonoBehaviour
 
     // Dev_S : 시웅님 라인
     public Image overlayImage;
-    public float fadeOutTime = 3f; // Dev_H : 3초 동안 돌아오도록
+    public float fadeOutTime =2f; // Dev_H : 3초 동안 돌아오도록
 
     FeverTimeManager fManager;
     private void Start()

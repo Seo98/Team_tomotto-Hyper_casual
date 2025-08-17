@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,6 +55,9 @@ public class UIManager : MonoBehaviour
     [Header("스테이지 관리")]
     public int currentStage = 1;
     public float stageHPIncrease = 1f;
+    public GameObject newStageUI;
+    public TextMeshProUGUI currStageText;
+    
 
     [Header("스테이지별 체력 증가율 설정")]
     [Range(0.1f, 1.0f)]
@@ -89,6 +94,7 @@ public class UIManager : MonoBehaviour
         introObj.SetActive(false); // 필요없는 UI제거
 
         // 필요한 UIOn
+
         startGameUI.SetActive(true);
         startGame.SetActive(true);
         scoreManager.SetActive(true);
@@ -96,6 +102,7 @@ public class UIManager : MonoBehaviour
         heart1.SetActive(true);
         heart2.SetActive(true);
         heart3.SetActive(true);
+        StartCoroutine(NewStageUI());
 
 
         gameOverUI.SetActive(false);
@@ -192,6 +199,8 @@ public class UIManager : MonoBehaviour
     {
         sManager.GamePlayBGM(); // 넥스트 진행시 브금재생
         currentStage++;
+        StartCoroutine(NewStageUI());
+
 
         // 스테이지별 기본 배율 설정 (각 몬스터가 자신의 성장률과 곱해서 사용)
         Monster.stageHPBonus = (currentStage - 1) * baseStageMultiplier;
@@ -421,9 +430,12 @@ public class UIManager : MonoBehaviour
         bossFadeIn.SetActive(false);
         sManager.BgmSoundPlay("boss 1");
     }
-    public void ShowDamage()
+    
+    IEnumerator NewStageUI()
     {
-        
+        newStageUI.SetActive(true);
+        currStageText.text = $"Stage : {currentStage}";
+        yield return new WaitForSeconds(1.5f);
+        newStageUI.SetActive(false);
     }
-
 }
