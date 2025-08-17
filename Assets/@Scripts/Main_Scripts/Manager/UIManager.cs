@@ -153,6 +153,8 @@ public class UIManager : MonoBehaviour
         AttackManager.Instance.InitializeAttacks();
         LevelUpManager.Instance.LevelInit();
 
+        ExpBarUI.InitializeExpBarStatic();
+
     }
 
     public void GameOver()
