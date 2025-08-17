@@ -23,7 +23,7 @@
 | 서승표 | 허시웅 | 최은주 | 
 |:------:|:------:|:------:|
 | <img src="https://avatars.githubusercontent.com/u/77848438?s=400&u=989cc11697a95a011b032da379b40e0ab7796e46&v=4" alt="서승표" width="150"> | <img src="https://avatars.githubusercontent.com/u/211462962?v=4" alt="허시웅" width="150"> | <img src="https://avatars.githubusercontent.com/u/211294462?v=4" alt="최은주" width="150"> |
-| **프로젝트 리드 & 잡부 Developer** | ** QA & Level Design Developer** | ** Sound & UI/UX Developer** |
+| **프로젝트 리드 & 잡부 Developer** | **QA & Level Design Developer** | **Sound & UI/UX Developer** |
 | 시스템 설계, 매니저 구현 | 기초 몬스터 AI, 레벨 시스템 | 인터페이스, 효과음, 픽셀 디자인 |
 | [GitHub](https://github.com/Seo98) | [GitHub](https://github.com/HeoSiung) | [GitHub](https://github.com/Sooezfor) |
 
