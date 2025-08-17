@@ -6,7 +6,7 @@ public class HarpoonAttack : BaseAttack
     {
         attackType = AttackType.Harpoon;
         damage = 1f;
-        spawnTime = 3f;
+        spawnTime = 4f;
     }
 
     private void Update()
