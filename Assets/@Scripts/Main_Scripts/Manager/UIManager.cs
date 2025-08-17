@@ -112,6 +112,7 @@ public class UIManager : MonoBehaviour
         MonsterSpawner[3].SetActive(true);
         //
         MonsterSpawner[4].SetActive(true);
+        MonsterSpawner[5].SetActive(false);
 
         // 피버 조기화 이슈
         FeverTimeManager fv = feverManager.GetComponent<FeverTimeManager>();
@@ -206,6 +207,7 @@ public class UIManager : MonoBehaviour
         //
         MonsterSpawner[4].SetActive(true);
         //
+        MonsterSpawner[5].SetActive(true);
 
         gameClearUI.SetActive(false);
         oneShot = false;
