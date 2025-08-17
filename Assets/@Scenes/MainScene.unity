@@ -8551,6 +8551,7 @@ MonoBehaviour:
   - {fileID: 2084457964}
   - {fileID: 299574993}
   - {fileID: 1941310765}
+  - {fileID: 1296655242}
   currentStage: 1
   stageHPIncrease: 0.5
   newStageUI: {fileID: 567871047}
@@ -8744,6 +8745,52 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!1 &1296655242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1296655243}
+  - component: {fileID: 1296655244}
+  m_Layer: 0
+  m_Name: Big Enemy Spawner
+  m_TagString: BaseMob
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1296655243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296655242}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1486337899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1296655244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296655242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d834bbdb5521f498c5afef26307948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createTime: 45
+  enemyFactory: {fileID: 538669075802798139, guid: 6458c402346b601438d522fcf0733c81, type: 3}
 --- !u!1 &1332761530
 GameObject:
   m_ObjectHideFlags: 0
@@ -10069,6 +10116,7 @@ Transform:
   - {fileID: 828991568}
   - {fileID: 763791229}
   - {fileID: 458362312}
+  - {fileID: 1296655243}
   m_Father: {fileID: 723788103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1486773796

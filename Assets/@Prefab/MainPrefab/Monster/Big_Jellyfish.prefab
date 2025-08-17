@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 631690544747389303}
   - component: {fileID: 2637740574264103489}
   - component: {fileID: 8619242336059299305}
-  m_Layer: 9
+  - component: {fileID: 8578004987153386455}
+  m_Layer: 14
   m_Name: Big_Jellyfish
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -150,6 +151,31 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 2.0833333}
   m_Size: {x: 4, y: 4.1666665}
   m_Direction: 0
+--- !u!114 &8578004987153386455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538669075802798139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2ec4218aa62cc4d8da023abc3803ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.4
+  hp: 0
+  currHp: 0
+  stageGrowthRate: 1
+  player: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
+  monsterLevelUpTime: 30
+  currentTime: 0
+  damageTextPrefab: {fileID: 4501350978716665442, guid: b2a5612c4e0cd5f48bc8e01be09ebdbd, type: 3}
+  damageTextPos: {fileID: 1944276846999867018}
+  expAmount: 0
+  animator: {fileID: 0}
+  particle: {fileID: 7299038479664671617}
 --- !u!1 &5678200149103821873
 GameObject:
   m_ObjectHideFlags: 0
