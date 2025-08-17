@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,10 +55,15 @@ public class UIManager : MonoBehaviour
     [Header("스테이지 관리")]
     public int currentStage = 1;
     public float stageHPIncrease = 1f;
+    public GameObject newStageUI;
+    public TextMeshProUGUI currStageText;
+    
 
     [Header("스테이지별 체력 증가율 설정")]
     [Range(0.1f, 1.0f)]
     public float baseStageMultiplier = 0.3f; // 기본 30% 증가 (각 몬스터의 성장률과 곱해짐)
+
+    public bool isGameOverTriggered = false;
 
     #region 사운드 관련 조건값
     private bool isWarringSound;
@@ -87,6 +94,7 @@ public class UIManager : MonoBehaviour
         introObj.SetActive(false); // 필요없는 UI제거
 
         // 필요한 UIOn
+
         startGameUI.SetActive(true);
         startGame.SetActive(true);
         scoreManager.SetActive(true);
@@ -94,6 +102,7 @@ public class UIManager : MonoBehaviour
         heart1.SetActive(true);
         heart2.SetActive(true);
         heart3.SetActive(true);
+        StartCoroutine(NewStageUI());
 
 
         gameOverUI.SetActive(false);
@@ -110,6 +119,7 @@ public class UIManager : MonoBehaviour
         MonsterSpawner[3].SetActive(true);
         //
         MonsterSpawner[4].SetActive(true);
+        MonsterSpawner[5].SetActive(false);
 
         // 피버 조기화 이슈
         FeverTimeManager fv = feverManager.GetComponent<FeverTimeManager>();
@@ -136,11 +146,14 @@ public class UIManager : MonoBehaviour
         // 스테이지 // 몬스터 피통 초기화
         currentStage = 1;
         Monster.stageHPBonus = 0f;
+        isGameOverTriggered = false;
 
         //플레이어 초기화
         playerController.hp = 3f;
         AttackManager.Instance.InitializeAttacks();
         LevelUpManager.Instance.LevelInit();
+
+        ExpBarUI.InitializeExpBarStatic();
 
     }
 
@@ -189,6 +202,8 @@ public class UIManager : MonoBehaviour
     {
         sManager.GamePlayBGM(); // 넥스트 진행시 브금재생
         currentStage++;
+        StartCoroutine(NewStageUI());
+
 
         // 스테이지별 기본 배율 설정 (각 몬스터가 자신의 성장률과 곱해서 사용)
         Monster.stageHPBonus = (currentStage - 1) * baseStageMultiplier;
@@ -203,6 +218,7 @@ public class UIManager : MonoBehaviour
         //
         MonsterSpawner[4].SetActive(true);
         //
+        MonsterSpawner[5].SetActive(true);
 
         gameClearUI.SetActive(false);
         oneShot = false;
@@ -224,8 +240,9 @@ public class UIManager : MonoBehaviour
     {
         HpUISetting();
 
-        if (playerController.hp <= 0)
+        if (playerController.hp <= 0 && !isGameOverTriggered)
         {
+            isGameOverTriggered = true;
             GameOver();
         }
 
@@ -417,9 +434,12 @@ public class UIManager : MonoBehaviour
         bossFadeIn.SetActive(false);
         sManager.BgmSoundPlay("boss 1");
     }
-    public void ShowDamage()
+    
+    IEnumerator NewStageUI()
     {
-        
+        newStageUI.SetActive(true);
+        currStageText.text = $"Stage : {currentStage}";
+        yield return new WaitForSeconds(1.5f);
+        newStageUI.SetActive(false);
     }
-
 }

@@ -153,6 +153,7 @@ public abstract class Monster : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             if (player.isDamaged) return; // dev_h : 데미지 받고 잠깐 무적시 충돌 방지
+            if(player.fever.isFever == true &&gameObject.layer == LayerMask.NameToLayer("Boss")) return;
 
             sManager.EventSoundPlay("hitting");
             animator.SetTrigger("isHit");

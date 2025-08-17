@@ -15,7 +15,7 @@ public class Shark : Monster
         isFollowing = true;
 
         stageGrowthRate *= 3f;
-        SetBaseHP(1f);
+        SetBaseHP(2f);
         speed = 2f;
     }
 

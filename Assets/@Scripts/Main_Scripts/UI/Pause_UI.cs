@@ -109,6 +109,6 @@ public class Pause_UI : MonoBehaviour
         soundManager.Intro();
 
         //
-
+        uiManger.isGameOverTriggered = true;
     }
 }

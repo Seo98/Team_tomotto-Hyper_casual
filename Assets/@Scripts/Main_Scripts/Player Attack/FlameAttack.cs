@@ -13,7 +13,7 @@ public class FlameAttack : BaseAttack
     {
         attackType = AttackType.FLAME;
         damage = 0.08f;
-        spawnTime = 3f;
+        spawnTime = 5f;
 
         flameObject = AttackManager.Instance.firePositions[6].gameObject;
         flameObject.SetActive(false);
