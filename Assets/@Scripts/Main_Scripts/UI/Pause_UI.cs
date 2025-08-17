@@ -84,7 +84,7 @@ public class Pause_UI : MonoBehaviour
         
         Time.timeScale = 1f;
         s_isPaused = false;
-
+        AttackManager.Instance.gameObject.SetActive(false);
 
         Managers[0].SetActive(false);
         Managers[1].SetActive(false);

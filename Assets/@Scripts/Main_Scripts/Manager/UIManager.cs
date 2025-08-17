@@ -88,6 +88,7 @@ public class UIManager : MonoBehaviour
     private void StartGame()
     {
         PlayerPos.transform.position = new Vector3(0, -5.4f, 0); // 유저 초기위치 초기화
+        AttackManager.Instance.gameObject.SetActive(true);
 
         sManager.GamePlayBGM(); // 스타트시 브금재생
 
@@ -183,6 +184,7 @@ public class UIManager : MonoBehaviour
         ClearAllBullets();
 
         currentStage = 1;
+        AttackManager.Instance.gameObject.SetActive(false);
     }
 
     public void GameClear()
