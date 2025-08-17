@@ -125,6 +125,6 @@ Assets/@Scripts/Main_Scripts/
 
 **🌊 바다의 모험이 시작됩니다! 🌊**
 
-*Made with ❤️ by 멋쟁이사자처럼 게임 개발팀*
+*Made with ❤️ by 멋쟁이사자처럼 게임개발 5기 / 하이퍼캐주얼 5팀 토멋토Team*
 
 </div>
