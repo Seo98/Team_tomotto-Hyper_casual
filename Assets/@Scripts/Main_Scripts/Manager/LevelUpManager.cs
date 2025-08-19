@@ -10,7 +10,7 @@ public class LevelUpManager : MonoBehaviour
 
     [Header("UI 연결")]
     [SerializeField] private TextMeshProUGUI levelText;
-    [SerializeField] private GameObject levelUpUI;
+    [SerializeField] public GameObject levelUpUI;
     [SerializeField] private Transform skillContants;
 
     [Header("스킬 데이터")]

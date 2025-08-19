@@ -185,6 +185,7 @@ public class UIManager : MonoBehaviour
 
         currentStage = 1;
         AttackManager.Instance.gameObject.SetActive(false);
+        LevelUpManager.Instance.levelUpUI.SetActive(false);
     }
 
     public void GameClear()
