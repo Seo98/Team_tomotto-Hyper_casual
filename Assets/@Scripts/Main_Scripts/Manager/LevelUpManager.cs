@@ -60,7 +60,7 @@ public class LevelUpManager : MonoBehaviour
     {
         curLevel++;
         curExp = 0;
-        maxExp += maxExp / 2f;
+        maxExp += maxExp/3f; // 레벨에 따른 필요 경험치량 증가
         LevelDisplay();
     }
 

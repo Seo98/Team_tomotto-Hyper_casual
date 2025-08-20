@@ -70,19 +70,19 @@ public class BonusItem : MonoBehaviour
         if (attackManager.GetBasicAttack().isActive)
         {
             float currentSpawn = attackManager.GetBasicAttack().spawnTime;
-            attackManager.GetBasicAttack().Upgrade(0.15f, currentSpawn * 0.05f); // 10% 빠르게
+            attackManager.GetBasicAttack().Upgrade(0.15f, currentSpawn * 0f);
         }
 
         if (attackManager.GetIceAttack().isActive)
         {
             float currentSpawn = attackManager.GetIceAttack().spawnTime;
-            attackManager.GetIceAttack().Upgrade(0.2f, currentSpawn * 0.05f);
+            attackManager.GetIceAttack().Upgrade(0.2f, currentSpawn * 0f);
         }
 
         if (attackManager.HarpoonAttack().isActive)
         {
             float currentSpawn = attackManager.HarpoonAttack().spawnTime;
-            attackManager.HarpoonAttack().Upgrade(0.2f, currentSpawn * 0.05f);
+            attackManager.HarpoonAttack().Upgrade(0.2f, currentSpawn * 0f);
         }
 
         if (attackManager.GetPetAttack().isActive)

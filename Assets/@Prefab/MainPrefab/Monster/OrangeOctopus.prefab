@@ -277,8 +277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6c0ed9fd7beff45ba07e495e5b9715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  hp: 3
+  speed: 0
+  hp: 0
+  currHp: 0
   stageGrowthRate: 1
   player: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
@@ -293,7 +294,7 @@ MonoBehaviour:
   FirePos: {fileID: 4923213485927293225}
   fireRate: 2
   rightBoundary: 8
-  leftBoundary: -8
+  leftBoundary: -7
 --- !u!70 &5974345091629228215
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

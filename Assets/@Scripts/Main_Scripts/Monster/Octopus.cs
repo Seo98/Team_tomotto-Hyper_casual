@@ -9,7 +9,7 @@ public class Octopus : Monster
     [Header("문어 전용")]
     public GameObject inkPrefab;
     public GameObject FirePos;
-    public float fireRate = 2f;
+    public float fireRate = 4f;
 
     
 
@@ -26,7 +26,7 @@ public class Octopus : Monster
         stageGrowthRate *= 2f;
         SetBaseHP(1f);
 
-        speed = 1f;
+        speed = 2f;
         dir = Vector3.right;
     }
 
@@ -46,7 +46,7 @@ public class Octopus : Monster
 
     private void HandleMovement()
     {
-        transform.position += dir * (speed + player.moveSpeed) * Time.deltaTime;
+        transform.position += dir * speed * Time.deltaTime;
 
         if (dir == Vector3.right && transform.position.x >= rightBoundary)
         {
