@@ -9,7 +9,7 @@ public class Jellyfish : Monster
     {
         animator = GetComponent<Animator>();
 
-        stageGrowthRate *= 2.5f;
+        stageGrowthRate *= 4f;
         SetBaseHP(1f);
         speed = 0.5f;
         dir = Vector3.down;

@@ -70,7 +70,7 @@ public class BonusItem : MonoBehaviour
         if (attackManager.GetBasicAttack().isActive)
         {
             float currentSpawn = attackManager.GetBasicAttack().spawnTime;
-            attackManager.GetBasicAttack().Upgrade(0.15f, currentSpawn * 0f);
+            attackManager.GetBasicAttack().Upgrade(0.2f, currentSpawn * 0f);
         }
 
         if (attackManager.GetIceAttack().isActive)
@@ -89,6 +89,12 @@ public class BonusItem : MonoBehaviour
         {
             float currentSpawn = attackManager.GetPetAttack().spawnTime;
             attackManager.GetPetAttack().Upgrade(0.1f, currentSpawn * 0f);
+        }
+
+        if (attackManager.GetFlameAttack().isActive)
+        {
+            float currentSpawn = attackManager.GetFlameAttack().spawnTime;
+            attackManager.GetFlameAttack().Upgrade(0.05f, currentSpawn * 0f);
         }
     }
 }

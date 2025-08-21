@@ -140,19 +140,19 @@ public class LevelUpManager : MonoBehaviour
         switch (skill)
         {
             case skillType.AtkUp:
-                atkManager.GetBasicAttack().Upgrade(0.5f, 0.2f);
+                atkManager.GetBasicAttack().Upgrade(0.5f, 0.15f);
                 break;
             case skillType.AtkCountUp:
                 atkManager.GetBasicAttack().UpgradeProjectileCount();
                 break;
             case skillType.Harpoon:
-                atkManager.HarpoonAttack().Upgrade(1f, 0.2f);
+                atkManager.HarpoonAttack().Upgrade(1.2f, 0f);
                 break;
             case skillType.Flame:
-                atkManager.GetFlameAttack().Upgrade(0.02f, 0.15f);
+                atkManager.GetFlameAttack().Upgrade(0.1f, 0.1f);
                 break;
             case skillType.Ice:
-                atkManager.GetIceAttack().Upgrade(0.2f, 0.2f);
+                atkManager.GetIceAttack().Upgrade(0.4f, 0.15f);
                 break;
             case skillType.Pet:
                 atkManager.GetPetAttack().Upgrade(0.2f, 0f);

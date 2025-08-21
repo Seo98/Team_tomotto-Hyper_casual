@@ -13889,6 +13889,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1405069911984909534, guid: 61d873d40e162cc46ab53f0520dae91c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3189379478196809281, guid: 61d873d40e162cc46ab53f0520dae91c, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -13913,6 +13917,22 @@ PrefabInstance:
       propertyPath: backgroundImage
       value: 
       objectReference: {fileID: 605422265}
+    - target: {fileID: 7747878115458031256, guid: 61d873d40e162cc46ab53f0520dae91c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747878115458031256, guid: 61d873d40e162cc46ab53f0520dae91c, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747878115458031256, guid: 61d873d40e162cc46ab53f0520dae91c, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747878115458031256, guid: 61d873d40e162cc46ab53f0520dae91c, type: 3}
+      propertyPath: m_Offset.y
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

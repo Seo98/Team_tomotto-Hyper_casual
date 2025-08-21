@@ -6,7 +6,7 @@ public class BigJellyFish : Monster
     {
         animator = GetComponent<Animator>();
 
-        stageGrowthRate = 3f;
+        stageGrowthRate = 5f;
         SetBaseHP(30f);
         speed = 0.4f;
         dir = Vector3.down;
