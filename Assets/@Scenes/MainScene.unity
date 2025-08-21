@@ -9104,6 +9104,9 @@ MonoBehaviour:
   - {fileID: 299574993}
   - {fileID: 1941310765}
   - {fileID: 1296655242}
+  - {fileID: 1766566683}
+  - {fileID: 365567130}
+  - {fileID: 53354562}
   currentStage: 1
   stageHPIncrease: 0.5
   newStageUI: {fileID: 567871047}
