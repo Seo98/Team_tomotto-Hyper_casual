@@ -44,7 +44,7 @@ public class FeverTimeManager : MonoBehaviour
     {
         while (feverImage.fillAmount < 1)
         {
-            feverImage.fillAmount += Time.deltaTime * 0.06f;
+            feverImage.fillAmount += Time.deltaTime * 0.03f; 
             nowGauge = feverImage.fillAmount;
             break;
         }
