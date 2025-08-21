@@ -12,8 +12,8 @@ public class FlameAttack : BaseAttack
     protected override void Initialize() // 초기데이터
     {
         attackType = AttackType.FLAME;
-        damage = 0.08f;
-        spawnTime = 5f;
+        damage = 0.1f;
+        spawnTime = 7f;
 
         flameObject = AttackManager.Instance.firePositions[6].gameObject;
         flameObject.SetActive(false);
