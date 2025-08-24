@@ -85,6 +85,40 @@ public class Boss_R : Monster
     public int secondBreathLaserCount = 3; // 2단계 브레스 레이저 수
 
 
+    // 별개 패턴으로 구분
+    [Header("패턴 6 : 꽃잎 산개")]
+    public int petalWaveCount = 8;           // 꽃잎 개수
+    public float petalBulletSpeed = 6f;      // 꽃잎 탄환 속도
+    public int petalBulletsPerWave = 5;      // 꽃잎당 탄환 수
+    public float petalWaveDelay = 0.1f;      // 꽃잎 간 딜레이
+    public float petalSpreadAngle = 15f;     // 꽃잎 내 확산각
+
+    [Header("패턴 7 : 회전 크로스")]
+    public float crossRotationSpeed = 45f;   // 크로스 회전 속도
+    public int crossBulletCount = 4;         // 십자 방향 수
+    public float crossBulletSpeed = 7f;      // 크로스 탄환 속도
+    public int crossWaveCount = 15;          // 크로스 발사 횟수
+    public float crossWaveDelay = 0.15f;     // 크로스 웨이브 간격
+
+    [Header("패턴 8 : 파동 확산")]
+    public int waveRingCount = 6;            // 파동 링 개수
+    public int waveBulletsPerRing = 20;      // 링당 탄환 수
+    public float waveSpeed = 5f;             // 파동 속도
+    public float waveRingDelay = 0.3f;       // 링 간 딜레이
+    public float waveSpeedVariation = 2f;    // 속도 변화량
+
+
+    [Header("패턴 그룹 쿨타임 설정")]
+    public float groupACooldown = 1.5f; // 기존 패턴(0-4) 쿨타임
+    public float groupBCooldown = 2.0f; // 새 패턴(5-7) 쿨타임
+
+    private bool isGroupAOnCooldown = false;
+    private bool isGroupBOnCooldown = false;
+    private Coroutine groupACoroutine;
+    private Coroutine groupBCoroutine;
+
+
+
     // Dev_S : 354 주석설명 되어있음
     /*
     [Header("전멸기 시간")]
@@ -147,54 +181,96 @@ public class Boss_R : Monster
     // --- FSM 로직 ---
     private IEnumerator BossAI_Routine()
     {
+        // 두 그룹을 별도로 실행
+        StartCoroutine(GroupAAttackRoutine());
+        StartCoroutine(GroupBAttackRoutine());
+
+        // 기존 Idle/Attack 루프는 유지하되 빈 루프로 변경
         while (true)
         {
-            switch (currentState)
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+
+    private IEnumerator GroupAAttackRoutine()
+    {
+        yield return new WaitForSeconds(idleTime); // 초기 대기
+
+        while (true)
+        {
+            // 공격 실행
+            int randomAttack = Random.Range(0, 5); // 0,1,2,3,4
+
+            switch (randomAttack)
             {
-                case BossState.Idle:
-                    yield return StartCoroutine(IdleState());
+                case 0:
+                    animator.SetBool("isAttack", true);
+                    groupACoroutine = StartCoroutine(CircularAttackPattern());
                     break;
-                case BossState.Attacking:
-                    yield return StartCoroutine(AttackState());
+                case 1:
+                    animator.SetBool("isAttack", true);
+                    groupACoroutine = StartCoroutine(HomingBurstPattern());
+                    break;
+                case 2:
+                    animator.SetBool("isAttack", true);
+                    groupACoroutine = StartCoroutine(DoubleSpiralAttackPattern());
+                    break;
+                case 3:
+                    animator.SetBool("isAttack", true);
+                    groupACoroutine = StartCoroutine(CombinationAttackPattern());
+                    break;
+                case 4:
+                    animator.SetBool("isAttack", true);
+                    groupACoroutine = StartCoroutine(BreathAttackPattern());
                     break;
             }
+
+            // 공격 완료까지 대기
+            yield return groupACoroutine;
+
+            // 공격 후 휴식 시간 (Idle 시간)
+            yield return new WaitForSeconds(idleTime);
+
+            // 그룹 A 쿨타임
+            yield return new WaitForSeconds(groupACooldown);
         }
     }
 
-
-    private IEnumerator AttackState()
+    private IEnumerator GroupBAttackRoutine()
     {
-        int randomAttack = Random.Range(0, 5);
-        switch (randomAttack)
-        {
-            case 0:
-                animator.SetBool("isAttack", true);
-                currentAttackCoroutine = StartCoroutine(CircularAttackPattern());
-                break;
-            case 1:
-                animator.SetBool("isAttack", true);
-                currentAttackCoroutine = StartCoroutine(HomingBurstPattern());
-                break;
-            case 2:
-                animator.SetBool("isAttack", true);
-                currentAttackCoroutine = StartCoroutine(DoubleSpiralAttackPattern());
-                break;
-            case 3:
-                animator.SetBool("isAttack", true);
-                currentAttackCoroutine = StartCoroutine(CombinationAttackPattern());
-                break;
-            case 4:
-                animator.SetBool("isAttack", true);
-                currentAttackCoroutine = StartCoroutine(BreathAttackPattern());
-                break;
-        }
+        yield return new WaitForSeconds(idleTime + 2f); // 초기 대기 + 더 긴 오프셋
 
-        yield return currentAttackCoroutine;
-        yield return new WaitForSeconds(attackCooldown);
-        currentState = BossState.Idle;
+        while (true)
+        {
+            // 공격 실행
+            int randomAttack = Random.Range(5, 8); // 5,6,7
+
+            switch (randomAttack)
+            {
+                case 5:
+                    groupBCoroutine = StartCoroutine(PetalBloomPattern());
+                    break;
+                case 6:
+                    groupBCoroutine = StartCoroutine(RotatingCrossPattern());
+                    break;
+                case 7:
+                    groupBCoroutine = StartCoroutine(WaveExpansionPattern());
+                    break;
+            }
+
+            // 공격 완료까지 대기
+            yield return groupBCoroutine;
+
+            // 공격 후 휴식 시간 (Idle 시간의 절반 정도)
+            yield return new WaitForSeconds(idleTime * 0.7f);
+
+            // 그룹 B 쿨타임
+            yield return new WaitForSeconds(groupBCooldown);
+        }
     }
 
-    
+
 
     //공격 패턴 구현
     private IEnumerator CircularAttackPattern()
@@ -431,6 +507,121 @@ public class Boss_R : Monster
         animator.SetBool("isAttack", false);
     }
 
+    // 패턴 6: 꽃잎 산개 - 꽃잎 모양으로 확산하며 색깔이 변하는 듯한 효과
+    private IEnumerator PetalBloomPattern()
+    {
+        Debug.Log("보스: 꽃잎 산개");
+
+        for (int wave = 0; wave < 3; wave++) // 3번 반복
+        {
+            float baseAngle = wave * 22.5f; // 각 웨이브마다 회전
+
+            for (int petal = 0; petal < petalWaveCount; petal++)
+            {
+                float petalAngle = (360f / petalWaveCount) * petal + baseAngle;
+
+                // 각 꽃잎마다 여러 탄환 발사
+                for (int bullet = 0; bullet < petalBulletsPerWave; bullet++)
+                {
+                    float spreadOffset = (bullet - (petalBulletsPerWave - 1) * 0.5f) * (petalSpreadAngle / petalBulletsPerWave);
+                    float finalAngle = petalAngle + spreadOffset;
+
+                    Vector2 direction = AngleToDirection(finalAngle);
+
+                    // 거리별로 속도 조절 (안쪽은 느리게, 바깥쪽은 빠르게)
+                    float speedMultiplier = 0.7f + (bullet * 0.15f);
+                    FireBullet(direction, petalBulletSpeed * speedMultiplier);
+                }
+
+                yield return new WaitForSeconds(petalWaveDelay);
+            }
+
+            yield return new WaitForSeconds(0.8f); // 웨이브 간 대기
+        }
+
+        animator.SetBool("isAttack", false);
+    }
+
+    // 패턴 7: 회전 크로스 - 십자 형태로 발사하며 계속 회전
+    private IEnumerator RotatingCrossPattern()
+    {
+        Debug.Log("보스: 회전 크로스");
+
+        float currentRotation = 0f;
+
+        for (int wave = 0; wave < crossWaveCount; wave++)
+        {
+            // 십자 방향으로 발사 (0, 90, 180, 270도)
+            for (int cross = 0; cross < crossBulletCount; cross++)
+            {
+                float angle = (cross * 90f) + currentRotation;
+                Vector2 direction = AngleToDirection(angle);
+
+                // 3연발로 발사하여 더 화려하게
+                for (int burst = 0; burst < 3; burst++)
+                {
+                    FireBullet(direction, crossBulletSpeed);
+                    yield return new WaitForSeconds(0.05f);
+                }
+            }
+
+            // 대각선 방향도 추가 (더 화려함)
+            for (int diagonal = 0; diagonal < crossBulletCount; diagonal++)
+            {
+                float angle = (diagonal * 90f) + 45f + currentRotation;
+                Vector2 direction = AngleToDirection(angle);
+                FireBullet(direction, crossBulletSpeed * 0.8f); // 대각선은 조금 느리게
+            }
+
+            currentRotation += crossRotationSpeed * crossWaveDelay;
+            yield return new WaitForSeconds(crossWaveDelay);
+        }
+
+        animator.SetBool("isAttack", false);
+    }
+
+    // 패턴 8: 파동 확산 - 동심원으로 퍼져나가는 파동
+    private IEnumerator WaveExpansionPattern()
+    {
+        Debug.Log("보스: 파동 확산");
+
+        float ringRotationOffset = 0f;
+
+        for (int ring = 0; ring < waveRingCount; ring++)
+        {
+            float angleStep = 360f / waveBulletsPerRing;
+
+            for (int bullet = 0; bullet < waveBulletsPerRing; bullet++)
+            {
+                float angle = bullet * angleStep + ringRotationOffset;
+                Vector2 direction = AngleToDirection(angle);
+
+                // 각 링마다 속도 변화 (파동 효과)
+                float speedVariation = Mathf.Sin(ring * 0.5f) * waveSpeedVariation;
+                float finalSpeed = waveSpeed + speedVariation;
+
+                // 탄환을 약간 뒤쪽에서 시작하여 파동 효과 연출
+                Vector2 startPos = (Vector2)firePoint.position + direction * (ring * 0.3f);
+                FireBulletAt(startPos, direction, finalSpeed, bulletPrefab);
+            }
+
+            // 다음 링은 약간 회전시켜서 더 화려하게
+            ringRotationOffset += 15f;
+            yield return new WaitForSeconds(waveRingDelay);
+        }
+
+        // 마지막에 중앙에서 폭발하는 듯한 효과
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 32; i++)
+        {
+            float angle = i * (360f / 32f);
+            Vector2 direction = AngleToDirection(angle);
+            FireBullet(direction, waveSpeed * 1.5f);
+        }
+
+        animator.SetBool("isAttack", false);
+    }
+
     private void FireBullet(Vector2 direction, float speed)
     {
         FireBulletAt(firePoint.position, direction, speed, bulletPrefab);
@@ -476,33 +667,4 @@ public class Boss_R : Monster
         Hpbar.fillAmount = currHp / hp;
 
     }
-
-    
-    // 전멸기 로직
-
-    // DEV_S
-    // FIXME : NULL 레퍼런스 이슈, 원인 UI 매니저 관련 추정
-    // 수정하려하였으나, 해당 기능 구현여부에 대해서 정확하게 외주업체(멋사)측 확인 필요할듯.
-
-    // 추가 피드백에 따라 진행예정 -> 기획관련 -> 플레이어 실력과 무관하게 어떤 상황이더라도 무조건 2분 내외로 끝내야 하는지.
-    // 끝내야할경우 -> 시간지나면 전멸기 -> 다시하기 
-    /*private IEnumerator DoomsdayTimer()
-    {
-        yield return new WaitForSeconds(doomsdayTime);
-        if (!doomsdayActivated)
-        {
-            ActivateDoomsday();
-            doomsdayActivated = true;
-        }
-    }*/
-
-    /*
-    private void ActivateDoomsday()
-    {
-        Debug.Log("보스: 전멸기 발동!");
-        // TODO : 연출 구현해야함 
-
-        uiManager.GameOver();
-    }
-    */
 }

@@ -41,11 +41,10 @@ public class FlameAttack : BaseAttack
 
     protected override void Attack()
     {
-        if (flameObject != null)
+        if (flameObject != null && !isFlameActive)
         {
             flameObject.SetActive(true);
             isFlameActive = true;
-
             StartCoroutine(DeactivateFlameAfterDelay());
         }
     }

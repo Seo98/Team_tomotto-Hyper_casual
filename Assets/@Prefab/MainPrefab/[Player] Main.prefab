@@ -389,7 +389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5279407153717539180}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.2617414, y: -7.8599997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -469,7 +469,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5279407153717539180}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -522,8 +522,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.000000029802322, y: -0.31679505}
-  m_Size: {x: 0.89612263, y: 1.5125326}
+  m_Offset: {x: 0.000000029802322, y: -0.47435015}
+  m_Size: {x: 0.89612263, y: 1.1974224}
   m_Direction: 0
 --- !u!114 &7298246295885794264
 MonoBehaviour:
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.2
   hp: 3
-  score: 0
+  maxHp: 3
   isAttack: 0
   isShield: 0
   isDamaged: 0
@@ -748,6 +748,22 @@ PrefabInstance:
     - target: {fileID: 1910691628732435215, guid: 33a510bde62bc60448a3d06d9a8a939c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015372201451954628, guid: 33a510bde62bc60448a3d06d9a8a939c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015372201451954628, guid: 33a510bde62bc60448a3d06d9a8a939c, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015372201451954628, guid: 33a510bde62bc60448a3d06d9a8a939c, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015372201451954628, guid: 33a510bde62bc60448a3d06d9a8a939c, type: 3}
+      propertyPath: m_Offset.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7134330651807355778, guid: 33a510bde62bc60448a3d06d9a8a939c, type: 3}
       propertyPath: m_Name
