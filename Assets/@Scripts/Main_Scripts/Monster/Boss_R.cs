@@ -42,7 +42,7 @@ public class Boss_R : Monster
     public int circularAttackBulletCount = 32;
     public float circularAttackBulletSpeed = 4f;
     public int circularAttackRepeatCount = 3; // 원형 공격 반복 횟수
-    public float slowCircularAttackBulletSpeed = 2f; // 느린 원형 공격 총알 속도
+    public float slowCircularAttackBulletSpeed = 10f; // 느린 원형 공격 총알 속도
     public float circularAttackBulletDelay = 0.05f; // 각 총알 발사 사이의 딜레이
     public float circularAttackRotationPerWave = 15f; // 한 웨이브(전체 원형 공격) 후 회전할 각도
 
@@ -287,7 +287,7 @@ public class Boss_R : Monster
                 yield return new WaitForSeconds(circularAttackBulletDelay);
             }
             totalRotation += circularAttackRotationPerWave; // 다음 웨이브를 위해 전체 각도 증가
-            yield return new WaitForSeconds(0.2f); // 각 반복 사이의 딜레이
+            yield return new WaitForSeconds(0.05f); // 각 반복 사이의 딜레이
         }
         animator.SetBool("isAttack", false);
     }

@@ -497,7 +497,7 @@ MonoBehaviour:
   circularAttackBulletCount: 16
   circularAttackBulletSpeed: 5
   circularAttackRepeatCount: 6
-  slowCircularAttackBulletSpeed: 1
+  slowCircularAttackBulletSpeed: 10
   circularAttackBulletDelay: 0.05
   circularAttackRotationPerWave: 15
   homingBurstCount: 4
@@ -527,6 +527,23 @@ MonoBehaviour:
   warringBreathPrefab2: {fileID: 3775194400798946777, guid: 32d3a0b28d7be4244a1d9c70587b448d, type: 3}
   breathPrefab2: {fileID: 3775194400798946777, guid: 00f4e9320601b3848898814b9a6b1413, type: 3}
   secondBreathLaserCount: 3
+  petalWaveCount: 8
+  petalBulletSpeed: 6
+  petalBulletsPerWave: 5
+  petalWaveDelay: 0.1
+  petalSpreadAngle: 15
+  crossRotationSpeed: 45
+  crossBulletCount: 4
+  crossBulletSpeed: 7
+  crossWaveCount: 15
+  crossWaveDelay: 0.15
+  waveRingCount: 6
+  waveBulletsPerRing: 20
+  waveSpeed: 5
+  waveRingDelay: 0.3
+  waveSpeedVariation: 2
+  groupACooldown: 1.5
+  groupBCooldown: 2
 --- !u!50 &833312238870711953
 Rigidbody2D:
   serializedVersion: 5
